@@ -3,6 +3,12 @@
 
 Given a file with text in Japanese, it returns a list of words along with their definitions and translations.
 
+# Technologies
+
+This parsers is built using `Node.js` and tested with `Mocha`.
+
+Tests can be ran using `npm test`.
+
 # Installation guide
 
 Requirements are `Node.js` and `npm` installed. I'm using `yarn` for managing dependencies but you can use whatever system you want. Some technical knowledge is required as well.
