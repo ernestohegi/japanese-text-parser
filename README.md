@@ -3,6 +3,10 @@
 
 Given a file with text in Japanese, it returns a list of words along with their definitions and translations.
 
+# How to run
+
+```TEXT="私はペンです。" node index.js```
+
 # Technologies
 
 This parsers is built using `Node.js` and tested with `Mocha`.
