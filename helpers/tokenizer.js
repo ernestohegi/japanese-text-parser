@@ -3,9 +3,9 @@ const kuromoji = require('kuromoji');
 const DICTIONARY_PATH = './node_modules/kuromoji/dict/'
 
 const ALLOWED_IDENTIFIERS = [
-    '名詞',
-    '形容詞',
-    '動詞'
+    '名詞', // Substantive
+    '形容詞', // Adjective
+    '動詞' // Verb
 ];
 
 const getTokenElement = token => token.surface_form;
