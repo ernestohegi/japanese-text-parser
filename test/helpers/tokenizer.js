@@ -1,7 +1,7 @@
 const assert = require('assert');
 const expect = require('expect');
 
-describe('Tokenizer', () => {
+describe('Tokenizer Helper', () => {
     const tokenizer = require('../../helpers/tokenizer');
     const SAMPLE_TEXT = "私はペンです。";
 
@@ -38,7 +38,7 @@ describe('Tokenizer', () => {
             const allowedElements = tokenizer.getAllowedTokens(tokens);
 
             allowedElements.map(allowedElement => {
-                expect(tokenizer.getTokenElement(allowedElement)).toEqual(allowedElement.surface_form);
+                expect(tokenizer.getWordFromToken(allowedElement)).toEqual(allowedElement.surface_form);
             });
 
             done();
