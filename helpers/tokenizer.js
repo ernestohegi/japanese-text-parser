@@ -8,7 +8,7 @@ const ALLOWED_IDENTIFIERS = [
     '動詞' // Verb
 ];
 
-const getTokenElement = token => token.surface_form;
+const getWordFromToken = token => token.surface_form;
 const getTokenType = token => token.pos;
 
 module.exports = {
@@ -21,5 +21,5 @@ module.exports = {
     getAllowedTokens(tokens) {
         return tokens.filter(token => ALLOWED_IDENTIFIERS.includes(getTokenType(token)))
     },
-    getTokenElement
+    getWordFromToken
 };
