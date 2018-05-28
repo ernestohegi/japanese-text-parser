@@ -1,4 +1,4 @@
-const api = require('./api');
+const api = require('../api');
 
 const API_URL = 'https://jisho.org/api/v1/search/words?keyword=';
 
@@ -14,7 +14,7 @@ module.exports = {
   generateObject(definition) {
     return {
       japanese: definition.japanese,
-      targetLanguageDefinition: definition.senses[0].english_definitions,
+      english: definition.senses[0].english_definitions,
     };
   }
 };
