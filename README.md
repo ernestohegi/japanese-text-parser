@@ -1,7 +1,10 @@
-# Japanese Text Parser
-## Work In Progress
+# Yochimu 予知夢
+## Japanese Text Parser
+### Work In Progress
 
-Given a file with text in Japanese, it returns a list of words along with their definitions and translations.
+Yochimu means prophetic dream in Japanese. The purpose of this tool is to let you red comfortably any kind of text, by reviewing before it's vocabulary using SRS solutions like Anki.
+
+What Yochimu does is, given a file with text in Japanese, it returns a list of words from that text along with their definitions, translations and example sentences, to let you create decks.
 
 # Installation guide
 
