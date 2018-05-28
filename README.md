@@ -3,16 +3,6 @@
 
 Given a file with text in Japanese, it returns a list of words along with their definitions and translations.
 
-# How to run
-
-```TEXT="私はペンです。" node index.js```
-
-# Technologies
-
-This parsers is built using `Node.js` and tested with `Mocha`.
-
-Tests can be ran using `npm test`.
-
 # Installation guide
 
 Requirements are `Node.js` and `npm` installed. I'm using `yarn` for managing dependencies but you can use whatever system you want. Some technical knowledge is required as well.
@@ -20,7 +10,21 @@ Requirements are `Node.js` and `npm` installed. I'm using `yarn` for managing de
 1. Clone the repo.
 2. Run `yarn install` or `npm install`.
 
-# Dependencies
+# How to run
+
+```TEXT="私はペンです。" node index.js```. Right now, the system expectes input to be provided through environment variables, but the plan is to also add a RESTful API layer.
+
+# How to test
+
+Tests can be executed using `npm test`.
+
+# Technologies
+
+This parsers is built using `Node.js` and tested with `Mocha`.
+
+`cheerio` is used to scrape content from non-JSON sources.
+
+# Hard Dependencies
 
 This parser is using [Kuromoji](https://github.com/takuyaa/kuromoji.js) library to tokenise Japanese text.
 
