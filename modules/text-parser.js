@@ -6,44 +6,27 @@ const sentencesService = require (ROOT + '/helpers/services/weblio');
 
 const definitions = {};
 
-const getDefinitions = (allowedTokens, definitions, endCallback) => {
+const getDefinitions = async (allowedTokens, definitions, endCallback) => {
     if (allowedTokens.length === 0) {
         return endCallback(definitions);
     };
 
     const token = allowedTokens.shift();
     const word = tokenizer.getWordFromToken(token);
+    const sentences = await getSentencesForWord(word);
+    const commonDefinitions = await getCommonDefinitionsForWord(word);
 
     definitions[word] = {
-        definitions: [],
-        sentences: []
+        definitions: commonDefinitions,
+        sentences
     };
 
-    sentencesService.getSentencesForItem(word)
-        .then(sentences => {
-            definitions[word].sentences.push(sentences);
-
-            return new Promise(resolve => resolve());
-        })
-        .then(() => {
-            dictionaryService.getCommonDefinitions(word)
-                .then(commonDefinitions => {
-                    definitions[word].definitions.push(
-                        {
-                            definitions: commonDefinitions.map(
-                                dictionaryService.generateObject
-                            )
-                        }
-                    );
-
-                    getDefinitions(
-                        allowedTokens,
-                        definitions,
-                        endCallback
-                    );
-                })
-        });
-}
+    getDefinitions(
+        allowedTokens,
+        definitions,
+        endCallback
+    );
+};
 
 const getAllowedTokens = (text, helper) => {
     return tokenizer.getAllowedTokens(
@@ -51,18 +34,20 @@ const getAllowedTokens = (text, helper) => {
     );
 };
 
-const printDefinitions = definitions => {
-    console.log(
-        JSON.stringify(
-            [definitions]
-        )
-    );
+const getSentencesForWord = word => {
+    return sentencesService.getSentencesForItem(word).then(sentences => sentences);
+};
 
-    console.log('Finished parsing provided text...');
+const getCommonDefinitionsForWord = word => {
+    return dictionaryService.getCommonDefinitions(word).then(commonDefinitions => {
+        return {
+            definitions: commonDefinitions.map(dictionaryService.generateObject)
+        }
+    });
 };
 
 module.exports = {
-    parse(text) {
+    parse(text, endCallback) {
         tokenizer.init((error, helper) => {
             if (error) throw error;
 
@@ -71,7 +56,7 @@ module.exports = {
             getDefinitions(
                 getAllowedTokens(text, helper),
                 definitions,
-                printDefinitions
+                endCallback
             );
         });
     }
