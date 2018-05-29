@@ -28,6 +28,12 @@ const getDefinitions = async (allowedTokens, definitions, endCallback) => {
     );
 };
 
+/**
+ * Converts text into tokens and retrieves only allowed values.
+ * @param {string} text
+ * @param {function} helper
+ * @return array
+ */
 const getAllowedTokens = (text, helper) => {
     return tokenizer.getAllowedTokens(
         helper.tokenize(text)
