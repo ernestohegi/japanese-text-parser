@@ -5,14 +5,14 @@ const linkStyle = {
 }
 
 const Header = () => (
-  <React.Fragment>
+  <header>
     <Link href="/">
       <a style={linkStyle}>Home</a>
     </Link>
     <Link href="/about">
       <a style={linkStyle}>About</a>
     </Link>
-  </React.Fragment>
+  </header>
 );
 
 export default Header;

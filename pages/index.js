@@ -1,13 +1,16 @@
 import React from 'react';
 import Layout from './components/Layout';
 import Translations from './components/Translations';
-import { postJsonData } from './helpers/http';
+import { postJsonData } from './helpers/http-helper';
 
 const TRANSLATE_URL = 'http://localhost:3000/translate';
 
 class Index extends React.Component  {
   constructor(props) {
     super(props);
+
+    this.handleTextChange = this.handleTextChange.bind(this);
+    this.handleTranslationButtonClick = this.handleTranslationButtonClick.bind(this)
 
     this.state = {
       translation: [],
@@ -24,9 +27,7 @@ class Index extends React.Component  {
   }
 
   handleTranslationButtonClick() {
-    const text = this.state.form.text;
-
-    this.translateText(text);
+    this.translateText(this.state.form.text);
   }
 
   handleTextChange(event) {
@@ -40,12 +41,10 @@ class Index extends React.Component  {
   render() {
     return (
       <Layout>
-        <h1> よちむ </h1>
+        <input type="text" onChange={ this.handleTextChange }></input>
+        <button onClick={ this.handleTranslationButtonClick }>Translate</button>
 
-        <input type="text" onChange={this.handleTextChange.bind(this)}></input>
-        <button onClick={this.handleTranslationButtonClick.bind(this)}>Translate</button>
-
-        {<Translations translations={this.state.translation} />}
+        <Translations translations={ this.state.translation } />
       </Layout>
     );
   }
