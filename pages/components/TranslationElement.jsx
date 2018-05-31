@@ -1,8 +1,12 @@
 import DefinitionsElement from './DefinitionsElement';
 import SentencesElement from './SentencesElement';
 
+const translationStyle = {
+  display: 'block'
+};
+
 const TranslationElement = (props) => {
-  return <div className="translation">
+  return <div className="translation" style={ translationStyle }>
     <h2 key={`${props.translation.word}`}>{ props.translation.word }</h2>
 
     <div key="definitions" className="definitions">

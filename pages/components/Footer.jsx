@@ -1,12 +1,13 @@
 const CURRENT_YEAR = (new Date()).getFullYear();
 
 const footerStyle = {
-  marginTop: '15px'
+  marginTop: '15px',
+  textAlign: 'center'
 };
 
 const Footer = () => (
   <footer style={footerStyle}>
-    {`The Yochimu team ${CURRENT_YEAR}`}
+    {`The Yochimu Team ${CURRENT_YEAR}`} &copy;
   </footer>
 );
 
