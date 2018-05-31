@@ -4,15 +4,22 @@
   "description": "Given a file with text in Japanese, it returns a list of words along with their definitions and translation.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/**/*.js"
+    "dev": "node index.js",
+    "test": "mocha **/test/**/*.js"
   },
   "author": "Ernesto Hegi",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
     "expect": "^22.4.3",
+    "express": "^4.16.3",
+    "isomorphic-unfetch": "^2.0.0",
     "kuromoji": "^0.1.2",
     "mocha": "^5.2.0",
-    "node-fetch": "^2.1.2"
+    "next": "^6.0.3",
+    "node-fetch": "^2.1.2",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
   }
 }
