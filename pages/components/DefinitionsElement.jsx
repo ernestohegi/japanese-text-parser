@@ -5,7 +5,7 @@ const DefinitionsElement = props => (
     const japaneseDefinition = TextHelper.getJapanese(definition).slice(0).pop();
 
     return (
-      <div className="definition">
+      <div className="definition" key={index}>
         <span key={`${index}-japanese`} className="definition__japanese">
           { `${japaneseDefinition.word || ''} 「${japaneseDefinition.reading}」` }
         </span>
