@@ -18,4 +18,14 @@ export default `
   a:hover {
     font-weight: 700;
   }
+
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+
+  .highlight {
+    font-weight: 500;
+    color: #5D5D5D;
+  }
 `;

@@ -5,9 +5,12 @@ import Loader from './components/Loader';
 import { postJsonData } from './helpers/http-helper';
 
 const TRANSLATE_URL = 'http://localhost:3000/translate';
+const BUTTON_COPY = 'Translate';
 
 const buttonStyle = {
-  border: 'none'
+  border: '0',
+  background: '#FC6336',
+  color: '#FFF'
 };
 
 class Index extends React.Component  {
@@ -34,6 +37,7 @@ class Index extends React.Component  {
 
   handleTranslationButtonClick() {
     this.showLoader();
+    this.resetTranslations();
     this.translateText(this.state.form.text);
   }
 
@@ -57,12 +61,19 @@ class Index extends React.Component  {
     });
   }
 
+  resetTranslations() {
+    this.setState({
+      translation: []
+    });
+  }
+
   render() {
     return (
       <Layout>
         <input type="text" onChange={ this.handleTextChange }></input>
-        <button onClick={ this.handleTranslationButtonClick }>Translate</button>
+        <button onClick={ this.handleTranslationButtonClick } style={buttonStyle}>{BUTTON_COPY}</button>
 
+        <h3>{ this.state.form.text }</h3>
         <Loader status={this.state.showLoader} />
         <Translations translations={ this.state.translation } />
       </Layout>
