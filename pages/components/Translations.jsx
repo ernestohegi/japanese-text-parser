@@ -7,18 +7,13 @@ const createDefinitionsElement = definitions => {
 
     return (
       <div className="definition">
-        <p key={`${index}-japanese`} className="definition__japanese">
-          {
-            `
-              ${japaneseDefinition.word},
-              ${japaneseDefinition.reading}
-            `
-          }
-        </p>
+        <span key={`${index}-japanese`} className="definition__japanese">
+          { `${japaneseDefinition.word || ''} 「${japaneseDefinition.reading}」` }
+        </span>
 
-        <p key={`${index}-english`} className="definition__english">
+        <span key={`${index}-english`} className="definition__english">
           { TextHelper.getEnglish(definition) }
-        </p>
+        </span>
       </div>
     );
   });
@@ -27,34 +22,32 @@ const createDefinitionsElement = definitions => {
 const createSentencesElement = sentences => {
   return sentences.map((sentence, index) => (
     <div className="sentence">
-      <p key={`${index}-japanese`} className="sentence__japanese">
+      <span key={`${index}-japanese`} className="sentence__japanese">
         { TextHelper.getJapanese(sentence).replace('例文帳に追加', '') }
-      </p>
+      </span>
 
-      <p key={`${index}-english`} className="sentence__english">
-        { TextHelper.getEnglish(sentence).split('-')[0] }
-      </p>
+      <span key={`${index}-english`} className="sentence__english">
+        「{ TextHelper.getEnglish(sentence).split('-')[0] }」
+      </span>
     </div>
   ));
 };
 
-const createTranslationElement = (translation, index) => {
-  const word = translation.word;
+const createTranslationElement = (translation, index) => (
+  <div className="translation">
+    <h2 key={`${translation.word}`}>{ translation.word }</h2>
 
-  return (
-    <div className="translation">
-      <h2 key={`${word}`}>{ word }</h2>
-
-      <div key="definitions" className="definitions">
-        { createDefinitionsElement(translation.definitions) }
-      </div>
-
-      <div key="sentences" className="sentences">
-        { createSentencesElement(translation.sentences) }
-      </div>
+    <div key="definitions" className="definitions">
+      <h3> Definitions </h3>
+      { createDefinitionsElement(translation.definitions) }
     </div>
-  );
-};
+
+    <div key="sentences" className="sentences">
+      <h3> Sentences</h3>
+      { createSentencesElement(translation.sentences) }
+    </div>
+  </div>
+);
 
 const createTranslationsElement = translations => {
   return translations.map((translation, index) => (
