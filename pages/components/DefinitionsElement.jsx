@@ -1,8 +1,8 @@
-import TextHelper from '../helpers/text-helper';
+import textHelper from '../helpers/text-helper';
 
 const DefinitionsElement = props => (
   props.definitions.map((definition, index) => {
-    const japaneseDefinition = TextHelper.getJapanese(definition).slice(0).pop();
+    const japaneseDefinition = textHelper.getJapanese(definition).slice(0).pop();
 
     return (
       <div className="definition" key={index}>
@@ -11,7 +11,7 @@ const DefinitionsElement = props => (
         </span>
 
         <span key={`${index}-english`} className="definition__english">
-          { TextHelper.getEnglish(definition) }
+          { textHelper.getEnglish(definition) }
         </span>
       </div>
     );

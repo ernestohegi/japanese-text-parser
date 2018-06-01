@@ -1,4 +1,4 @@
-const TextHelper = {
+const textHelper = {
   getJapanese: element => element.japanese,
   getEnglish: element => (
     Array.isArray(element.english) ?
@@ -7,4 +7,4 @@ const TextHelper = {
   )
 };
 
-export default TextHelper;
+export default textHelper;

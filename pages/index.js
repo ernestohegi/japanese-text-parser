@@ -21,6 +21,7 @@ class Index extends React.Component  {
     this.handleTranslationButtonClick = this.handleTranslationButtonClick.bind(this)
 
     this.state = {
+      translating: false,
       translation: [],
       showLoader: false,
       form: {
@@ -29,15 +30,29 @@ class Index extends React.Component  {
     };
   }
 
+  /**
+   * Method rendered only server-side.
+   * @param {object}
+   */
+  static async getInitialProps({pathname, req}) {
+    console.log('We are on the server');
+
+    return {
+      pathname
+    };
+  }
+
   async translateText(text) {
     const translation = await postJsonData(TRANSLATE_URL, { text });
     this.hideLoader();
+    this.stopTranslationProcess();
     this.setState({ translation });
   }
 
   handleTranslationButtonClick() {
     this.showLoader();
     this.resetTranslations();
+    this.startTranslationsProcess();
     this.translateText(this.state.form.text);
   }
 
@@ -67,11 +82,29 @@ class Index extends React.Component  {
     });
   }
 
+  startTranslationsProcess() {
+    this.setState({
+      translating: true
+    });
+  }
+
+  stopTranslationProcess() {
+    this.setState({
+      translating: false
+    });
+  }
+
   render() {
     return (
       <Layout>
         <input type="text" onChange={ this.handleTextChange }></input>
-        <button onClick={ this.handleTranslationButtonClick } style={buttonStyle}>{BUTTON_COPY}</button>
+        <button
+          onClick={ this.handleTranslationButtonClick }
+          style={buttonStyle}
+          disabled={this.state.translating}
+        >
+          {BUTTON_COPY}
+        </button>
 
         <h3>{ this.state.form.text }</h3>
         <Loader status={this.state.showLoader} />

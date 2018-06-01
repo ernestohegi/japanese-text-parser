@@ -1,17 +1,11 @@
 import DefinitionsElement from './DefinitionsElement';
 import SentencesElement from './SentencesElement';
-
-const translationStyle = {
-  display: 'block',
-  padding: '10px',
-  margin: '10px 0',
-  border: '1px solid #DDD'
-};
+import containerStyle from '../styles/container-style';
 
 const TranslationElement = (props) => {
   const word = props.translation.word;
 
-  return <div className="translation" style={ translationStyle }>
+  return <div className="translation" style={containerStyle}>
     <h2 key={`${word}`}>{ word }</h2>
 
     <div key="definitions" className="definitions">

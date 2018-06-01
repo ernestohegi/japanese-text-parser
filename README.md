@@ -6,16 +6,20 @@ Yochimu means prophetic dream in Japanese. The purpose of this tool is to let yo
 
 What Yochimu does is, given a file with text in Japanese, it returns a list of words from that text along with their definitions, translations and example sentences, to let you create decks.
 
+The plan would be to build our own SRS in the near future.
+
 # Installation guide
 
 Requirements are `Node.js` and `npm` installed. I'm using `yarn` for managing dependencies but you can use whatever system you want. Some technical knowledge is required as well.
 
 1. Clone the repo.
 2. Run `yarn install` or `npm install`.
+3. Run `node index.js` from the root of your project.
+4. The site should be ready on `http://localhost:3000`
 
-# How to run
+# How to manually get text parsed
 
-```TEXT="私はペンです。" node index.js```. Right now, the system expectes input to be provided through environment variables, but the plan is to also add a RESTful API layer.
+```TEXT="私はペンです。" node index.js``` from the server folder. Right now, the system expectes input to be provided through environment variables, but the plan is to also add a RESTful API layer.
 
 # How to test
 
@@ -23,9 +27,9 @@ Tests can be executed using `npm test`.
 
 # Technologies
 
-This parsers is built using `Node.js` and tested with `Mocha`.
+This parsers is built using `Node.js`, the backend with `Express`, and the frontend with `Next.js` and `React`. Everything is tested using with `Jest`.
 
-`cheerio` is used to scrape content from non-JSON sources.
+`cheerio` is used to scrape content from non-JSON sources inside the parser.
 
 # Hard Dependencies
 
