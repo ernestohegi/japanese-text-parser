@@ -2,7 +2,7 @@ const assert = require('assert');
 const expect = require('expect');
 
 describe('Tokenizer Helper', () => {
-    const tokenizer = require('../../helpers/tokenizer');
+    const tokenizer = require('./tokenizer');
     const SAMPLE_TEXT = "私はペンです。";
 
     it('should be initiated', done => {
