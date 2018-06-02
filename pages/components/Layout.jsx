@@ -14,10 +14,16 @@ const layoutStyle = {
 }
 
 class Layout extends React.Component {
-  componentWillMount() {
+  static async getInitialProps({pathname, req}) {
+    console.log('We are on the layout server');
+
     if (listHelper.getUserList().length === 0) {
       listHelper.createUserList();
     }
+
+    return {
+      pathname
+    };
   }
 
   render() {
