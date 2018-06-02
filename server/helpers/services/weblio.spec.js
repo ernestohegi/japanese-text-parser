@@ -2,7 +2,7 @@ const assert = require('assert');
 const expect = require('expect');
 
 describe('Weblio Api Helper', () => {
-    const helper = require('../../helpers/services/weblio');
+    const helper = require('./weblio');
 
     it('should be initiated', () => expect(typeof helper).toBe('object'));
 
@@ -21,7 +21,7 @@ describe('Weblio Api Helper', () => {
 
           done();
         });
-    }).timeout(5000);
+    });
 
     it('should retrieve an empty object for an unknown item', done => {
         const ITEM = '輝きiiii';
@@ -31,5 +31,5 @@ describe('Weblio Api Helper', () => {
           expect(sentence.length).toBe(0);
           done();
         });
-    }).timeout(5000);
+    });
 });
