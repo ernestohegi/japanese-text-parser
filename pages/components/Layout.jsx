@@ -3,6 +3,9 @@ import Header from './Header';
 import Footer from './Footer';
 import Title from './Title';
 import GlobalStyles from '../styles/global';
+import listHelper from '../helpers/list-helper';
+
+const FONT_URL = 'https://fonts.googleapis.com/earlyaccess/notosansjapanese.css';
 
 const layoutStyle = {
   margin: 20,
@@ -10,22 +13,34 @@ const layoutStyle = {
   border: '1px solid #DDD'
 }
 
-const Layout = (props) => (
-  <div style={layoutStyle}>
-    <Head>
-      <link
-        href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css"
-        rel="stylesheet"
-      />
-    </Head>
+class Layout extends React.Component {
+  static async getInitialProps({pathname, req}) {
+    console.log('We are on the layout server');
 
-    <style jsx global>{GlobalStyles}</style>
+    if (listHelper.getUserList().length === 0) {
+      listHelper.createUserList();
+    }
 
-    <Header />
-    <Title copy="よちむ"/>
-    {props.children}
-    <Footer />
-  </div>
-)
+    return {
+      pathname
+    };
+  }
+
+  render() {
+    return (
+      <div style={layoutStyle}>
+        <Head>
+          <link href={FONT_URL} rel="stylesheet" />
+          <style jsx global>{GlobalStyles}</style>
+        </Head>
+
+        <Header />
+        <Title copy="よちむ"/>
+        {this.props.children}
+        <Footer />
+      </div>
+    );
+  }
+}
 
 export default Layout

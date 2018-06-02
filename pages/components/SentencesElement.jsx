@@ -1,30 +1,32 @@
-import TextHelper from '../helpers/text-helper';
+import React from 'react';
+import SentenceElement from './SentenceElement';
+import listHelper from '../helpers/list-helper';
 
-const sentenceStyle = {
-  marginBottom: '5px'
+const saveSentence = sentence => {
+  const userList = listHelper.getUserList();
+  const updatedList = listHelper.addItemToList(sentence, userList);
+  listHelper.saveList(updatedList);
+  return listHelper.getUserList();
 };
 
-const SentencesElement = props => {
-  return props.sentences.map((sentence, index) => {
-    const japaneseSentence = TextHelper.getJapanese(sentence)
-      .replace('例文帳に追加', '')
-      .replace(props.word, `<span class="highlight">${props.word}</span>`)
-    ;
+class SentencesElement extends React.Component {
+  handleSentenceClick(event, sentence) {
+    saveSentence(sentence);
+  }
 
-    return (
-      <div className="sentence" key={index} style={sentenceStyle}>
-        <span
-          key={`${index}-japanese`}
-          className="sentence__japanese"
-          dangerouslySetInnerHTML={{__html: japaneseSentence}}
-        ></span>
-
-        <span key={`${index}-english`} className="sentence__english">
-          「{ TextHelper.getEnglish(sentence).split('-')[0] }」
-        </span>
-      </div>
-    );
-  });
-};
+  render () {
+    return this.props.sentences.map((sentence, index) => {
+      return (
+        <SentenceElement
+          id={index}
+          key={index}
+          sentence={sentence}
+          word={this.props.word}
+          handleClick={event => this.handleSentenceClick(event, sentence)}
+        />
+      );
+    });
+  }
+}
 
 export default SentencesElement;
