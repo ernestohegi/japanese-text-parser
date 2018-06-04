@@ -2,8 +2,9 @@ import Head from 'next/head'
 import Header from './Header';
 import Footer from './Footer';
 import Title from './Title';
-import GlobalStyles from '../styles/global';
 import listHelper from '../helpers/list-helper';
+import { setGlobalStyles } from '../styles/global-style';
+import { ThemeContext, theme } from '../styles/theme-context';
 
 const FONT_URL = 'https://fonts.googleapis.com/earlyaccess/notosansjapanese.css';
 
@@ -27,18 +28,23 @@ class Layout extends React.Component {
   }
 
   render() {
-    return (
-      <div style={layoutStyle}>
-        <Head>
-          <link href={FONT_URL} rel="stylesheet" />
-          <style jsx global>{GlobalStyles}</style>
-        </Head>
+    const defaultTheme = theme.default;
+    const globalStyle = setGlobalStyles(defaultTheme);
 
-        <Header />
-        <Title copy="よちむ"/>
-        {this.props.children}
-        <Footer />
-      </div>
+    return (
+      <ThemeContext.Provider　value={defaultTheme}>
+        <div style={layoutStyle}>
+          <Head>
+            <link href={FONT_URL} rel="stylesheet" />
+            <style jsx global>{globalStyle}</style>
+          </Head>
+
+          <Header />
+          <Title copy="よちむ"/>
+          {this.props.children}
+          <Footer />
+        </div>
+      </ThemeContext.Provider>
     );
   }
 }

@@ -2,16 +2,11 @@ const express = require('express');
 const next = require('next');
 const bodyParser = require('body-parser');
 const textParser = require('./server/modules/text-parser');
-const DEFAULT_PORT = 3000;
+const tsvCreator = require('./server/helpers/tsv-creator');
 
-const isProductionEnvironment = environment => environment === 'prod';
-const getPort = port => port || DEFAULT_PORT;
-
-const dev = isProductionEnvironment(process.env.NODE_ENV) === false;
-const PORT = getPort(process.env.PORT);
 const JSON_HEADER = ['Content-Type', 'application/json'];
 
-const app = next({dev});
+const app = next({ dev: process.env.NODE_ENV !== false});
 const handle = app.getRequestHandler();
 
 const handleTranslationRoute = (req, res) => {
@@ -24,16 +19,22 @@ const handleTranslationRoute = (req, res) => {
   });
 };
 
+const handlePostListRoute = (req, res) => {
+  const list = req.body && req.body.list;
+  res.setHeader(...JSON_HEADER);
+  res.send(JSON.stringify(tsvCreator.convertArrayIntoTSV(list)));
+};
+
 app.prepare()
   .then(() => {
     const server = express();
-    const port = getPort();
+    const port = process.env.PORT || 3000;
 
     server.use(bodyParser.json());
     server.use(bodyParser.urlencoded({ extended: true }));
 
     server.post('/translate', handleTranslationRoute);
-
+    server.post('/list', handlePostListRoute);
     server.get('*', (req, res) => handle(req, res));
 
     server.listen(port, error => {
