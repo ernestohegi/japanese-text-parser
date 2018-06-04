@@ -7,12 +7,6 @@ import { postJsonData } from './helpers/http-helper';
 const TRANSLATE_URL = 'http://localhost:3000/translate';
 const BUTTON_COPY = 'Translate';
 
-const buttonStyle = {
-  border: '0',
-  background: '#FC6336',
-  color: '#FFF'
-};
-
 class Index extends React.Component  {
   constructor(props) {
     super(props);
@@ -100,7 +94,6 @@ class Index extends React.Component  {
         <input type="text" onChange={ this.handleTextChange }></input>
         <button
           onClick={ this.handleTranslationButtonClick }
-          style={buttonStyle}
           disabled={this.state.translating}
         >
           {BUTTON_COPY}

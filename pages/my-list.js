@@ -15,12 +15,16 @@ class MyList extends React.Component {
     });
   }
 
+  hasUserList() {
+    return this.state.userList && this.state.userList.length > 0;
+  }
+
   render() {
     return (
       <Layout>
         <h2> My List </h2>
         {
-          (this.state.userList && this.state.userList.length > 0) ?
+          (this.hasUserList()) ?
             <ListElement list={this.state.userList} /> :
             <p> No elements in your list </p>
         }

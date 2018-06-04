@@ -4,6 +4,11 @@ const HTTP_METHODS = {
   post: 'POST'
 };
 
+/**
+ *
+ * @param {string} url
+ * @param {array} data
+ */
 export const postJsonData = (url, data) => {
   const fetchData = {
     method: HTTP_METHODS.post,
