@@ -15,7 +15,7 @@ const TranslationElement = (props) => {
 
     <div key="sentences" className="sentences">
       <h3> Sentences <a href="https://ejje.weblio.jp" target="_blank"> Weblio </a></h3>
-      <SentencesElement sentences={props.translation.sentences} word={word}/>
+      <SentencesElement sentences={props.translation.sentences} word={word} />
     </div>
   </div>
 };

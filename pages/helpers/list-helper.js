@@ -1,21 +1,32 @@
-let userList;
+let userList = [];
 
 const listHelper = {
-  createUserList: () => {
-    userList = [];
-    return userList;
+  resetList: index =>{
+    userList[index] = [];
+    return userList[index];
   },
-  getUserList: () => {
-    return userList || [];
+  resetLists: () =>{
+    userList = [];
+  },
+  createUserList: index => {
+    return listHelper.resetList(index);
+  },
+  getUserList: index => {
+    return userList[index] || [];
   },
   addItemToList: (item, list) => {
     const newList = list.slice(0);
     newList.push(item);
     return newList;
   },
-  saveList: list => {
+  addUniqueItemToList: (item, list) => {
+    const newList = [];
+    newList.push(item);
+    return newList;
+  },
+  saveList: (index, list) => {
     const newList = list.slice(0);
-    userList = newList;
+    userList[index] = newList;
     return userList;
   }
 };

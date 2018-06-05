@@ -16,6 +16,10 @@ const textHelper = {
     newSentence.japanese = textHelper.getCleanJapaneseSentence(newSentence);
     newSentence.english = textHelper.getCleanEnglishSentence(newSentence);
     return newSentence;
+  },
+  highlightWord: (word, sentence) => {
+    const newSentence = sentence;
+    return newSentence.replace(word, `<b>${word}</b>`);
   }
 };
 

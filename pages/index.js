@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from './components/Layout';
 import Translations from './components/Translations';
 import Loader from './components/Loader';
+import SmallTitle from './components/SmallTitle';
 import { postJsonData } from './helpers/http-helper';
 
 const TRANSLATE_URL = 'http://localhost:3000/translate';
@@ -96,7 +97,7 @@ class Index extends React.Component  {
         <input
           type="text"
           onChange={ this.handleTextChange }
-          value={this.state.form.text}
+          defaultValue={this.state.form.text}
         ></input>
 
         <button
@@ -106,7 +107,7 @@ class Index extends React.Component  {
           {BUTTON_COPY}
         </button>
 
-        <h3>{ this.state.form.text }</h3>
+        <SmallTitle copy={this.state.form.text} />
         <Loader status={this.state.showLoader} />
         <Translations translations={ this.state.translation } />
       </Layout>

@@ -3,6 +3,8 @@ import Layout from './components/Layout';
 import ListElement from './components/ListElement';
 import listHelper from './helpers/list-helper';
 
+const SENTENCES_LIST_KEY = 'sentence';
+
 class MyList extends React.Component {
   constructor(props) {
     super(props);
@@ -10,13 +12,23 @@ class MyList extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      userList: listHelper.getUserList()
-    });
+    this.setUserList();
   }
 
   hasUserList() {
     return this.state.userList && this.state.userList.length > 0;
+  }
+
+  resetList() {
+    listHelper.resetList(SENTENCES_LIST_KEY);
+
+    this.setUserList();
+  }
+
+  setUserList() {
+    this.setState({
+      userList: listHelper.getUserList(SENTENCES_LIST_KEY)
+    });
   }
 
   render() {
@@ -25,7 +37,7 @@ class MyList extends React.Component {
         <h2> My List </h2>
         {
           (this.hasUserList()) ?
-            <ListElement list={this.state.userList} /> :
+            <ListElement list={this.state.userList} resetList={this.resetList.bind(this)}/> :
             <p> No elements in your list </p>
         }
       </Layout>

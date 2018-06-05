@@ -29,7 +29,7 @@ class SentenceElement extends React.Component {
 
   render () {
     const sentence = this.props.sentence;
-    const word = this.props.word;
+    const word = this.props.word || '';
 
     return (
       <ThemeContext.Consumer>
@@ -39,6 +39,11 @@ class SentenceElement extends React.Component {
               backgroundColor: theme.mainColor.rgba
             },
             sentenceStyle
+          );
+
+          const cleanJapaneseSentence = textHelper.highlightWord(
+            word,
+            textHelper.getCleanJapaneseSentence(sentence)
           );
 
           return (
@@ -51,7 +56,7 @@ class SentenceElement extends React.Component {
               <span
                 key={`${this.props.id}-japanese`}
                 className="sentence__japanese"
-                dangerouslySetInnerHTML={{__html: textHelper.getCleanJapaneseSentence(sentence).replace(word, `<span class="highlight">${word}</span>`)}}
+                dangerouslySetInnerHTML={{__html: cleanJapaneseSentence}}
               ></span>
 
               <span key={`${this.props.id}-english`} className="sentence__english">
