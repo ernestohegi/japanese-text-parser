@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   /**
    * Given an objects array containing "japanese" and "english" keys
    * it returns a TSV formatted string.

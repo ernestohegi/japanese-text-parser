@@ -3,10 +3,8 @@ import FileSaver from 'file-saver';
 import uniqid from 'uniqid';
 import SentenceElement from './SentenceElement';
 import containerStyle from '../styles/container-style';
-import { postJsonData } from '../helpers/http-helper';
 import textHelper from '../helpers/text-helper';
-
-const SAVE_LIST_URL = 'http://localhost:3000/list';
+import tsvCreatorHelper from '../helpers/tsv-creator-helper';
 
 const renderListElements = listElements => {
   return listElements.map((listElement, index) => {
@@ -16,10 +14,9 @@ const renderListElements = listElements => {
 
 class ListElement extends React.Component {
   async handleSaveListButtonClick() {
-    const list = this.props.list.map(item => textHelper.getCleanJapaneseSentence(item));
-    const tsvContent = await postJsonData(SAVE_LIST_URL, { list });
+    const list = this.props.list.map(item => textHelper.cleanSentences(item));
+    const tsvContent = tsvCreatorHelper.convertArrayIntoTSV(list);
     const blob = new Blob([tsvContent], {type: "text/plain;charset=utf-8"});
-
     FileSaver.saveAs(blob, `yochimu-${uniqid()}-deck.tsv`);
   }
 

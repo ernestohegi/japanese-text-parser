@@ -2,7 +2,6 @@ const express = require('express');
 const next = require('next');
 const bodyParser = require('body-parser');
 const textParser = require('./server/modules/text-parser');
-const tsvCreator = require('./server/helpers/tsv-creator');
 
 const JSON_HEADER = ['Content-Type', 'application/json'];
 
@@ -19,11 +18,7 @@ const handleTranslationRoute = (req, res) => {
   });
 };
 
-const handlePostListRoute = (req, res) => {
-  const list = req.body && req.body.list;
-  res.setHeader(...JSON_HEADER);
-  res.send(JSON.stringify(tsvCreator.convertArrayIntoTSV(list)));
-};
+const handleAllRoutes = (req, res) => handle(req, res);
 
 app.prepare()
   .then(() => {
@@ -34,8 +29,7 @@ app.prepare()
     server.use(bodyParser.urlencoded({ extended: true }));
 
     server.post('/translate', handleTranslationRoute);
-    server.post('/list', handlePostListRoute);
-    server.get('*', (req, res) => handle(req, res));
+    server.get('*', handleAllRoutes);
 
     server.listen(port, error => {
       if (error) throw error;

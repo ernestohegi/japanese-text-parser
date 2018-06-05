@@ -16,8 +16,8 @@ class Index extends React.Component  {
 
     this.state = {
       translating: false,
-      translation: [],
       showLoader: false,
+      translation: [],
       form: {
         text: ''
       }
@@ -44,6 +44,8 @@ class Index extends React.Component  {
   }
 
   handleTranslationButtonClick() {
+    if (this.state.form.text === '')  return false;
+
     this.showLoader();
     this.resetTranslations();
     this.startTranslationsProcess();
@@ -91,7 +93,12 @@ class Index extends React.Component  {
   render() {
     return (
       <Layout>
-        <input type="text" onChange={ this.handleTextChange }></input>
+        <input
+          type="text"
+          onChange={ this.handleTextChange }
+          value={this.state.form.text}
+        ></input>
+
         <button
           onClick={ this.handleTranslationButtonClick }
           disabled={this.state.translating}

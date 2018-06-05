@@ -1,5 +1,5 @@
 describe('TSV Creator Helper', () => {
-    const helper = require('./tsv-creator');
+    const helper = require('./tsv-creator-helper');
 
     it('should be initiated', () => expect(typeof helper).toBe('object'));
 
