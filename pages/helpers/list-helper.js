@@ -19,6 +19,12 @@ const listHelper = {
     newList.push(item);
     return newList;
   },
+  addItemToListByPosition: (item, list, position) => {
+    const newList = list.slice(0);
+    if (Array.isArray(newList[position]) === false) newList[position] = [];
+    newList[position].push(item);
+    return newList;
+  },
   addUniqueItemToList: (item, list) => {
     const newList = [];
     newList.push(item);

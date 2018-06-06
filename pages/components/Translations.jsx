@@ -6,7 +6,7 @@ class Translations extends React.Component {
     return (
       <div className="translations">{
         this.props.translations.map((translation, index) => (
-          <TranslationElement translation={translation} key={index}/>
+          <TranslationElement translation={translation} id={index} key={index}/>
         ))
       }</div>
     )

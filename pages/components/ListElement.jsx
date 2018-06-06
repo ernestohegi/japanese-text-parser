@@ -11,15 +11,27 @@ const restListButtonStyle = {
 };
 
 const renderListElements = listElements => {
-return listElements.map((listElement, index) => {
-    return <SentenceElement id={index} key={index} sentence={listElement} />;
+return listElements.map((listElement) => {
+    return listElement.map((sentence, index) => {
+      return <SentenceElement id={index} key={index} sentence={sentence} />;
+    })
   });
 };
 
 class ListElement extends React.Component {
   async handleSaveListButtonClick() {
-    const list = this.props.list.map(item => textHelper.cleanSentences(item));
-    const tsvContent = tsvCreatorHelper.convertArrayIntoTSV(list);
+    let tsvContent = '';
+
+    const list = this.props.list.map(items => {
+      return items.map(item => {
+        return textHelper.cleanSentences(item);
+      })
+    });
+
+    list.map(item => {
+      tsvContent += '\n' + tsvCreatorHelper.convertArrayIntoTSV(item);
+    });
+
     const blob = new Blob([tsvContent], {type: "text/plain;charset=utf-8"});
     FileSaver.saveAs(blob, `yochimu-${uniqid()}-deck.tsv`);
   }
