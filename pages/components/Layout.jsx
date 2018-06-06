@@ -7,6 +7,7 @@ import { setGlobalStyles } from '../styles/global-style';
 import { ThemeContext, theme } from '../styles/theme-context';
 
 const FONT_URL = 'https://fonts.googleapis.com/earlyaccess/notosansjapanese.css';
+const SENTENCES_LIST_KEY = 'sentence';
 
 const layoutStyle = {
   margin: 20,
@@ -18,8 +19,8 @@ class Layout extends React.Component {
   static async getInitialProps({pathname, req}) {
     console.log('We are on the layout server');
 
-    if (listHelper.getUserList().length === 0) {
-      listHelper.createUserList();
+    if (listHelper.getUserList(SENTENCES_LIST_KEY).length === 0) {
+      listHelper.createUserList(SENTENCES_LIST_KEY);
     }
 
     return {
