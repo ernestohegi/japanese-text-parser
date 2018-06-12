@@ -7,50 +7,41 @@ import listHelper from '../helpers/list-helper';
 
 const SENTENCES_LIST_KEY = 'sentence';
 
-const saveSentence = (translationId, sentence) => {
+const saveElementsIntoList = (listId, element, structure) => {
   const userList = listHelper.getUserList(SENTENCES_LIST_KEY);
 
-  if (Array.isArray(userList[translationId]) === false) userList[translationId] = [];
-  if (!userList[translationId].sentences) userList[translationId]['sentences'] = []
+  if (Array.isArray(userList[translationId]) === false) userList[listId] = [];
+  if (!userList[listId].structure) userList[listId]['structure'] = []
 
-  userList[translationId].sentences.push(sentence);
+  userList[listId].sentences.push(element);
 
   listHelper.saveList(SENTENCES_LIST_KEY, userList);
 
   return listHelper.getUserList(SENTENCES_LIST_KEY);
 };
 
+const saveSentence = (translationId, sentence) => {
+  saveElementsIntoList(translationId, sentence, 'sentence');
+};
+
 const saveDefinition = (translationId, definition) => {
-  const userList = listHelper.getUserList(SENTENCES_LIST_KEY);
-
-  if (Array.isArray(userList[translationId]) === false) userList[translationId] = [];
-  if (!userList[translationId].definitions) userList[translationId]['definitions'] = []
-
-  userList[translationId].definitions.push(definition);
-
-  listHelper.saveList(SENTENCES_LIST_KEY, userList);
-
-  return listHelper.getUserList(SENTENCES_LIST_KEY);
+  saveElementsIntoList(translationId, definition, 'definition');
 };
 
 class TranslationElement extends React.Component {
   handleSentenceClick(sentence, word) {
     const newSentence = sentence;
     newSentence.japanese = textHelper.highlightWord(word, textHelper.getJapanese(sentence));
-    console.log(
-      saveSentence(this.props.id, newSentence)
-    );
+    saveSentence(this.props.id, newSentence);
   }
 
   handleDefinitionClick(definition) {
     const cleanJapaneseDefinition = textHelper.getJapanese(definition).slice(0).pop();
 
-    console.log(
-      saveDefinition(this.props.id, {
-        english: textHelper.getEnglish(definition),
-        japanese: `${cleanJapaneseDefinition.word || ''} 「${cleanJapaneseDefinition.reading}」`
-      })
-    );
+    saveDefinition(this.props.id, {
+      english: textHelper.getEnglish(definition),
+      japanese: `${cleanJapaneseDefinition.word || ''} 「${cleanJapaneseDefinition.reading}」`
+    });
   }
 
   render() {
