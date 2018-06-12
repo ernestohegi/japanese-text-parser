@@ -2,9 +2,9 @@ import Head from 'next/head'
 import Header from './Header';
 import Footer from './Footer';
 import Title from './Title';
-import listHelper from '../helpers/list-helper';
-import { setGlobalStyles } from '../styles/global-style';
-import { ThemeContext, theme } from '../styles/theme-context';
+import listHelper from '../../helpers/list-helper';
+import { setGlobalStyles } from '../../styles/global-style';
+import { ThemeContext, theme } from '../../styles/theme-context';
 
 const FONT_URL = 'https://fonts.googleapis.com/earlyaccess/notosansjapanese.css';
 const SENTENCES_LIST_KEY = 'sentence';

@@ -1,9 +1,9 @@
-import React from 'react';
-import Layout from './components/Layout';
-import ListElement from './components/ListElement';
-import listHelper from './helpers/list-helper';
+import React from "react";
+import Layout from "./components/sections/Layout";
+import ListElement from "./components/ListElement";
+import listHelper from "./helpers/list-helper";
 
-const SENTENCES_LIST_KEY = 'sentence';
+const SENTENCES_LIST_KEY = "sentence";
 
 class MyList extends React.Component {
   constructor(props) {
@@ -35,11 +35,14 @@ class MyList extends React.Component {
     return (
       <Layout>
         <h2> My List </h2>
-        {
-          (this.hasUserList()) ?
-            <ListElement list={this.state.userList} resetList={this.resetList.bind(this)}/> :
-            <p> No elements in your list </p>
-        }
+        {this.hasUserList() ? (
+          <ListElement
+            list={this.state.userList}
+            resetList={this.resetList.bind(this)}
+          />
+        ) : (
+          <p> No elements in your list </p>
+        )}
       </Layout>
     );
   }

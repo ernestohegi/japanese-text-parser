@@ -9,8 +9,27 @@ const SENTENCES_LIST_KEY = 'sentence';
 
 const saveSentence = (translationId, sentence) => {
   const userList = listHelper.getUserList(SENTENCES_LIST_KEY);
-  const updatedList = listHelper.addItemToListByPosition(sentence, userList, translationId);
-  listHelper.saveList(SENTENCES_LIST_KEY, updatedList);
+
+  if (Array.isArray(userList[translationId]) === false) userList[translationId] = [];
+  if (!userList[translationId].sentences) userList[translationId]['sentences'] = []
+
+  userList[translationId].sentences.push(sentence);
+
+  listHelper.saveList(SENTENCES_LIST_KEY, userList);
+
+  return listHelper.getUserList(SENTENCES_LIST_KEY);
+};
+
+const saveDefinition = (translationId, definition) => {
+  const userList = listHelper.getUserList(SENTENCES_LIST_KEY);
+
+  if (Array.isArray(userList[translationId]) === false) userList[translationId] = [];
+  if (!userList[translationId].definitions) userList[translationId]['definitions'] = []
+
+  userList[translationId].definitions.push(definition);
+
+  listHelper.saveList(SENTENCES_LIST_KEY, userList);
+
   return listHelper.getUserList(SENTENCES_LIST_KEY);
 };
 
@@ -18,17 +37,20 @@ class TranslationElement extends React.Component {
   handleSentenceClick(sentence, word) {
     const newSentence = sentence;
     newSentence.japanese = textHelper.highlightWord(word, textHelper.getJapanese(sentence));
-
-    saveSentence(this.props.id, newSentence);
+    console.log(
+      saveSentence(this.props.id, newSentence)
+    );
   }
 
   handleDefinitionClick(definition) {
     const cleanJapaneseDefinition = textHelper.getJapanese(definition).slice(0).pop();
 
-    saveSentence(this.props.id, {
-      english: textHelper.getEnglish(definition),
-      japanese: `${cleanJapaneseDefinition.word || ''} 「${cleanJapaneseDefinition.reading}」`
-    });
+    console.log(
+      saveDefinition(this.props.id, {
+        english: textHelper.getEnglish(definition),
+        japanese: `${cleanJapaneseDefinition.word || ''} 「${cleanJapaneseDefinition.reading}」`
+      })
+    );
   }
 
   render() {
