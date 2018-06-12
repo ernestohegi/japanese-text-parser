@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "./components/sections/Layout";
-import ListElement from "./components/ListElement";
+import ListElement from "./components/hoc/List";
 import listHelper from "./helpers/list-helper";
 
 const SENTENCES_LIST_KEY = "sentence";

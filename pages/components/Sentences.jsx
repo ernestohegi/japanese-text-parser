@@ -1,13 +1,12 @@
 import React from 'react';
-import SentenceElement from './SentenceElement';
+import SentenceElement from './Sentence';
 
 class SentencesElement extends React.Component {
   render () {
     return (
       <div key="sentences" className="sentences">
         <h3>
-          Sentences
-          <a href="https://ejje.weblio.jp" target="_blank"> Weblio </a>
+          Sentences <a href="https://ejje.weblio.jp" target="_blank"> Weblio </a>
         </h3>
         {
           this.props.sentences.map((sentence, index) => {
@@ -17,7 +16,11 @@ class SentencesElement extends React.Component {
                 key={index}
                 sentence={sentence}
                 word={this.props.word}
-                handleClick={() => this.props.handleClick(sentence, this.props.word)}
+                handleClick={() => this.props.handleClick(
+                  sentence,
+                  this.props.word,
+                  this.props.translationId
+                )}
               />
             );
           })

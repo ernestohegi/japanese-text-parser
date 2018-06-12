@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "./components/sections/Layout";
 import Loader from "./components/sections/Loader";
 import SmallTitle from "./components/sections/SmallTitle";
-import TranslationsElement from "./components/TranslationsElement";
+import TranslationsElement from "./components/hoc/Translations";
 import { postJsonData } from "./helpers/http-helper";
 
 const TRANSLATE_URL = "http://localhost:3000/translate";
