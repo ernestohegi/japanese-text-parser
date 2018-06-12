@@ -1,6 +1,6 @@
 let userList = [];
 
-const returnList = list => Object.freeze(list);
+const returnList = list => list;
 
 const listHelper = {
   resetList: index =>{
@@ -31,7 +31,7 @@ const listHelper = {
     const newList = list.slice(0);
     if (Array.isArray(newList[position]) === false) newList[position] = [];
     if (!newList[position][subcategory]) newList[position][subcategory] = []
-    userList[position][subcategory].push(element);
+    newList[position][subcategory].push(item);
     return returnList(newList);
   },
   saveList: (index, list) => {
