@@ -24,8 +24,6 @@ class List extends React.Component {
     this.props.list.map(elements => {
       let definition = '';
 
-      console.log(elements);
-
       if (elements.definition && elements.definition.length) {
         definition = `${elements.definition[0].japanese} ${elements.definition[0].english}`;
       }

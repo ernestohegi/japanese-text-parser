@@ -17,7 +17,6 @@ const saveElementsIntoList = (listId, element, structure) => {
     listId,
     structure
   );
-  console.log(updatedUserList);
   listHelper.saveList(SENTENCES_LIST_KEY, updatedUserList);
   return listHelper.getUserList(SENTENCES_LIST_KEY);
 };
