@@ -7,16 +7,15 @@ import listHelper from '../helpers/list-helper';
 
 const SENTENCES_LIST_KEY = 'sentence';
 
-const saveElementsIntoList = (listId, element, structure) => {
+const saveElementsIntoList = (listId, element, subcategory) => {
   const userList = listHelper.getUserList(SENTENCES_LIST_KEY);
-
-  if (Array.isArray(userList[translationId]) === false) userList[listId] = [];
-  if (!userList[listId].structure) userList[listId]['structure'] = []
-
-  userList[listId].sentences.push(element);
-
-  listHelper.saveList(SENTENCES_LIST_KEY, userList);
-
+  const updatedList = listHelper.addItemToListByPositionWithSubcategory(
+    element,
+    userList,
+    listId,
+    subcategory
+  );
+  listHelper.saveList(SENTENCES_LIST_KEY, updatedList);
   return listHelper.getUserList(SENTENCES_LIST_KEY);
 };
 
