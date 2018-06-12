@@ -3,17 +3,27 @@ import SentenceElement from './SentenceElement';
 
 class SentencesElement extends React.Component {
   render () {
-    return this.props.sentences.map((sentence, index) => {
-      return (
-        <SentenceElement
-          id={index}
-          key={index}
-          sentence={sentence}
-          word={this.props.word}
-          handleClick={() => this.props.handleClick(sentence, this.props.word)}
-        />
-      );
-    });
+    return (
+      <div key="sentences" className="sentences">
+        <h3>
+          Sentences
+          <a href="https://ejje.weblio.jp" target="_blank"> Weblio </a>
+        </h3>
+        {
+          this.props.sentences.map((sentence, index) => {
+            return (
+              <SentenceElement
+                id={index}
+                key={index}
+                sentence={sentence}
+                word={this.props.word}
+                handleClick={() => this.props.handleClick(sentence, this.props.word)}
+              />
+            );
+          })
+        }
+      </div>
+    );
   }
 }
 
