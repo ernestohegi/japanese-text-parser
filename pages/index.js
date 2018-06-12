@@ -1,26 +1,28 @@
-import React from 'react';
-import Layout from './components/Layout';
-import Translations from './components/Translations';
-import Loader from './components/Loader';
-import SmallTitle from './components/SmallTitle';
-import { postJsonData } from './helpers/http-helper';
+import React from "react";
+import Layout from "./components/sections/Layout";
+import Loader from "./components/sections/Loader";
+import SmallTitle from "./components/sections/SmallTitle";
+import Translations from "./components/Translations";
+import { postJsonData } from "./helpers/http-helper";
 
-const TRANSLATE_URL = 'http://localhost:3000/translate';
-const BUTTON_COPY = 'Translate';
+const TRANSLATE_URL = "http://localhost:3000/translate";
+const BUTTON_COPY = "Translate";
 
-class Index extends React.Component  {
+class Index extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleTranslationButtonClick = this.handleTranslationButtonClick.bind(this)
+    this.handleTranslationButtonClick = this.handleTranslationButtonClick.bind(
+      this
+    );
 
     this.state = {
       translating: false,
       showLoader: false,
       translation: [],
       form: {
-        text: ''
+        text: ""
       }
     };
   }
@@ -29,8 +31,8 @@ class Index extends React.Component  {
    * Method rendered only server-side.
    * @param {object}
    */
-  static async getInitialProps({pathname, req}) {
-    console.log('We are on the server');
+  static async getInitialProps({ pathname, req }) {
+    console.log("We are on the server");
 
     return {
       pathname
@@ -45,7 +47,7 @@ class Index extends React.Component  {
   }
 
   handleTranslationButtonClick() {
-    if (this.state.form.text === '')  return false;
+    if (this.state.form.text === "") return false;
 
     this.showLoader();
     this.resetTranslations();
@@ -96,12 +98,12 @@ class Index extends React.Component  {
       <Layout>
         <input
           type="text"
-          onChange={ this.handleTextChange }
+          onChange={this.handleTextChange}
           defaultValue={this.state.form.text}
-        ></input>
+        />
 
         <button
-          onClick={ this.handleTranslationButtonClick }
+          onClick={this.handleTranslationButtonClick}
           disabled={this.state.translating}
         >
           {BUTTON_COPY}
@@ -109,7 +111,7 @@ class Index extends React.Component  {
 
         <SmallTitle copy={this.state.form.text} />
         <Loader status={this.state.showLoader} />
-        <Translations translations={ this.state.translation } />
+        <Translations translations={this.state.translation} />
       </Layout>
     );
   }
