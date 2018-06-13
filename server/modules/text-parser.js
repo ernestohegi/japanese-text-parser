@@ -1,8 +1,6 @@
-const ROOT = '..';
-
-const tokenizer = require(`${ROOT}/helpers/tokenizer`);
-const dictionaryService = require (`${ROOT}/helpers/services/jisho`);
-const sentencesService = require (`${ROOT}/helpers/services/weblio`);
+const tokenizer = require('../helpers/tokenizer');
+const dictionaryService = require ('../helpers/services/jisho');
+const sentencesService = require ('../helpers/services/weblio');
 
 /**
  * @type {array}
@@ -69,10 +67,10 @@ module.exports = {
      * @param {function} endCallback
      * @return array
      */
-    parse(text, endCallback) {
-        tokenizer.init((error, helper) => {
+    parse(text, endCallback, dictionaryPath) {
+        tokenizer.init(dictionaryPath, (error, helper) => {
             if (error) {
-                return endCallback({ error: '500 - Server issue' });
+                return endCallback({ error: '500 - Server issue', message: error });
             };
 
             console.log(`Parsing provided ${text}...`);

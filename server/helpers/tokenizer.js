@@ -1,7 +1,5 @@
 const kuromoji = require('kuromoji');
 
-const DICTIONARY_PATH = './node_modules/kuromoji/dict/'
-
 const ALLOWED_IDENTIFIERS = [
     '名詞', // Substantive
     '形容詞', // Adjective
@@ -12,9 +10,9 @@ const getWordFromToken = token => token.surface_form;
 const getTokenType = token => token.pos;
 
 module.exports = {
-    init(callback) {
+    init(dictionaryPath, callback) {
         kuromoji
-            .builder({ dicPath: DICTIONARY_PATH })
+            .builder({ dicPath: dictionaryPath })
             .build((error, tokenizer) => callback(error, tokenizer))
         ;
     },

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const textParser = require('./server/modules/text-parser');
 
 const JSON_HEADER = ['Content-Type', 'application/json'];
+const DICTIONARY_PATH = './node_modules/kuromoji/dict/';
 
 const app = next({ dev: process.env.NODE_ENV !== false});
 const handle = app.getRequestHandler();
@@ -11,11 +12,13 @@ const handle = app.getRequestHandler();
 const handleTranslationRoute = (req, res) => {
   const text = req.body && req.body.text;
 
+  const endCallback = definitions => {
+    res.send(JSON.stringify(definitions));
+  };
+
   res.setHeader(...JSON_HEADER);
 
-  textParser.parse(text, definitions => {
-    res.send(JSON.stringify(definitions));
-  });
+  textParser.parse(text, endCallback, DICTIONARY_PATH);
 };
 
 const handleAllRoutes = (req, res) => handle(req, res);

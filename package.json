@@ -19,6 +19,7 @@
     "isomorphic-unfetch": "^2.0.0",
     "kuromoji": "^0.1.2",
     "mocha": "^5.2.0",
+    "momentjs": "^2.0.0",
     "next": "^6.0.3",
     "node-fetch": "^2.1.2",
     "react": "^16.4.0",
