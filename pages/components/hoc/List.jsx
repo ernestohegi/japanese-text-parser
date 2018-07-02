@@ -12,26 +12,28 @@ const restListButtonStyle = {
 const renderListElements = listElements => {
   return listElements.map(element => {
     return element.sentence.map((sentence, index) => {
-      return <Sentence id={index} key={index} sentence={sentence} />
+      return <Sentence id={index} key={index} sentence={sentence} />;
     });
   });
-}
+};
 
 const downloadList = list => {
   let tsvContent = "";
 
   list.map(elements => {
-    let definition = '';
+    let definition = "";
 
     if (elements.definition && elements.definition.length) {
-      definition = `${elements.definition[0].japanese} ${elements.definition[0].english}`;
+      definition = `${elements.definition[0].japanese} ${
+        elements.definition[0].english
+      }`;
     }
 
     elements.sentence.map(sentence => {
       const japaneseSentence = textHelper.getCleanJapaneseSentence(sentence);
       const englishSentence = textHelper.getCleanEnglishSentence(sentence);
       tsvContent += `${japaneseSentence}\t${definition}\t${englishSentence}\n`;
-    })
+    });
   });
 
   fileHelper.saveFile(
