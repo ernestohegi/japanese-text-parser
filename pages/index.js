@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "./components/sections/Layout";
 import Loader from "./components/sections/Loader";
 import SmallTitle from "./components/sections/SmallTitle";
-import TranslationsElement from "./components/hoc/Translations";
+import Translations from "./components/hoc/Translations";
 import { postJsonData } from "./helpers/http-helper";
 import parameters from "./config/parameters";
 import copy from "./config/copy";
@@ -110,7 +110,7 @@ class Index extends React.Component {
 
         <SmallTitle copy={this.state.form.text} />
         <Loader status={this.state.showLoader} />
-        <TranslationsElement translations={this.state.translation} />
+        <Translations translations={this.state.translation} />
       </Layout>
     );
   }
