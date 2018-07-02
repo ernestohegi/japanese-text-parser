@@ -7,7 +7,7 @@ const compression = require("compression");
 const JSON_HEADER = ["Content-Type", "application/json"];
 const DICTIONARY_PATH = "./node_modules/kuromoji/dict/";
 
-const app = next({ dev: process.env.NODE_ENV !== false });
+const app = next({ dev: process.env.NODE_ENV !== "production" });
 const handle = app.getRequestHandler();
 
 const handleTranslationRoute = (req, res) => {
