@@ -1,3 +1,3 @@
 export default {
-  TRANSLATE_URL: "http://localhost:3000/translate"
+  TRANSLATE_URL: "/translate"
 };
