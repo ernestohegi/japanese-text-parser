@@ -2,7 +2,6 @@ const express = require("express");
 const next = require("next");
 const bodyParser = require("body-parser");
 const textParser = require("./server/modules/text-parser");
-const compression = require("compression");
 
 const JSON_HEADER = ["Content-Type", "application/json"];
 const DICTIONARY_PATH = "./node_modules/kuromoji/dict/";
@@ -30,10 +29,10 @@ app
     const server = express();
     const port = process.env.PORT || 3000;
 
-    server.use(compression());
-
     server.use(bodyParser.json());
     server.use(bodyParser.urlencoded({ extended: true }));
+
+    console.log("running app");
 
     server.post("/translate", handleTranslationRoute);
     server.get("*", handleAllRoutes);
