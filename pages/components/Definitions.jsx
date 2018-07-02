@@ -1,5 +1,5 @@
 import React from 'react';
-import textHelper from '../helpers/text-helper';
+import DefinitionElement from './Definition';
 
 class DefinitionsElement extends React.Component {
   handleClick(definition, translationId, parentCallback) {
@@ -14,26 +14,16 @@ class DefinitionsElement extends React.Component {
         </h3>
         {
           this.props.definitions.map((definition, index) => {
-            const japaneseDefinition = textHelper.getJapanese(definition).slice(0).pop();
-
             return (
-              <div
-                className="definition"
+              <DefinitionElement
+                definition={definition}
                 key={index}
-                onClick={event => this.handleClick(
+                handleClick={() => this.handleClick(
                   definition,
                   this.props.translationId,
                   this.props.handleClick
                 )}
-              >
-                <span key={`${index}-japanese`} className="definition__japanese">
-                  { `${japaneseDefinition.word || ''} 「${japaneseDefinition.reading}」` }
-                </span>
-
-                <span key={`${index}-english`} className="definition__english">
-                  { textHelper.getEnglish(definition) }
-                </span>
-              </div>
+              />
             );
           })
         }
