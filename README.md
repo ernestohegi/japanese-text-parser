@@ -1,8 +1,10 @@
 # Yochimu 予知夢
-## Japanese Text Parser
-### Work In Progress
 
-Yochimu means prophetic dream in Japanese. The purpose of this tool is to let you read comfortably any kind of text, by reviewing and learning its vocabulary using an in-context approach with sentences using an SRS solutions like Anki.
+## Japanese Text Parser
+
+https://yochimu.now.sh
+
+[Yochimu](https://yochimu.now.sh) means prophetic dream in Japanese. The purpose of this tool is to let you read comfortably any kind of text, by reviewing and learning its vocabulary using an in-context approach with sentences using an SRS solutions like Anki.
 
 What Yochimu does is, given a file with text in Japanese, it returns a list of words from that text along with their definitions, translations and example sentences, to let you create decks.
 
@@ -12,14 +14,14 @@ The plan would be to build our own SRS in the near future.
 
 Requirements are `Node.js` and `npm` installed. I'm using `yarn` for managing dependencies but you can use whatever system you want. Some technical knowledge is required as well.
 
-1. Clone the repo.
-2. Run `yarn install` or `npm install`.
-3. Run `npm run dev` from the root of your project.
-4. The site should be ready on `http://localhost:3000`
+1.  Clone the repo.
+2.  Run `yarn install` or `npm install`.
+3.  Run `npm run dev` from the root of your project.
+4.  The site should be ready on `http://localhost:3000`
 
 # How to manually get text parsed
 
-```TEXT="私はペンです。" node index.js``` from the server folder. Right now, the system expectes input to be provided through environment variables, but the plan is to also add a RESTful API layer.
+`TEXT="私はペンです。" node index.js` from the server folder. Right now, the system expectes input to be provided through environment variables, but the plan is to also add a RESTful API layer.
 
 # How to test
 
