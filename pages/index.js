@@ -4,9 +4,8 @@ import Loader from "./components/sections/Loader";
 import SmallTitle from "./components/sections/SmallTitle";
 import TranslationsElement from "./components/hoc/Translations";
 import { postJsonData } from "./helpers/http-helper";
-
-const TRANSLATE_URL = "http://localhost:3000/translate";
-const BUTTON_COPY = "Translate";
+import parameters from "./config/parameters";
+import copy from "./config/copy";
 
 class Index extends React.Component {
   constructor(props) {
@@ -40,7 +39,7 @@ class Index extends React.Component {
   }
 
   async translateText(text) {
-    const translation = await postJsonData(TRANSLATE_URL, { text });
+    const translation = await postJsonData(parameters.TRANSLATE_URL, { text });
     this.hideLoader();
     this.stopTranslationProcess();
     this.setState({ translation });
@@ -106,7 +105,7 @@ class Index extends React.Component {
           onClick={this.handleTranslationButtonClick}
           disabled={this.state.translating}
         >
-          {BUTTON_COPY}
+          {copy.BUTTON_COPY}
         </button>
 
         <SmallTitle copy={this.state.form.text} />
