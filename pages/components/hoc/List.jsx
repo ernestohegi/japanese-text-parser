@@ -1,9 +1,9 @@
 import React from "react";
-import FileSaver from "file-saver";
 import uniqid from "uniqid";
 import Sentence from "../Sentence";
 import containerStyle from "../../styles/container-style";
 import textHelper from "../../helpers/text-helper";
+import fileHelper from "../../helpers/file-helper";
 
 const restListButtonStyle = {
   marginLeft: "10px"
@@ -17,26 +17,33 @@ const renderListElements = listElements => {
   });
 }
 
+const downloadList = list => {
+  let tsvContent = "";
+
+  list.map(elements => {
+    let definition = '';
+
+    if (elements.definition && elements.definition.length) {
+      definition = `${elements.definition[0].japanese} ${elements.definition[0].english}`;
+    }
+
+    elements.sentence.map(sentence => {
+      const japaneseSentence = textHelper.getCleanJapaneseSentence(sentence);
+      const englishSentence = textHelper.getCleanEnglishSentence(sentence);
+      tsvContent += `${japaneseSentence}\t${definition}\t${englishSentence}\n`;
+    })
+  });
+
+  fileHelper.saveFile(
+    `yochimu-${uniqid()}-deck.tsv`,
+    tsvContent,
+    "text/plain;charset=utf-8"
+  );
+};
+
 class List extends React.Component {
   async handleSaveListButtonClick() {
-    let tsvContent = "";
-
-    this.props.list.map(elements => {
-      let definition = '';
-
-      if (elements.definition && elements.definition.length) {
-        definition = `${elements.definition[0].japanese} ${elements.definition[0].english}`;
-      }
-
-      elements.sentence.map(sentence => {
-        const japaneseSentence = textHelper.getCleanJapaneseSentence(sentence);
-        const englishSentence = textHelper.getCleanEnglishSentence(sentence);
-        tsvContent += `${japaneseSentence}\t${definition}\t${englishSentence}\n`;
-      })
-    });
-
-    const blob = new Blob([tsvContent], { type: "text/plain;charset=utf-8" });
-    FileSaver.saveAs(blob, `yochimu-${uniqid()}-deck.tsv`);
+    downloadList(this.props.list);
   }
 
   render() {

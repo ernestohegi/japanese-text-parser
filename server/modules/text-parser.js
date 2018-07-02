@@ -22,13 +22,14 @@ const getDefinitions = async (allowedTokens, definitions, endCallback) => {
     const token = allowedTokens.shift();
     let START_DATE = moment();
     const word = tokenizer.getWordFromToken(token);
+    console.log('Speed test');
     console.log('Token for word', moment().diff(START_DATE, 'miliseconds'));
     START_DATE = moment();
     const sentences = await getSentencesForWord(word);
-    console.log('Sentences', moment().diff(START_DATE, 'miliseconds'));
+    console.log('Sentences in miliseconds', moment().diff(START_DATE, 'miliseconds'));
     START_DATE = moment();
     const commonDefinitions = await getCommonDefinitionsForWord(word);
-    console.log('Definitions', moment().diff(START_DATE, 'miliseconds'));
+    console.log('Definitions in miliseconds', moment().diff(START_DATE, 'miliseconds'));
 
     definitions.push({
         word,
