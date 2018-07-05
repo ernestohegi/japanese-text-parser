@@ -8,9 +8,9 @@ export default () => (
 
     <p>
       Yochimu means prophetic dream in Japanese. The purpose of this tool is to
-      let you read comfortably any kind of text, by reviewing and learning its
-      vocabulary using an in-context approach with sentences using an SRS
-      solutions like Anki.
+      let you read comfortably any kind of text by learning and reviewing its
+      vocabulary using sentences in an in-context approach with an SRS solution
+      like Anki.
     </p>
 
     <p>

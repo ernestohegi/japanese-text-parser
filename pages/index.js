@@ -99,6 +99,7 @@ class Index extends React.Component {
           type="text"
           onChange={this.handleTextChange}
           defaultValue={this.state.form.text}
+          autoFocus
         />
 
         <button
