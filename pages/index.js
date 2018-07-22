@@ -2,10 +2,20 @@ import React from "react";
 import Layout from "./components/sections/Layout";
 import Loader from "./components/sections/Loader";
 import SmallTitle from "./components/sections/SmallTitle";
-import Translations from "./components/hoc/Translations";
+import Translations from "./components/Translations";
 import { postJsonData } from "./helpers/http-helper";
 import parameters from "./config/parameters";
 import copy from "./config/copy";
+
+const styles = {
+  input: {
+    width: "100%",
+    fontSize: "4rem"
+  },
+  button: {
+    fontSize: "2 rem"
+  }
+};
 
 class Index extends React.Component {
   constructor(props) {
@@ -100,11 +110,13 @@ class Index extends React.Component {
           onChange={this.handleTextChange}
           defaultValue={this.state.form.text}
           autoFocus
+          style={styles.input}
         />
 
         <button
           onClick={this.handleTranslationButtonClick}
           disabled={this.state.translating}
+          style={styles.button}
         >
           {copy.BUTTON_COPY}
         </button>

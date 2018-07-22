@@ -1,13 +1,13 @@
-import React from 'react';
-import Definitions from '../Definitions';
-import Sentences from '../Sentences';
-import containerStyle from '../../styles/container-style';
-import textHelper from '../../helpers/text-helper';
-import listHelper from '../../helpers/list-helper';
+import React from "react";
+import Definitions from "./Definitions";
+import Sentences from "./Sentences";
+import containerStyle from "../styles/container-style";
+import textHelper from "../helpers/text-helper";
+import listHelper from "../helpers/list-helper";
 
 let translationsCounter = 0;
 
-const SENTENCES_LIST_KEY = 'sentence';
+const SENTENCES_LIST_KEY = "sentence";
 
 const saveElementsIntoList = (listId, element, structure) => {
   const userList = listHelper.getUserList(SENTENCES_LIST_KEY);
@@ -22,40 +22,48 @@ const saveElementsIntoList = (listId, element, structure) => {
 };
 
 const saveSentence = (translationId, sentence) => {
-  saveElementsIntoList(translationId, sentence, 'sentence');
+  saveElementsIntoList(translationId, sentence, "sentence");
 };
 
 const saveDefinition = (translationId, definition) => {
-  saveElementsIntoList(translationId, definition, 'definition');
+  saveElementsIntoList(translationId, definition, "definition");
 };
 
 class Translations extends React.Component {
   handleSentenceClick(sentence, word, translationId) {
     const newSentence = sentence;
-    newSentence.japanese = textHelper.highlightWord(word, textHelper.getJapanese(sentence));
+    newSentence.japanese = textHelper.highlightWord(
+      word,
+      textHelper.getJapanese(sentence)
+    );
     saveSentence(translationId, newSentence);
   }
 
   handleDefinitionClick(definition, translationId) {
-    const cleanJapaneseDefinition = textHelper.getJapanese(definition).slice(0).pop();
+    const cleanJapaneseDefinition = textHelper
+      .getJapanese(definition)
+      .slice(0)
+      .pop();
 
     saveDefinition(translationId, {
       english: textHelper.getEnglish(definition),
-      japanese: `${cleanJapaneseDefinition.word || ''} 「${cleanJapaneseDefinition.reading}」`
+      japanese: `${cleanJapaneseDefinition.word || ""} 「${
+        cleanJapaneseDefinition.reading
+      }」`
     });
   }
 
   render() {
     return (
-      <div className="translations">{
-        this.props.translations.map((translation, index) => {
+      <div className="translations">
+        {this.props.translations.map((translation, index) => {
           const word = translation.word;
 
-          ++translationsCounter
+          ++translationsCounter;
 
           return (
             <div className="translation" style={containerStyle} key={index}>
-              <h2 key={`${word}`}>{ word }</h2>
+              <h2 key={`${word}`}>{word}</h2>
 
               <Definitions
                 translationId={translationsCounter}
@@ -71,8 +79,8 @@ class Translations extends React.Component {
               />
             </div>
           );
-        })
-      }</div>
+        })}
+      </div>
     );
   }
 }
