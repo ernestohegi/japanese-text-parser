@@ -1,6 +1,6 @@
 import React from "react";
 import uniqid from "uniqid";
-import Sentence from "../Sentence";
+import Sentence from "./Sentence";
 import containerStyle from "../styles/container-style";
 import textHelper from "../helpers/text-helper";
 import fileHelper from "../helpers/file-helper";
