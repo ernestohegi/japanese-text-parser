@@ -1,6 +1,6 @@
 {
   "name": "japanese-text-parser",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Given a file with text in Japanese, it returns a list of words along with their definitions and translation.",
   "main": "index.js",
   "scripts": {
