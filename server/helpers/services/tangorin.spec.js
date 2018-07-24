@@ -1,7 +1,7 @@
 const expect = require("expect");
 
-describe("Weblio Api Helper", () => {
-  const helper = require("./weblio");
+describe("Tangorin Api Helper", () => {
+  const helper = require("./tangorin");
 
   it("should be initiated", () => expect(typeof helper).toBe("object"));
 

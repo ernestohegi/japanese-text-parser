@@ -1,13 +1,13 @@
 const cheerio = require("cheerio");
 const api = require("../api");
 
-const API_URL = "https://ejje.weblio.jp/sentence/content/";
+const API_URL = "http://tangorin.com/examples/";
 
 const SELECTOR = {
-  sentencesWrapper: ".kiji",
-  mainSentence: ".qotC",
-  japaneseSentence: ".qotCJJ",
-  englishSentence: ".qotCJE"
+  sentencesWrapper: "#dictEntries",
+  mainSentence: ".entry",
+  japaneseSentence: ".ex-dt",
+  englishSentence: ".ex-dd"
 };
 
 /**
@@ -23,7 +23,11 @@ const getSentencesFromHtml = html => {
     const $sentence = $(sentence);
 
     sentences.push({
-      japanese: $sentence.find(SELECTOR.japaneseSentence).text(),
+      // Gets just english translations.
+      japanese: $sentence
+        .find(SELECTOR.japaneseSentence)
+        .text()
+        .split(".")[0],
       english: $sentence.find(SELECTOR.englishSentence).text()
     });
   });

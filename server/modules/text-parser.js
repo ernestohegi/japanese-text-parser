@@ -1,7 +1,8 @@
-const tokenizer = require('../helpers/tokenizer');
-const dictionaryService = require ('../helpers/services/jisho');
-const sentencesService = require ('../helpers/services/weblio');
-const moment = require('moment');
+const tokenizer = require("../helpers/tokenizer");
+const dictionaryService = require("../helpers/services/jisho");
+const tangorinService = require("../helpers/services/tangorin");
+const weblioService = require("../helpers/services/weblio");
+const moment = require("moment");
 
 /**
  * @type {array}
@@ -15,33 +16,39 @@ let definitions;
  * @param {function} endCallback Function to be excecuted when no more tokens available.
  */
 const getDefinitions = async (allowedTokens, definitions, endCallback) => {
-    if (allowedTokens.length === 0) {
-        return endCallback(definitions);
-    };
+  if (allowedTokens.length === 0) {
+    return endCallback(definitions);
+  }
 
-    const token = allowedTokens.shift();
-    let START_DATE = moment();
-    const word = tokenizer.getWordFromToken(token);
-    console.log('Speed test');
-    console.log('Token for word', moment().diff(START_DATE, 'miliseconds'));
-    START_DATE = moment();
-    const sentences = await getSentencesForWord(word);
-    console.log('Sentences in miliseconds', moment().diff(START_DATE, 'miliseconds'));
-    START_DATE = moment();
-    const commonDefinitions = await getCommonDefinitionsForWord(word);
-    console.log('Definitions in miliseconds', moment().diff(START_DATE, 'miliseconds'));
+  const token = allowedTokens.shift();
+  let START_DATE = moment();
+  const word = tokenizer.getWordFromToken(token);
+  console.log("Speed test");
+  console.log("Token for word", moment().diff(START_DATE, "miliseconds"));
+  START_DATE = moment();
+  const tangorinSentences = await getSentencesForWordFromTangorin(word);
+  const weblioSentences = await getSentencesForWordFromWeblio(word);
+  console.log(
+    "Sentences in miliseconds",
+    moment().diff(START_DATE, "miliseconds")
+  );
+  START_DATE = moment();
+  const commonDefinitions = await getCommonDefinitionsForWord(word);
+  console.log(
+    "Definitions in miliseconds",
+    moment().diff(START_DATE, "miliseconds")
+  );
 
-    definitions.push({
-        word,
-        definitions: commonDefinitions,
-        sentences
-    });
+  definitions.push({
+    word,
+    definitions: commonDefinitions,
+    sentences: {
+      tangorin: tangorinSentences,
+      weblio: weblioSentences
+    }
+  });
 
-    getDefinitions(
-        allowedTokens,
-        definitions,
-        endCallback
-    );
+  getDefinitions(allowedTokens, definitions, endCallback);
 };
 
 /**
@@ -50,46 +57,42 @@ const getDefinitions = async (allowedTokens, definitions, endCallback) => {
  * @param {function} helper
  * @return array
  */
-const getAllowedTokens = (text, helper) => (
-    tokenizer.getAllowedTokens(
-        helper.tokenize(text)
-    )
-);
+const getAllowedTokens = (text, helper) =>
+  tokenizer.getAllowedTokens(helper.tokenize(text));
 
-const getSentencesForWord = word => (
-    sentencesService.getSentencesForItem(word).then(sentences => sentences)
-);
+const getSentencesForWordFromTangorin = word =>
+  tangorinService.getSentencesForItem(word).then(sentences => sentences);
 
-const getCommonDefinitionsForWord = word => (
-    dictionaryService.getCommonDefinitions(word).then(commonDefinitions => (
-        commonDefinitions.map(dictionaryService.generateObject)
-    ))
-);
+const getSentencesForWordFromWeblio = word =>
+  weblioService.getSentencesForItem(word).then(sentences => sentences);
+
+const getCommonDefinitionsForWord = word =>
+  dictionaryService
+    .getCommonDefinitions(word)
+    .then(commonDefinitions =>
+      commonDefinitions.map(dictionaryService.generateObject)
+    );
 
 module.exports = {
-    /**
-     * Receives the text to be translated and returns a set of definitions
-     * and sentences.
-     *
-     * @param {string} text
-     * @param {function} endCallback
-     * @return array
-     */
-    parse(text, endCallback, dictionaryPath) {
-        tokenizer.init(dictionaryPath, (error, helper) => {
-            if (error) {
-                return endCallback({ error: '500 - Server issue', message: error });
-            };
+  /**
+   * Receives the text to be translated and returns a set of definitions
+   * and sentences.
+   *
+   * @param {string} text
+   * @param {function} endCallback
+   * @return array
+   */
+  parse(text, endCallback, dictionaryPath) {
+    tokenizer.init(dictionaryPath, (error, helper) => {
+      if (error) {
+        return endCallback({ error: "500 - Server issue", message: error });
+      }
 
-            console.log(`Parsing provided ${text}...`);
+      console.log(`Parsing provided ${text}...`);
 
-            definitions = [];
+      definitions = [];
 
-            getDefinitions(
-                getAllowedTokens(text, helper),
-                definitions,
-                endCallback
-            );
-        });
-    }
+      getDefinitions(getAllowedTokens(text, helper), definitions, endCallback);
+    });
+  }
 };
