@@ -10,6 +10,12 @@ const SELECTOR = {
   englishSentence: ".ex-dd"
 };
 
+const formatEnglishSentence = englishSentence => {
+  let formattedEnglishSentence = englishSentence.split(/(?:\?|\.|\!)/)[0];
+
+  return formattedEnglishSentence;
+};
+
 /**
  * @param {string} html
  * @return Array
@@ -24,11 +30,10 @@ const getSentencesFromHtml = html => {
 
     sentences.push({
       // Gets just english translations.
-      japanese: $sentence
-        .find(SELECTOR.japaneseSentence)
-        .text()
-        .split(".")[0],
-      english: $sentence.find(SELECTOR.englishSentence).text()
+      japanese: $sentence.find(SELECTOR.japaneseSentence).text(),
+      english: formatEnglishSentence(
+        $sentence.find(SELECTOR.englishSentence).text()
+      )
     });
   });
 
