@@ -44,7 +44,6 @@ module.exports = {
    * @return Promise<Array>
    */
   getSentencesForItem(item) {
-    console.log(`${API_URL}${item}`);
     return api.callUrl(`${API_URL}${item}`).then(getSentencesFromHtml);
   }
 };
