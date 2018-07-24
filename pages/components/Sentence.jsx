@@ -1,9 +1,10 @@
-import React from 'react';
-import textHelper from '../helpers/text-helper';
-import { ThemeContext } from '../styles/theme-context';
+import React from "react";
+import textHelper from "../helpers/text-helper";
+import { ThemeContext } from "../styles/theme-context";
 
 const sentenceStyle = {
-  marginBottom: '5px'
+  marginBottom: "5px",
+  cursor: "pointer"
 };
 
 class SentenceElement extends React.Component {
@@ -27,9 +28,9 @@ class SentenceElement extends React.Component {
     });
   }
 
-  render () {
+  render() {
     const sentence = this.props.sentence;
-    const word = this.props.word || '';
+    const word = this.props.word || "";
 
     return (
       <ThemeContext.Consumer>
@@ -50,20 +51,29 @@ class SentenceElement extends React.Component {
             <div
               className="sentence"
               key={this.props.id}
-              style={this.state.highlighted ? highlightedSentenceStyle : sentenceStyle}
-              onClick={event => this.handleSentenceClick(event, this.props.handleClick)}
+              style={
+                this.state.highlighted
+                  ? highlightedSentenceStyle
+                  : sentenceStyle
+              }
+              onClick={event =>
+                this.handleSentenceClick(event, this.props.handleClick)
+              }
             >
               <span
                 key={`${this.props.id}-japanese`}
                 className="sentence__japanese"
-                dangerouslySetInnerHTML={{__html: cleanJapaneseSentence}}
-              ></span>
+                dangerouslySetInnerHTML={{ __html: cleanJapaneseSentence }}
+              />
 
-              <span key={`${this.props.id}-english`} className="sentence__english">
-                「{ textHelper.getEnglish(sentence).split('-')[0] }」
+              <span
+                key={`${this.props.id}-english`}
+                className="sentence__english"
+              >
+                「{textHelper.getEnglish(sentence).split("-")[0]}」
               </span>
             </div>
-          )
+          );
         }}
       </ThemeContext.Consumer>
     );
