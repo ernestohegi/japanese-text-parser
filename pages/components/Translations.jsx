@@ -73,9 +73,20 @@ class Translations extends React.Component {
 
               <Sentences
                 translationId={translationsCounter}
-                sentences={translation.sentences}
+                sentences={translation.sentences.weblio}
                 word={word}
                 handleClick={this.handleSentenceClick.bind(this)}
+                serviceName="Weblio"
+                serviceUrl="http://ejje.weblio.jp"
+              />
+
+              <Sentences
+                translationId={translationsCounter}
+                sentences={translation.sentences.tangorin}
+                word={word}
+                handleClick={this.handleSentenceClick.bind(this)}
+                serviceName="Tangorin"
+                serviceUrl="http://tangorin.com"
               />
             </div>
           );

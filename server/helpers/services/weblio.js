@@ -1,13 +1,13 @@
-const cheerio = require('cheerio');
-const api = require('../api');
+const cheerio = require("cheerio");
+const api = require("../api");
 
-const API_URL = 'https://ejje.weblio.jp/sentence/content/';
+const API_URL = "https://ejje.weblio.jp/sentence/content/";
 
 const SELECTOR = {
-  sentencesWrapper: '.kiji',
-  mainSentence: '.qotC',
-  japaneseSentence: '.qotCJJ',
-  englishSentence: '.qotCJE'
+  sentencesWrapper: ".kiji",
+  mainSentence: ".qotC",
+  japaneseSentence: ".qotCJJ",
+  englishSentence: ".qotCJE"
 };
 
 /**
@@ -22,12 +22,10 @@ const getSentencesFromHtml = html => {
   $sentences.map((index, sentence) => {
     const $sentence = $(sentence);
 
-    sentences.push(
-      {
-        japanese: $sentence.find(SELECTOR.japaneseSentence).text(),
-        english: $sentence.find(SELECTOR.englishSentence).text()
-      }
-    );
+    sentences.push({
+      japanese: $sentence.find(SELECTOR.japaneseSentence).text(),
+      english: $sentence.find(SELECTOR.englishSentence).text()
+    });
   });
 
   return sentences;
@@ -44,4 +42,4 @@ module.exports = {
   getSentencesForItem(item) {
     return api.callUrl(`${API_URL}${item}`).then(getSentencesFromHtml);
   }
-}
+};

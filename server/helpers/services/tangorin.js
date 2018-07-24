@@ -23,7 +23,11 @@ const getSentencesFromHtml = html => {
     const $sentence = $(sentence);
 
     sentences.push({
-      japanese: $sentence.find(SELECTOR.japaneseSentence).text(),
+      // Gets just english translation.
+      japanese: $sentence
+        .find(SELECTOR.japaneseSentence)
+        .text()
+        .split(".")[0],
       english: $sentence.find(SELECTOR.englishSentence).text()
     });
   });
@@ -40,6 +44,7 @@ module.exports = {
    * @return Promise<Array>
    */
   getSentencesForItem(item) {
+    console.log(`${API_URL}${item}`);
     return api.callUrl(`${API_URL}${item}`).then(getSentencesFromHtml);
   }
 };
