@@ -23,7 +23,7 @@ const getSentencesFromHtml = html => {
     const $sentence = $(sentence);
 
     sentences.push({
-      // Gets just english translation.
+      // Gets just english translations.
       japanese: $sentence
         .find(SELECTOR.japaneseSentence)
         .text()
