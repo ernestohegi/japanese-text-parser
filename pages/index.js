@@ -105,6 +105,8 @@ class Index extends React.Component {
   render() {
     return (
       <Layout>
+        <p> Enter a word or phrase in Japanese to begin your search </p>
+
         <input
           type="text"
           onChange={this.handleTextChange}
