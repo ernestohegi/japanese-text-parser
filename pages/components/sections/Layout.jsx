@@ -37,7 +37,7 @@ class Layout extends React.Component {
         <div style={layoutStyle}>
           <Head>
             <link href={FONT_URL} rel="stylesheet" />
-            <style jsx global>{`
+            <style>{`
               body {
                 font-family: "Noto Sans Japanese";
                 font-style: normal;
