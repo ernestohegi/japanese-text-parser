@@ -11,8 +11,9 @@ const FONT_URL =
 const SENTENCES_LIST_KEY = "sentence";
 
 const layoutStyle = {
-  margin: 20,
+  margin: "20px auto",
   padding: 20,
+  maxWidth: "960px",
   border: "1px solid #DDD"
 };
 
@@ -34,48 +35,48 @@ class Layout extends React.Component {
 
     return (
       <ThemeContext.Provider value={defaultTheme}>
+        <Head>
+          <link href={FONT_URL} rel="stylesheet" />
+          <style>{`
+            body {
+              font-family: "Noto Sans Japanese";
+              font-style: normal;
+              font-weight: 100;
+            }
+
+            a,
+            a:hover,
+            a:focus,
+            a:visited {
+              color: ${defaultTheme.mainColor.hex};
+              text-decoration: none;
+              display: inline-block;
+              min-width: 50px;
+            }
+
+            a:hover {
+              font-weight: 700;
+            }
+
+            h2 {
+              margin: 0;
+              padding: 0;
+            }
+
+            button {
+              border: 0;
+              background: ${defaultTheme.mainColor.hex};
+              color: #fff;
+            }
+
+            .highlight {
+              font-weight: 500;
+              color: #5d5d5d;
+            }
+          `}</style>
+        </Head>
+
         <div style={layoutStyle}>
-          <Head>
-            <link href={FONT_URL} rel="stylesheet" />
-            <style>{`
-              body {
-                font-family: "Noto Sans Japanese";
-                font-style: normal;
-                font-weight: 100;
-              }
-
-              a,
-              a:hover,
-              a:focus,
-              a:visited {
-                color: ${defaultTheme.mainColor.hex};
-                text-decoration: none;
-                display: inline-block;
-                min-width: 50px;
-              }
-
-              a:hover {
-                font-weight: 700;
-              }
-
-              h2 {
-                margin: 0;
-                padding: 0;
-              }
-
-              button {
-                border: 0;
-                background: ${defaultTheme.mainColor.hex};
-                color: #fff;
-              }
-
-              .highlight {
-                font-weight: 500;
-                color: #5d5d5d;
-              }
-            `}</style>
-          </Head>
-
           <Header />
           <Title copy="よちむ" />
           {this.props.children}
