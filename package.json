@@ -9,7 +9,7 @@
     "lint": "pretty-quick --single-quote --print-width 80 --stage",
     "build": "next build",
     "start": "NODE_ENV=production node index.js",
-    "deploy": "now --public && now alias"
+    "deploy": "npm run test && now --public && now alias"
   },
   "author": "Ernesto Hegi",
   "license": "ISC",
