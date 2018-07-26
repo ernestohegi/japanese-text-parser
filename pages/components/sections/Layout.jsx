@@ -19,8 +19,6 @@ const layoutStyle = {
 
 class Layout extends React.Component {
   static async getInitialProps({ pathname, req }) {
-    console.log("We are on the layout server");
-
     if (listHelper.getUserList(SENTENCES_LIST_KEY).length === 0) {
       listHelper.createUserList(SENTENCES_LIST_KEY);
     }

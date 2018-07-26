@@ -41,8 +41,6 @@ class Index extends React.Component {
    * @param {object}
    */
   static async getInitialProps({ pathname, req }) {
-    console.log("We are on the server");
-
     return {
       pathname
     };
