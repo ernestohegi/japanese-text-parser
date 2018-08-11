@@ -1,17 +1,13 @@
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
+let formatters = {};
+
 let selectors = {
-  sentencesWrapper: "",
   mainSentence: "",
   japaneseSentence: "",
   englishSentence: ""
 };
-
-let formatters = {};
-
-const isFunction = callback =>
-  Object.toString.call(callback) === "[object Function]";
 
 module.exports = {
   initialize: data => {
@@ -29,17 +25,11 @@ module.exports = {
         .textContent;
 
       if (formatters) {
-        if (
-          formatters.japaneseSentence &&
-          isFunction(formatters.japaneseSentence)
-        ) {
-          japaneseSentence = formatters.englishSentence(japaneseSentence);
+        if (formatters.japaneseSentence) {
+          japaneseSentence = formatters.japaneseSentence(japaneseSentence);
         }
 
-        if (
-          formatters.englishSentence &&
-          isFunction(formatters.englishSentence)
-        ) {
+        if (formatters.englishSentence) {
           englishSentence = formatters.englishSentence(englishSentence);
         }
       }

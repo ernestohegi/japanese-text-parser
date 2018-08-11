@@ -1,7 +1,7 @@
 const express = require("express");
 const next = require("next");
 const bodyParser = require("body-parser");
-const textParser = require("./server/modules/text-parser");
+const textParser = require("./server/helpers/text-parser");
 const compression = require("compression");
 
 const JSON_HEADER = ["Content-Type", "application/json"];

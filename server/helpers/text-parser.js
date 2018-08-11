@@ -43,8 +43,8 @@ const getDefinitions = async (allowedTokens, definitions, endCallback) => {
     word,
     definitions: commonDefinitions,
     sentences: {
-      tangorin: tangorinSentences || [],
-      weblio: weblioSentences || []
+      tangorin: tangorinSentences,
+      weblio: weblioSentences
     }
   });
 

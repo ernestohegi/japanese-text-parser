@@ -7,20 +7,7 @@ const formatEnglishSentence = englishSentence =>
   englishSentence.split(/(?:\?|\.|\!)/)[0];
 
 const formatJapaneseSentence = japaneseSentence =>
-  japanese.replace(/\(.*\)/, "");
-
-htmlParser.initialize({
-  selectors: {
-    sentencesWrapper: "#dictEntries",
-    mainSentence: ".entry",
-    japaneseSentence: ".ex-dt",
-    englishSentence: ".ex-dd"
-  },
-  formatters: {
-    japaneseSentence: formatJapaneseSentence,
-    englishSentence: formatEnglishSentence
-  }
-});
+  japaneseSentence.replace(/\(.*?\)/g, "");
 
 module.exports = {
   /**
@@ -31,6 +18,18 @@ module.exports = {
    * @return Promise<Array>
    */
   getSentencesForItem(item) {
+    htmlParser.initialize({
+      selectors: {
+        mainSentence: ".entry",
+        japaneseSentence: ".ex-dt",
+        englishSentence: ".ex-dd"
+      },
+      formatters: {
+        japaneseSentence: formatJapaneseSentence,
+        englishSentence: formatEnglishSentence
+      }
+    });
+
     return api
       .callUrl(`${API_URL}${item}`)
       .then(htmlParser.getSentencesFromHtml);
