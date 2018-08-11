@@ -6,10 +6,9 @@ class SentencesElement extends React.Component {
     return (
       <div key="sentences" className="sentences">
         <h3>
-          Sentences{" "}
+          Sentences
           <a href={this.props.serviceUrl} target="_blank">
-            {" "}
-            {this.props.serviceName}{" "}
+            {this.props.serviceName}
           </a>
         </h3>
         {this.props.sentences.map((sentence, index) => {

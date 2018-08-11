@@ -1,7 +1,7 @@
-const tokenizer = require("../helpers/tokenizer");
-const dictionaryService = require("../helpers/services/jisho");
-const tangorinService = require("../helpers/services/tangorin");
-const weblioService = require("../helpers/services/weblio");
+const tokenizer = require("./tokenizer");
+const dictionaryService = require("../services/jisho");
+const tangorinService = require("../services/tangorin");
+const weblioService = require("../services/weblio");
 const moment = require("moment");
 
 /**
@@ -43,8 +43,8 @@ const getDefinitions = async (allowedTokens, definitions, endCallback) => {
     word,
     definitions: commonDefinitions,
     sentences: {
-      tangorin: tangorinSentences,
-      weblio: weblioSentences
+      tangorin: tangorinSentences || [],
+      weblio: weblioSentences || []
     }
   });
 
