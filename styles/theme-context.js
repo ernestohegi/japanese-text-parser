@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 export const theme = {
   default: {
     mainColor: {
-      hex: '#FC6336',
-      rgba: 'rgba(252, 99, 54, 0.2)'
+      hex: "#FC6336",
+      rgba: "rgba(252, 99, 54, 0.2)"
     }
   }
 };

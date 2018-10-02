@@ -1,8 +1,8 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 const linkStyle = {
   marginRight: 15,
-  minWidth: '60px'
+  minWidth: "60px"
 };
 
 const Header = () => (

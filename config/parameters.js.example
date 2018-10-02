@@ -1,3 +1,5 @@
+export const GOOGLE_ANALYTICS_ID = "XXXX";
+
 export default {
   TRANSLATE_URL: "/translate"
 };

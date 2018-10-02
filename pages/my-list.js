@@ -1,7 +1,8 @@
 import React from "react";
-import Layout from "./components/sections/Layout";
-import ListElement from "./components/List";
-import listHelper from "./helpers/list-helper";
+import ReactGA from "react-ga";
+import Layout from "../components/sections/Layout";
+import ListElement from "../components/List";
+import listHelper from "../helpers/list-helper";
 
 const SENTENCES_LIST_KEY = "sentence";
 
@@ -13,6 +14,7 @@ class MyList extends React.Component {
 
   componentDidMount() {
     this.setUserList();
+    ReactGA.pageview("/my-list");
   }
 
   hasUserList() {

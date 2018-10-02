@@ -1,11 +1,12 @@
 import React from "react";
-import Layout from "./components/sections/Layout";
-import Loader from "./components/sections/Loader";
-import SmallTitle from "./components/sections/SmallTitle";
-import Translations from "./components/Translations";
-import { postJsonData } from "./helpers/http-helper";
-import parameters from "./config/parameters";
-import copy from "./config/copy";
+import ReactGA from "react-ga";
+import Layout from "../components/sections/Layout";
+import Loader from "../components/sections/Loader";
+import SmallTitle from "../components/sections/SmallTitle";
+import Translations from "../components/Translations";
+import { postJsonData } from "../helpers/http-helper";
+import parameters from "../config/parameters";
+import copy from "../config/copy";
 
 const styles = {
   input: {
@@ -44,6 +45,10 @@ class Index extends React.Component {
     return {
       pathname
     };
+  }
+
+  componentDidMount() {
+    ReactGA.pageview("/index");
   }
 
   async translateText(text) {
