@@ -3,11 +3,11 @@ let userList = [];
 const returnList = list => list;
 
 const listHelper = {
-  resetList: index =>{
+  resetList: index => {
     userList[index] = [];
     return returnList(userList[index]);
   },
-  resetLists: () =>{
+  resetLists: () => {
     userList = [];
   },
   createUserList: index => {
@@ -27,10 +27,15 @@ const listHelper = {
     userList[position].push(element);
     return returnList(newList);
   },
-  addItemToListByPositionWithSubcategory: (item, list, position, subcategory) => {
+  addItemToListByPositionWithSubcategory: (
+    item,
+    list,
+    position,
+    subcategory
+  ) => {
     const newList = list.slice(0);
     if (Array.isArray(newList[position]) === false) newList[position] = [];
-    if (!newList[position][subcategory]) newList[position][subcategory] = []
+    if (!newList[position][subcategory]) newList[position][subcategory] = [];
     newList[position][subcategory].push(item);
     return returnList(newList);
   },

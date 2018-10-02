@@ -22,17 +22,18 @@
     "isomorphic-unfetch": "^2.0.0",
     "jsdom": "^11.12.0",
     "kuromoji": "^0.1.2",
-    "mocha": "^5.2.0",
     "momentjs": "^2.0.0",
-    "next": "^6.1.1",
+    "next": "^7.0.0",
     "node-fetch": "^2.1.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-ga": "^2.5.3",
     "uniqid": "^5.0.2"
   },
   "devDependencies": {
     "husky": "^1.0.0-rc.9",
     "jest": "^23.1.0",
+    "mocha": "^5.2.0",
     "prettier": "1.13.7",
     "pretty-quick": "^1.6.0"
   },

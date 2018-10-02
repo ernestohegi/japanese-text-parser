@@ -1,7 +1,7 @@
-import fetch from 'isomorphic-unfetch';
+import fetch from "isomorphic-unfetch";
 
 const HTTP_METHODS = {
-  post: 'POST'
+  post: "POST"
 };
 
 /**
@@ -14,7 +14,7 @@ export const postJsonData = (url, data) => {
     method: HTTP_METHODS.post,
     body: JSON.stringify(data),
     headers: {
-      'Content-type': 'application/json'
+      "Content-type": "application/json"
     }
   };
 

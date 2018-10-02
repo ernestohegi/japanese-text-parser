@@ -7,6 +7,6 @@ export default {
    * @return string
    */
   convertArrayIntoTSV(list) {
-    return list.map(item => `${item.japanese}\t${item.english}`).join('\n');
+    return list.map(item => `${item.japanese}\t${item.english}`).join("\n");
   }
-}
+};
