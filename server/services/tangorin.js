@@ -1,7 +1,7 @@
 const api = require("../helpers/api");
 const htmlParser = require("../helpers/html-parser");
 
-const API_URL = "http://tangorin.com/examples/";
+const API_URL = "http://tangorin.com/sentences?search=";
 
 const formatEnglishSentence = englishSentence =>
   englishSentence.split(/(?:\?|\.|\!)/)[0];
@@ -21,8 +21,8 @@ module.exports = {
     htmlParser.initialize({
       selectors: {
         mainSentence: ".entry",
-        japaneseSentence: ".ex-dt",
-        englishSentence: ".ex-dd"
+        japaneseSentence: ".s-jp",
+        englishSentence: ".s-en"
       },
       formatters: {
         japaneseSentence: formatJapaneseSentence,

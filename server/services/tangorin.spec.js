@@ -27,7 +27,8 @@ describe("Tangorin Api Helper", () => {
     const sentences = helper.getSentencesForItem(ITEM);
 
     sentences.then(sentence => {
-      expect(sentence.length).toBe(0);
+      expect(sentence[0].japanese).toEqual({});
+      expect(sentence[0].english).toEqual({});
       done();
     });
   });
