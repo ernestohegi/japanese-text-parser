@@ -27,6 +27,10 @@ Requirements are `Node.js` and `npm` installed. I'm using `yarn` for managing de
 
 Tests can be executed using `npm test`.
 
+# Instant translations
+
+By appending a `search` query string param, it's possible to trigger instant translations. E.g.: `https://yochimu.now.sh/?search=神様が大好き`.
+
 # Technologies
 
 This parsers is built using `Node.js`, the backend with `Express`, and the frontend with `Next.js` and `React`. Everything is tested using with `Jest`.
