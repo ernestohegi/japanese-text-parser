@@ -25,7 +25,7 @@ Requirements are `Node.js` and `npm` installed. I'm using `yarn` for managing de
 
 # How to test
 
-Tests can be executed using `npm test`.
+You can run tests with `npm test`.
 
 # Instant translations
 
@@ -33,7 +33,7 @@ By appending a `search` query string param, it's possible to trigger instant tra
 
 # Technologies
 
-This parsers is built using `Node.js`, the backend with `Express`, and the frontend with `Next.js` and `React`. Everything is tested using with `Jest`.
+This parser is built using `Node.js` with `Express` for the backend, and the frontend with `Next.js` and `React`. Everything is tested using with `Jest`.
 
 `cheerio` is used to scrape content from non-JSON sources inside the parser.
 
