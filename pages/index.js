@@ -41,14 +41,25 @@ class Index extends React.Component {
    * Method rendered only server-side.
    * @param {object}
    */
-  static async getInitialProps({ pathname, req }) {
+  static async getInitialProps({ query }) {
     return {
-      pathname
+      query
     };
   }
 
   componentDidMount() {
     ReactGA.pageview("/index");
+
+    this.translateInstantly(this.props);
+  }
+
+  translateInstantly(props) {
+    const { search } = props.query;
+
+    if (search) {
+      this.changeText(search);
+      this.translate(search);
+    }
   }
 
   async translateText(text) {
@@ -58,21 +69,29 @@ class Index extends React.Component {
     this.setState({ translation });
   }
 
-  handleTranslationButtonClick() {
-    if (this.state.form.text === "") return false;
-
+  translate(text) {
     this.showLoader();
     this.resetTranslations();
     this.startTranslationsProcess();
-    this.translateText(this.state.form.text);
+    this.translateText(text);
+  }
+
+  changeText(text) {
+    this.setState({
+      form: {
+        text
+      }
+    });
+  }
+
+  handleTranslationButtonClick() {
+    if (this.state.form.text === "") return false;
+
+    this.translate(this.state.form.text);
   }
 
   handleTextChange(event) {
-    this.setState({
-      form: {
-        text: event.target.value
-      }
-    });
+    this.changeText(event.target.value);
   }
 
   showLoader() {
