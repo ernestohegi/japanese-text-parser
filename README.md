@@ -41,6 +41,11 @@ This parser is built using `Node.js` with `Express` for the backend, and the fro
 
 This parser is using [Kuromoji](https://github.com/takuyaa/kuromoji.js) library to tokenise Japanese text.
 
+
+# Notes
+
+```
 Given this is a work in progress, as of version 0.1.0, I haven't decided yet which dictionary and translator to use.
+```
 
 頑張ってください！
