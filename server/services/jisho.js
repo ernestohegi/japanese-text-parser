@@ -8,7 +8,15 @@ module.exports = {
   getDefinitions,
   getCommonDefinitions(item) {
     return getDefinitions(item).then(definitions => {
-      return definitions.data.filter(definition => definition.is_common);
+      let commonDefinitions = definitions.data.filter(
+        definition => definition.is_common
+      );
+
+      if (commonDefinitions.length <= 0) {
+        commonDefinitions = [definitions.data.shift()];
+      }
+
+      return commonDefinitions;
     });
   },
   generateObject(definition) {
