@@ -8,12 +8,16 @@ module.exports = {
   getDefinitions,
   getCommonDefinitions(item) {
     return getDefinitions(item).then(definitions => {
-      let commonDefinitions = definitions.data.filter(
-        definition => definition.is_common
-      );
+      let commonDefinitions = [];
 
-      if (commonDefinitions.length <= 0) {
-        commonDefinitions = [definitions.data.shift()];
+      if (definitions.data.length > 0) {
+        commonDefinitions = definitions.data.filter(
+          definition => definition.is_common
+        );
+
+        if (commonDefinitions.length <= 0) {
+          commonDefinitions = [definitions.data.shift()];
+        }
       }
 
       return commonDefinitions;
