@@ -10,10 +10,8 @@ class DefinitionsElement extends React.Component {
     return (
       <div key="definitions" className="definitions">
         <h3>
-          Definitions{" "}
           <a href="https://www.jisho.org" target="_blank">
-            {" "}
-            Jisho{" "}
+            Jisho
           </a>
         </h3>
         {this.props.definitions.map((definition, index) => {

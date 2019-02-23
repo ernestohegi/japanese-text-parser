@@ -4,10 +4,15 @@ import { ThemeContext } from "../styles/theme-context";
 
 const sentenceStyle = {
   marginBottom: "5px",
-  cursor: "pointer"
+  overflow: "hidden"
 };
 
-class SentenceElement extends React.Component {
+const saveButtonStyle = {
+  cursor: "pointer",
+  float: "right"
+};
+
+class Sentence extends React.Component {
   constructor(props) {
     super(props);
 
@@ -56,9 +61,6 @@ class SentenceElement extends React.Component {
                   ? highlightedSentenceStyle
                   : sentenceStyle
               }
-              onClick={event =>
-                this.handleSentenceClick(event, this.props.handleClick)
-              }
             >
               <span
                 key={`${this.props.id}-japanese`}
@@ -72,6 +74,16 @@ class SentenceElement extends React.Component {
               >
                 「{textHelper.getEnglish(sentence).split("-")[0]}」
               </span>
+
+              <button
+                onClick={event =>
+                  this.handleSentenceClick(event, this.props.handleClick)
+                }
+                style={saveButtonStyle}
+              >
+                {" "}
+                Save{" "}
+              </button>
             </div>
           );
         }}
@@ -80,4 +92,4 @@ class SentenceElement extends React.Component {
   }
 }
 
-export default SentenceElement;
+export default Sentence;

@@ -1,19 +1,19 @@
 import React from "react";
-import SentenceElement from "./Sentence";
+import Sentence from "./Sentence";
 
-class SentencesElement extends React.Component {
+class Sentences extends React.Component {
   render() {
     return (
       <div key="sentences" className="sentences">
         <h3>
-          Sentences
           <a href={this.props.serviceUrl} target="_blank">
             {this.props.serviceName}
           </a>
         </h3>
+
         {this.props.sentences.map((sentence, index) => {
           return (
-            <SentenceElement
+            <Sentence
               id={index}
               key={index}
               sentence={sentence}
@@ -33,4 +33,4 @@ class SentencesElement extends React.Component {
   }
 }
 
-export default SentencesElement;
+export default Sentences;

@@ -9,6 +9,19 @@ let translationsCounter = 0;
 
 const SENTENCES_LIST_KEY = "sentence";
 
+const services = [
+  {
+    key: "tangorin",
+    name: "Tangorin",
+    url: "http://tangorin.com"
+  },
+  {
+    key: "weblio",
+    name: "Weblio",
+    url: "http://ejje.weblio.jp"
+  }
+];
+
 const saveElementsIntoList = (listId, element, structure) => {
   const userList = listHelper.getUserList(SENTENCES_LIST_KEY);
   const updatedUserList = listHelper.addItemToListByPositionWithSubcategory(
@@ -65,29 +78,27 @@ class Translations extends React.Component {
             <div className="translation" style={containerStyle} key={index}>
               <h2 key={`${word}`}>{word}</h2>
 
+              <h3> Definitions </h3>
+
               <Definitions
                 translationId={translationsCounter}
                 definitions={translation.definitions}
                 handleClick={this.handleDefinitionClick.bind(this)}
               />
 
-              <Sentences
-                translationId={translationsCounter}
-                sentences={translation.sentences.weblio}
-                word={word}
-                handleClick={this.handleSentenceClick.bind(this)}
-                serviceName="Weblio"
-                serviceUrl="http://ejje.weblio.jp"
-              />
+              <h3> Sentences </h3>
 
-              <Sentences
-                translationId={translationsCounter}
-                sentences={translation.sentences.tangorin}
-                word={word}
-                handleClick={this.handleSentenceClick.bind(this)}
-                serviceName="Tangorin"
-                serviceUrl="http://tangorin.com"
-              />
+              {services.map((service, index) => (
+                <Sentences
+                  key={index}
+                  translationId={translationsCounter}
+                  sentences={translation.sentences[service.key]}
+                  word={word}
+                  handleClick={this.handleSentenceClick.bind(this)}
+                  serviceName={service.name}
+                  serviceUrl={service.url}
+                />
+              ))}
             </div>
           );
         })}

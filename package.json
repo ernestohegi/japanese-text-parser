@@ -1,7 +1,7 @@
 {
   "name": "japanese-text-parser",
   "version": "1.0.0",
-  "description": "Given a file with text in Japanese, it returns a list of words along with their definitions and translation.",
+  "description": "Given a sentence in Japanese, it returns a list of words along with their definitions, translations and sentences including them.",
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development node index.js",
