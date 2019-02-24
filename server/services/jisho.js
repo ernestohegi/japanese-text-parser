@@ -5,23 +5,21 @@ const API_URL = "https://jisho.org/api/v1/search/words?keyword=";
 const getDefinitions = item => api.callUrl(`${API_URL}${item}`);
 
 module.exports = {
-  getDefinitions,
-  getCommonDefinitions(item) {
-    return getDefinitions(item).then(definitions => {
-      let commonDefinitions = [];
+  async getCommonDefinitions(item) {
+    const definitions = await getDefinitions(item);
+    let commonDefinitions = [];
 
-      if (definitions.data.length > 0) {
-        commonDefinitions = definitions.data.filter(
-          definition => definition.is_common
-        );
+    if (definitions.data.length > 0) {
+      commonDefinitions = definitions.data.filter(
+        definition => definition.is_common
+      );
 
-        if (commonDefinitions.length <= 0) {
-          commonDefinitions = [definitions.data.shift()];
-        }
+      if (commonDefinitions.length <= 0) {
+        commonDefinitions = [definitions.data.shift()];
       }
+    }
 
-      return commonDefinitions;
-    });
+    return commonDefinitions;
   },
   generateObject(definition) {
     return {

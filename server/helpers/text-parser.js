@@ -1,8 +1,8 @@
 const tokenizer = require("./tokenizer");
+const timeTracker = require("./time-tracker");
 const dictionaryService = require("../services/jisho");
 const tangorinService = require("../services/tangorin");
 const weblioService = require("../services/weblio");
-const moment = require("moment");
 
 /**
  * @type {array}
@@ -20,24 +20,21 @@ const getDefinitions = async (allowedTokens, definitions, endCallback) => {
     return endCallback(definitions);
   }
 
+  timeTracker.init();
+
   const token = allowedTokens.shift();
-  let START_DATE = moment();
   const word = tokenizer.getWordFromToken(token);
-  console.log("Speed test");
-  console.log("Token for word", moment().diff(START_DATE, "miliseconds"));
-  START_DATE = moment();
+
+  timeTracker.track("Time to retreive token for word");
+
   const tangorinSentences = await getSentencesForWordFromTangorin(word);
   const weblioSentences = await getSentencesForWordFromWeblio(word);
-  console.log(
-    "Sentences in miliseconds",
-    moment().diff(START_DATE, "miliseconds")
-  );
-  START_DATE = moment();
+
+  timeTracker.track("Time to retreive sentences in miliseconds");
+
   const commonDefinitions = await getCommonDefinitionsForWord(word);
-  console.log(
-    "Definitions in miliseconds",
-    moment().diff(START_DATE, "miliseconds")
-  );
+
+  timeTracker.track("Time to retreive definitions in miliseconds");
 
   definitions.push({
     word,
@@ -60,18 +57,20 @@ const getDefinitions = async (allowedTokens, definitions, endCallback) => {
 const getAllowedTokens = (text, helper) =>
   tokenizer.getAllowedTokens(helper.tokenize(text));
 
-const getSentencesForWordFromTangorin = word =>
-  tangorinService.getSentencesForItem(word).then(sentences => sentences);
+const getSentencesForWordFromTangorin = async word => {
+  const sentences = await tangorinService.getSentencesForItem(word);
+  return sentences;
+};
 
-const getSentencesForWordFromWeblio = word =>
-  weblioService.getSentencesForItem(word).then(sentences => sentences);
+const getSentencesForWordFromWeblio = async word => {
+  const sentences = await weblioService.getSentencesForItem(word);
+  return sentences;
+};
 
-const getCommonDefinitionsForWord = word =>
-  dictionaryService
-    .getCommonDefinitions(word)
-    .then(commonDefinitions =>
-      commonDefinitions.map(dictionaryService.generateObject)
-    );
+const getCommonDefinitionsForWord = async word => {
+  const commonDefinitions = await dictionaryService.getCommonDefinitions(word);
+  return commonDefinitions.map(dictionaryService.generateObject);
+};
 
 module.exports = {
   /**
