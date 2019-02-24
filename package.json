@@ -31,11 +31,11 @@
     "uniqid": "^5.0.2"
   },
   "devDependencies": {
-    "husky": "^1.0.0-rc.9",
-    "jest": "^23.1.0",
-    "mocha": "^5.2.0",
+    "husky": "1.0.0-rc.13",
+    "jest": "23.4.1",
+    "mocha": "5.2.0",
     "prettier": "1.15.3",
-    "pretty-quick": "^1.6.0"
+    "pretty-quick": "1.6.0"
   },
   "husky": {
     "hooks": {
