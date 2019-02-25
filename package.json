@@ -18,7 +18,7 @@
     "compression": "1.7.2",
     "expect": "24.1.0",
     "express": "4.16.3",
-    "file-saver": "2.0.0",
+    "file-saver": "2.0.1",
     "isomorphic-unfetch": "3.0.0",
     "jsdom": "13.1.0",
     "kuromoji": "0.1.2",
