@@ -28,7 +28,7 @@
     "react": "16.4.0",
     "react-dom": "16.4.2",
     "react-ga": "2.5.3",
-    "uniqid": "5.0.2"
+    "uniqid": "5.0.3"
   },
   "devDependencies": {
     "husky": "1.0.0-rc.13",
