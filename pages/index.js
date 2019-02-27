@@ -21,28 +21,12 @@ const styles = {
 const Index = props => {
   ReactGA.pageview("/index");
 
-  let initialDataFetched = false;
-
   const { search } = props.query || {};
 
   const [translating, setTranslating] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const [translation, setTranslation] = useState([]);
   const [form, setFormText] = useState({ text: search });
-
-  const stopTranslationProcess = () => {
-    setState({
-      translating: false
-    });
-  };
-
-  const changeText = text => {
-    setState({
-      form: {
-        text
-      }
-    });
-  };
 
   const translateText = async text => {
     const translation = await postJsonData(parameters.TRANSLATE_URL, { text });
