@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactGA from "react-ga";
 import Layout from "../components/sections/Layout";
 import Loader from "../components/sections/Loader";
@@ -18,139 +18,74 @@ const styles = {
   }
 };
 
-class Index extends React.Component {
-  constructor(props) {
-    super(props);
+const Index = props => {
+  ReactGA.pageview("/index");
 
-    this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleTranslationButtonClick = this.handleTranslationButtonClick.bind(
-      this
-    );
+  const { search } = props.query || {};
+  let text = search;
 
-    this.state = {
-      translating: false,
-      showLoader: false,
-      translation: [],
-      form: {
-        text: ""
-      }
-    };
-  }
+  const [state, setState] = useState({
+    showLoader: false,
+    showTranslating: false,
+    translation: []
+  });
 
-  /**
-   * Method rendered only server-side.
-   * @param {object}
-   */
-  static async getInitialProps({ query }) {
-    return {
-      query
-    };
-  }
-
-  componentDidMount() {
-    ReactGA.pageview("/index");
-
-    this.translateInstantly(this.props);
-  }
-
-  translateInstantly(props) {
-    const { search } = props.query;
-
-    if (search) {
-      this.changeText(search);
-      this.translate(search);
-    }
-  }
-
-  async translateText(text) {
-    const translation = await postJsonData(parameters.TRANSLATE_URL, { text });
-    this.hideLoader();
-    this.stopTranslationProcess();
-    this.setState({ translation });
-  }
-
-  translate(text) {
-    this.showLoader();
-    this.resetTranslations();
-    this.startTranslationsProcess();
-    this.translateText(text);
-  }
-
-  changeText(text) {
-    this.setState({
-      form: {
-        text
-      }
-    });
-  }
-
-  handleTranslationButtonClick() {
-    if (this.state.form.text === "") return false;
-
-    this.translate(this.state.form.text);
-  }
-
-  handleTextChange(event) {
-    this.changeText(event.target.value);
-  }
-
-  showLoader() {
-    this.setState({
-      showLoader: true
-    });
-  }
-
-  hideLoader() {
-    this.setState({
-      showLoader: false
-    });
-  }
-
-  resetTranslations() {
-    this.setState({
+  const translate = async text => {
+    setState({
+      showLoader: true,
+      showTranslating: true,
       translation: []
     });
-  }
 
-  startTranslationsProcess() {
-    this.setState({
-      translating: true
+    const translation = await postJsonData(parameters.TRANSLATE_URL, { text });
+
+    setState({
+      showLoader: false,
+      showTranslating: false,
+      translation
     });
-  }
+  };
 
-  stopTranslationProcess() {
-    this.setState({
-      translating: false
-    });
-  }
+  const handleTranslationButtonClick = () => {
+    if (!text) return false;
+    translate(text);
+  };
 
-  render() {
-    return (
-      <Layout>
-        <p> Enter a word or phrase in Japanese to begin your search </p>
+  useEffect(() => {
+    translate(search);
+  }, [search]);
 
-        <input
-          type="text"
-          onChange={this.handleTextChange}
-          defaultValue={this.state.form.text}
-          autoFocus
-          style={styles.input}
-        />
+  return (
+    <Layout>
+      <p> Enter a word or phrase in Japanese to begin your search </p>
 
-        <button
-          onClick={this.handleTranslationButtonClick}
-          disabled={this.state.translating}
-          style={styles.button}
-        >
-          {copy.BUTTON_COPY}
-        </button>
+      <input
+        type="text"
+        onChange={event => (text = event.target.value)}
+        defaultValue={text}
+        autoFocus
+        style={styles.input}
+      />
 
-        <SmallTitle copy={this.state.form.text} />
-        <Loader status={this.state.showLoader} />
-        <Translations translations={this.state.translation} />
-      </Layout>
-    );
-  }
-}
+      <button
+        onClick={handleTranslationButtonClick}
+        disabled={state.translating}
+        style={styles.button}
+      >
+        {copy.BUTTON_COPY}
+      </button>
+
+      <SmallTitle copy={text} />
+      <Loader status={state.showLoader} />
+      <Translations translations={state.translation} />
+    </Layout>
+  );
+};
+
+Index.getInitialProps = async ({ query }) => {
+  return {
+    query
+  };
+};
 
 export default Index;
