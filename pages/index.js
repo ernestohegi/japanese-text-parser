@@ -21,7 +21,8 @@ const styles = {
 const Index = props => {
   ReactGA.pageview("/index");
 
-  const { search } = props.query || {};
+  const { search } =
+  props.query || {};
   let text = search;
 
   const [state, setState] = useState({
