@@ -13,7 +13,7 @@ const MyList = () => {
     listHelper.getUserList(SENTENCES_LIST_KEY)
   );
 
-  const hasUserList = () => userList && userList.length > 0;
+  const hasUserListElements = userList => userList && userList.length > 0;
 
   const resetList = () => {
     listHelper.resetList(SENTENCES_LIST_KEY);
@@ -23,7 +23,7 @@ const MyList = () => {
   return (
     <Layout>
       <h2> My List </h2>
-      {hasUserList() ? (
+      {hasUserListElements(userList) ? (
         <ListElement list={userList} resetList={resetList} />
       ) : (
         <p> No elements in your list </p>
