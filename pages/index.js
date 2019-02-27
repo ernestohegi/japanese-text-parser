@@ -22,30 +22,38 @@ const Index = props => {
   ReactGA.pageview("/index");
 
   const { search } = props.query || {};
+  let text = search;
 
-  const [translating, setTranslating] = useState(false);
-  const [showLoader, setShowLoader] = useState(false);
-  const [translation, setTranslation] = useState([]);
-  const [form, setFormText] = useState({ text: search });
+  const [state, setState] = useState({
+    showLoader: false,
+    showTranslating: false,
+    translation: []
+  });
 
-  const translateText = async text => {
+  const translate = async text => {
+    setState({
+      showLoader: true,
+      showTranslating: true,
+      translation: []
+    });
+
     const translation = await postJsonData(parameters.TRANSLATE_URL, { text });
-    setShowLoader(false);
-    setTranslating(false);
-    setTranslation(translation);
+
+    setState({
+      showLoader: false,
+      showTranslating: false,
+      translation
+    });
   };
 
-  const translate = text => {
-    setShowLoader(true);
-    setTranslation([]);
-    setTranslating(true);
-    translateText(text);
+  const handleTranslationButtonClick = () => {
+    if (!text) return false;
+    translate(text);
   };
 
-  const handleTranslationButtonClick = () => translate(form.text);
-
-  const handleTextChange = event =>
-    setFormText({ form: { text: event.target.value } });
+  useEffect(() => {
+    translate(search);
+  }, [search]);
 
   return (
     <Layout>
@@ -53,23 +61,23 @@ const Index = props => {
 
       <input
         type="text"
-        onChange={handleTextChange}
-        defaultValue={form.text}
+        onChange={event => (text = event.target.value)}
+        defaultValue={text}
         autoFocus
         style={styles.input}
       />
 
       <button
         onClick={handleTranslationButtonClick}
-        disabled={translating}
+        disabled={state.translating}
         style={styles.button}
       >
         {copy.BUTTON_COPY}
       </button>
 
-      <SmallTitle copy={form.text} />
-      <Loader status={showLoader} />
-      <Translations translations={translation} />
+      <SmallTitle copy={text} />
+      <Loader status={state.showLoader} />
+      <Translations translations={state.translation} />
     </Layout>
   );
 };
