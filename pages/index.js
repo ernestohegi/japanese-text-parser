@@ -22,6 +22,7 @@ const Index = props => {
   ReactGA.pageview("/index");
 
   const { search } = props.query || {};
+
   let text = search;
 
   const [state, setState] = useState({
@@ -51,9 +52,7 @@ const Index = props => {
     translate(text);
   };
 
-  useEffect(() => {
-    translate(search);
-  }, [search]);
+  useEffect(() => translate(search), []);
 
   return (
     <Layout>
