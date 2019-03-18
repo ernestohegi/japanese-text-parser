@@ -21,7 +21,7 @@ const styles = {
 const Index = props => {
   ReactGA.pageview("/index");
 
-  const { search } = props.query || "";
+  const { search = "" } = props.query || "";
 
   let text = search;
 
@@ -31,8 +31,8 @@ const Index = props => {
     translation: []
   });
 
-  const translate = async text => {
-    if (!text) return false;
+  const translate = async (term = "") => {
+    if (!term) return false;
 
     setState({
       showLoader: true,
@@ -40,7 +40,9 @@ const Index = props => {
       translation: []
     });
 
-    const translation = await postJsonData(parameters.TRANSLATE_URL, { text });
+    const translation = await postJsonData(parameters.TRANSLATE_URL, {
+      text: term
+    });
 
     setState({
       showLoader: false,
@@ -78,7 +80,6 @@ const Index = props => {
         {copy.BUTTON_COPY}
       </button>
 
-      <SmallTitle copy={text} />
       <Loader status={state.showLoader} />
       <Translations translations={state.translation} />
     </Layout>
