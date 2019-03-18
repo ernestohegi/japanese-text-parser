@@ -21,7 +21,7 @@ const styles = {
 const Index = props => {
   ReactGA.pageview("/index");
 
-  const { search } = props.query || {};
+  const { search } = props.query || "";
 
   let text = search;
 
@@ -32,6 +32,8 @@ const Index = props => {
   });
 
   const translate = async text => {
+    if (!text) return false;
+
     setState({
       showLoader: true,
       showTranslating: true,
@@ -52,7 +54,9 @@ const Index = props => {
     translate(text);
   };
 
-  useEffect(() => translate(search), []);
+  useEffect(() => {
+    translate(search);
+  }, []);
 
   return (
     <Layout>
