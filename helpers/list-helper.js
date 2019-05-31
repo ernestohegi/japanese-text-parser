@@ -5,9 +5,6 @@ const listHelper = {
     userList[index] = [];
     return userList[index];
   },
-  resetLists: () => {
-    userList = [];
-  },
   createUserList: index => listHelper.resetList(index),
   getUserList: index => userList[index] || [],
   addItemToList: (item, list) => {
