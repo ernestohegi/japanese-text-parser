@@ -1,17 +1,8 @@
 import fetch from "isomorphic-unfetch";
 
-const HTTP_METHODS = {
-  post: "POST"
-};
-
-/**
- *
- * @param {string} url
- * @param {array} data
- */
 export const postJsonData = (url, data) => {
   const fetchData = {
-    method: HTTP_METHODS.post,
+    method: "post",
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json"

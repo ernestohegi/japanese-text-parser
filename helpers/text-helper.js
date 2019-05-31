@@ -4,8 +4,9 @@ const textHelper = {
     Array.isArray(element.english)
       ? element.english.join(", ")
       : element.english,
-  getCleanJapaneseSentence: sentence =>
-    textHelper.getJapanese(sentence).replace("例文帳に追加", ""),
+  getCleanJapaneseSentence: sentence => {
+    return textHelper.getJapanese(sentence).replace("例文帳に追加", "");
+  },
   getCleanEnglishSentence: sentence =>
     textHelper.getEnglish(sentence).split("-")[0],
   cleanSentences: sentence => {
