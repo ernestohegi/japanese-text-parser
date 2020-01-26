@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import ReactGA from "react-ga";
 import Layout from "../components/sections/Layout";
 import Loader from "../components/sections/Loader";
-import SmallTitle from "../components/sections/SmallTitle";
 import Translations from "../components/Translations";
 import { postJsonData } from "../helpers/http-helper";
 import parameters from "../config/parameters";
