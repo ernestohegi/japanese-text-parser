@@ -4,7 +4,8 @@
   "description": "Given a sentence in Japanese, it returns a list of words along with their definitions, translations and sentences including them.",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --collectCoverage",
+    "tdd": "jest --watchAll",
     "lint": "pretty-quick --single-quote --print-width 80 --stage",
     "build": "next build",
     "deploy": "npm run test && now --prod"
