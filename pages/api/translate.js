@@ -2,7 +2,7 @@ import textParser from "../../server/helpers/text-parser";
 import path from "path";
 
 const JSON_HEADER = ["Content-Type", "application/json"];
-const DICTIONARY_PATH = "./config/dictionary";
+const DICTIONARY_PATH = "./dictionary";
 
 export default (req, res) => {
   const text = req.body && req.body.text;
