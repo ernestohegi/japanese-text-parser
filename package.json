@@ -17,7 +17,7 @@
     "axios": "^0.19.0",
     "body-parser": "1.19.0",
     "compression": "1.7.4",
-    "expect": "25.2.4",
+    "expect": "25.2.6",
     "express": "4.17.1",
     "file-saver": "2.0.2",
     "isomorphic-unfetch": "3.0.0",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "husky": "4.2.3",
-    "jest": "25.2.4",
+    "jest": "25.2.6",
     "mocha": "7.1.1",
     "prettier": "1.19.1",
     "pretty-quick": "2.0.1"
