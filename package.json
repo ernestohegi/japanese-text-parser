@@ -23,7 +23,7 @@
     "isomorphic-unfetch": "3.0.0",
     "jsdom": "16.2.2",
     "kuromoji": "0.1.2",
-    "moment": "2.25.1",
+    "moment": "2.25.3",
     "next": "9.3.6",
     "node-fetch": "2.6.0",
     "react": "16.13.1",
