@@ -5259,9 +5259,9 @@ mocha@7.1.2:
     yargs-parser "13.1.2"
     yargs-unparser "1.6.0"
 
-moment@2.25.3:
-  version "2.25.3"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.25.3.tgz#252ff41319cf41e47761a1a88cab30edfe9808c0"
+moment@2.26.0:
+  version "2.26.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
 
 move-concurrently@^1.0.1:
   version "1.0.1"
