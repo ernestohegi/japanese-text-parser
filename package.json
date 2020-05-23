@@ -34,7 +34,7 @@
   "devDependencies": {
     "husky": "4.2.5",
     "jest": "25.5.4",
-    "mocha": "7.1.2",
+    "mocha": "7.2.0",
     "prettier": "1.19.1",
     "pretty-quick": "2.0.1"
   },
