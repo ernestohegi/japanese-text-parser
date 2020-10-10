@@ -24,7 +24,7 @@
     "jsdom": "16.4.0",
     "kuromoji": "0.1.2",
     "moment": "2.29.1",
-    "next": "9.5.4",
+    "next": "9.5.5",
     "node-fetch": "2.6.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
