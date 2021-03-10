@@ -4,7 +4,7 @@
   "description": "Given a sentence in Japanese, it returns a list of words along with their definitions, translations and sentences including them.",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development node index.js",
+    "dev": "PORT=4000 NODE_ENV=development node index.js",
     "test": "jest",
     "lint": "pretty-quick --single-quote --print-width 80 --stage",
     "build": "next build",

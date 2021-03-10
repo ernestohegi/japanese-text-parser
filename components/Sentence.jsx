@@ -52,6 +52,11 @@ class Sentence extends React.Component {
             textHelper.getCleanJapaneseSentence(sentence)
           );
 
+          const englishSentence =
+            typeof textHelper.getEnglish(sentence) === "string"
+              ? textHelper.getEnglish(sentence).split("-")[0]
+              : [];
+
           return (
             <div
               className="sentence"
@@ -72,7 +77,7 @@ class Sentence extends React.Component {
                 key={`${this.props.id}-english`}
                 className="sentence__english"
               >
-                「{textHelper.getEnglish(sentence).split("-")[0]}」
+                「{englishSentence}」
               </span>
 
               <button

@@ -16,7 +16,7 @@ Requirements are `Node.js` and `npm` installed. I'm using `yarn` for managing de
 
 1.  Clone the repo.
 2.  Run `yarn install` or `npm install`.
-3.  Run `npm run dev` from the root of your project.
+3.  Run `yarn dev` or `npm run dev` from the root of your project.
 4.  The site should be ready on `http://localhost:3000`
 
 # How to manually get text parsed

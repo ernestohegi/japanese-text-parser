@@ -1,6 +1,6 @@
 import React from "react";
 import ReactGA from "react-ga";
-import App, { Container } from "next/app";
+import App from "next/app";
 import listHelper from "../helpers/list-helper";
 
 const SENTENCES_LIST_KEY = "sentence";
@@ -15,10 +15,6 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
 
-    return (
-      <Container>
-        <Component {...pageProps} />
-      </Container>
-    );
+    return <Component {...pageProps} />;
   }
 }
