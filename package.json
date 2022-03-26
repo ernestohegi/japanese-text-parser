@@ -14,14 +14,14 @@
   "author": "Ernesto Hegi",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.26.0",
     "body-parser": "1.19.2",
     "compression": "1.7.4",
     "expect": "25.5.0",
     "express": "4.17.3",
     "file-saver": "2.0.5",
     "isomorphic-unfetch": "3.1.0",
-    "jsdom": "16.6.0",
+    "jsdom": "16.7.0",
     "kuromoji": "0.1.2",
     "moment": "2.29.1",
     "next": "9.5.5",
@@ -29,7 +29,7 @@
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-ga": "2.7.0",
-    "uniqid": "5.3.0"
+    "uniqid": "5.4.0"
   },
   "devDependencies": {
     "husky": "4.3.8",
