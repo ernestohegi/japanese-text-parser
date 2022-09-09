@@ -4,12 +4,12 @@
   "description": "Given a sentence in Japanese, it returns a list of words along with their definitions, translations and sentences including them.",
   "main": "index.js",
   "scripts": {
-    "dev": "PORT=4000 NODE_ENV=development node index.js",
+    "dev": "next dev",
     "test": "jest",
     "lint": "pretty-quick --single-quote --print-width 80 --stage",
     "build": "next build",
-    "start": "NODE_ENV=production node index.js",
-    "deploy": "npm run test && now --public && now alias"
+    "start": "next start",
+    "deploy:prod": "vercel --public --prod"
   },
   "author": "Ernesto Hegi",
   "license": "ISC",
