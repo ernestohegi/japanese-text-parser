@@ -1,6 +1,6 @@
 const textParser = require("../../server/helpers/text-parser");
 
-const DICTIONARY_PATH = "./node_modules/kuromoji/dict/";
+const DICTIONARY_PATH = "./assets/dict/";
 
 export default function handler(req, res) {
   const { text } = req.body;
