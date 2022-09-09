@@ -14,12 +14,12 @@ const services = [
     key: "tangorin",
     name: "Tangorin",
     url: "http://tangorin.com"
-  },
-  {
-    key: "weblio",
-    name: "Weblio",
-    url: "http://ejje.weblio.jp"
   }
+  // {
+  //   key: "weblio",
+  //   name: "Weblio",
+  //   url: "http://ejje.weblio.jp"
+  // }
 ];
 
 const saveElementsIntoList = (listId, element, structure) => {

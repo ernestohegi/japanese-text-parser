@@ -11,7 +11,7 @@ class Sentences extends React.Component {
           </a>
         </h3>
 
-        {this.props.sentences.map((sentence, index) => {
+        {this.props.sentences?.map((sentence, index) => {
           return (
             <Sentence
               id={index}

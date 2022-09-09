@@ -28,7 +28,7 @@ const getDefinitions = async (allowedTokens, definitions, endCallback) => {
   timeTracker.track("Time to retreive token for word");
 
   const tangorinSentences = await getSentencesForWordFromTangorin(word);
-  const weblioSentences = await getSentencesForWordFromWeblio(word);
+  // const weblioSentences = await getSentencesForWordFromWeblio(word);
 
   timeTracker.track("Time to retreive sentences in miliseconds");
 
@@ -40,8 +40,8 @@ const getDefinitions = async (allowedTokens, definitions, endCallback) => {
     word,
     definitions: commonDefinitions,
     sentences: {
-      tangorin: tangorinSentences,
-      weblio: weblioSentences
+      tangorin: tangorinSentences
+      // weblio: weblioSentences
     }
   });
 
