@@ -8,7 +8,7 @@ const SENTENCES_LIST_KEY = "sentence";
 export default class MyApp extends App {
   constructor(props) {
     super(props);
-    ReactGA.initialize("UA-126811205-1");
+    // ReactGA.initialize("UA-126811205-1");
     listHelper.createUserList(SENTENCES_LIST_KEY);
   }
 

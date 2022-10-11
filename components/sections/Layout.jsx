@@ -22,7 +22,7 @@ class Layout extends React.Component {
     return (
       <ThemeContext.Provider value={defaultTheme}>
         <Head>
-          <title> Yochimu - Japanese Text Parser </title>
+          <title> Yochimu | Japanese Text Parser </title>
           <link href={FONT_URL} rel="stylesheet" />
           <style>{setGlobalStyles(defaultTheme)}</style>
         </Head>
