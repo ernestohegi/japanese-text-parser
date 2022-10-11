@@ -23,6 +23,10 @@ class Layout extends React.Component {
       <ThemeContext.Provider value={defaultTheme}>
         <Head>
           <title> Yochimu | Japanese Text Parser </title>
+          <meta
+            name="description"
+            content="Yochimu lets you look for Japanese definitions and sentences for learning the language, save them to a list, and export them as a file you can then add import to Anki."
+          />
           <link href={FONT_URL} rel="stylesheet" />
           <style>{setGlobalStyles(defaultTheme)}</style>
         </Head>

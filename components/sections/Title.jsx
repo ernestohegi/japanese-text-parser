@@ -1,3 +1,3 @@
-const Title = props => <h1> {props.copy} </h1>;
+const Title = ({ copy }) => <h1> {copy} </h1>;
 
 export default Title;
