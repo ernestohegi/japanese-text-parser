@@ -9,37 +9,30 @@ const FONT_URL =
   "https://fonts.googleapis.com/earlyaccess/notosansjapanese.css";
 
 const layoutStyle = {
-  margin: "20px auto",
-  padding: 20,
-  maxWidth: "960px",
+  margin: "1rem auto",
+  padding: "1rem",
   border: "1px solid #DDD"
 };
 
-class Layout extends React.Component {
-  render() {
-    const defaultTheme = theme.default;
+const Layout = ({ children }) => (
+  <ThemeContext.Provider value={theme.default}>
+    <Head>
+      <title> Yochimu | Japanese Text Parser </title>
+      <meta
+        name="description"
+        content="Yochimu lets you look for Japanese definitions and sentences for learning the language, save them to a list, and export them as a file you can then add import to Anki."
+      />
+      <link href={FONT_URL} rel="stylesheet" />
+      <style>{setGlobalStyles(theme.default)}</style>
+    </Head>
 
-    return (
-      <ThemeContext.Provider value={defaultTheme}>
-        <Head>
-          <title> Yochimu | Japanese Text Parser </title>
-          <meta
-            name="description"
-            content="Yochimu lets you look for Japanese definitions and sentences for learning the language, save them to a list, and export them as a file you can then add import to Anki."
-          />
-          <link href={FONT_URL} rel="stylesheet" />
-          <style>{setGlobalStyles(defaultTheme)}</style>
-        </Head>
-
-        <div style={layoutStyle}>
-          <Header />
-          <Title copy="よちむ" />
-          {this.props.children}
-          <Footer />
-        </div>
-      </ThemeContext.Provider>
-    );
-  }
-}
+    <div style={layoutStyle}>
+      <Header />
+      <Title copy="よちむ |「Yochimu」" />
+      {children}
+      <Footer />
+    </div>
+  </ThemeContext.Provider>
+);
 
 export default Layout;

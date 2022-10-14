@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ReactGA from "react-ga";
-import Layout from "../components/sections/Layout";
 import Loader from "../components/sections/Loader";
 import Translations from "../components/Translations";
 import { postJsonData } from "../helpers/http-helper";
 import parameters from "../config/parameters";
-import copy from "../config/copy";
 
 const styles = {
   input: {
@@ -13,20 +11,23 @@ const styles = {
     fontSize: "4rem"
   },
   button: {
-    fontSize: "2 rem"
+    fontSize: "1rem",
+    padding: "0.5rem",
+    marginTop: "0.5rem",
+    cursor: "pointer"
   }
 };
 
 const Index = props => {
   ReactGA.pageview("/index");
 
-  const { search = "" } = props.query || "";
+  const { search = "" } = props.query || {};
 
   let text = search;
 
   const [state, setState] = useState({
-    showLoader: false,
-    showTranslating: false,
+    isLoading: false,
+    isTranslating: false,
     translation: []
   });
 
@@ -34,8 +35,8 @@ const Index = props => {
     if (!term) return false;
 
     setState({
-      showLoader: true,
-      showTranslating: true,
+      isLoading: true,
+      isTranslating: true,
       translation: []
     });
 
@@ -44,14 +45,15 @@ const Index = props => {
     });
 
     setState({
-      showLoader: false,
-      showTranslating: false,
+      isLoading: false,
+      isTranslating: false,
       translation
     });
   };
 
   const handleTranslationButtonClick = () => {
     if (!text) return false;
+
     translate(text);
   };
 
@@ -60,7 +62,7 @@ const Index = props => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <p> Enter a word or phrase in Japanese to begin your search </p>
 
       <input
@@ -73,15 +75,16 @@ const Index = props => {
 
       <button
         onClick={handleTranslationButtonClick}
-        disabled={state.translating}
+        disabled={state.isTranslating}
         style={styles.button}
       >
-        {copy.BUTTON_COPY}
+        Translate
       </button>
 
-      <Loader status={state.showLoader} />
+      <Loader status={state.isLoading} />
+
       <Translations translations={state.translation} />
-    </Layout>
+    </>
   );
 };
 

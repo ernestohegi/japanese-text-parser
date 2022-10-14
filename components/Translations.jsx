@@ -30,81 +30,79 @@ const saveElementsIntoList = (listId, element, structure) => {
     listId,
     structure
   );
+
   listHelper.saveList(SENTENCES_LIST_KEY, updatedUserList);
-  return listHelper.getUserList(SENTENCES_LIST_KEY);
+
+  console.log(listHelper.getUserList(SENTENCES_LIST_KEY));
 };
 
-const saveSentence = (translationId, sentence) => {
+const saveSentence = (translationId, sentence) =>
   saveElementsIntoList(translationId, sentence, "sentence");
-};
 
-const saveDefinition = (translationId, definition) => {
+const saveDefinition = (translationId, definition) =>
   saveElementsIntoList(translationId, definition, "definition");
+
+const handleSentenceClick = (sentence, word, translationId) => {
+  const newSentence = sentence;
+
+  newSentence.japanese = textHelper.highlightWord(
+    word,
+    textHelper.getJapanese(sentence)
+  );
+
+  saveSentence(translationId, newSentence);
 };
 
-class Translations extends React.Component {
-  handleSentenceClick(sentence, word, translationId) {
-    const newSentence = sentence;
-    newSentence.japanese = textHelper.highlightWord(
-      word,
-      textHelper.getJapanese(sentence)
-    );
-    saveSentence(translationId, newSentence);
-  }
+const handleDefinitionClick = (definition, translationId) => {
+  const cleanJapaneseDefinition = textHelper
+    .getJapanese(definition)
+    .slice(0)
+    .pop();
 
-  handleDefinitionClick(definition, translationId) {
-    const cleanJapaneseDefinition = textHelper
-      .getJapanese(definition)
-      .slice(0)
-      .pop();
+  saveDefinition(translationId, {
+    english: textHelper.getEnglish(definition),
+    japanese: `${cleanJapaneseDefinition.word || ""} 「${
+      cleanJapaneseDefinition.reading
+    }」`
+  });
+};
 
-    saveDefinition(translationId, {
-      english: textHelper.getEnglish(definition),
-      japanese: `${cleanJapaneseDefinition.word || ""} 「${
-        cleanJapaneseDefinition.reading
-      }」`
-    });
-  }
+const Translations = ({ translations }) => (
+  <div className="translations">
+    {translations.map((translation, index) => {
+      const word = translation.word;
 
-  render() {
-    return (
-      <div className="translations">
-        {this.props.translations.map((translation, index) => {
-          const word = translation.word;
+      ++translationsCounter;
 
-          ++translationsCounter;
+      return (
+        <div className="translation" style={containerStyle} key={index}>
+          <h2 key={`${word}`}>{word}</h2>
 
-          return (
-            <div className="translation" style={containerStyle} key={index}>
-              <h2 key={`${word}`}>{word}</h2>
+          <h3> Definitions </h3>
 
-              <h3> Definitions </h3>
+          <Definitions
+            translationId={translationsCounter}
+            definitions={translation.definitions}
+            handleClick={handleDefinitionClick}
+          />
 
-              <Definitions
-                translationId={translationsCounter}
-                definitions={translation.definitions}
-                handleClick={this.handleDefinitionClick.bind(this)}
-              />
+          <h3> Sentences </h3>
 
-              <h3> Sentences </h3>
-
-              {services.map((service, index) => (
-                <Sentences
-                  key={index}
-                  translationId={translationsCounter}
-                  sentences={translation.sentences[service.key]}
-                  word={word}
-                  handleClick={this.handleSentenceClick.bind(this)}
-                  serviceName={service.name}
-                  serviceUrl={service.url}
-                />
-              ))}
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-}
+          {services.map((service, index) => (
+            <Sentences
+              key={index}
+              translationId={translationsCounter}
+              sentences={translation.sentences[service.key]}
+              word={word}
+              handleClick={handleSentenceClick}
+              serviceName={service.name}
+              serviceUrl={service.url}
+            />
+          ))}
+        </div>
+      );
+    })}
+  </div>
+);
 
 export default Translations;

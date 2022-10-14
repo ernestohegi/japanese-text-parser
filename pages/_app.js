@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactGA from "react-ga";
-import App from "next/app";
 import CookieConsent, { Cookies } from "react-cookie-consent";
 import listHelper from "../helpers/list-helper";
+import Layout from "../components/sections/Layout";
 
 const SENTENCES_LIST_KEY = "sentence";
 
@@ -16,28 +16,24 @@ const handleDeclineCookie = () => {
   Cookies.remove("_gid");
 };
 
-export default class MyApp extends App {
-  constructor(props) {
-    super(props);
-
+const MyApp = ({ Component, pageProps }) => {
+  useEffect(() => {
     listHelper.createUserList(SENTENCES_LIST_KEY);
-  }
+  }, []);
 
-  render() {
-    const { Component, pageProps } = this.props;
+  return (
+    <Layout>
+      <Component {...pageProps} />
 
-    return (
-      <>
-        <Component {...pageProps} />
+      <CookieConsent
+        enableDeclineButton
+        onAccept={handleAcceptCookie}
+        onDecline={handleDeclineCookie}
+      >
+        This website uses cookies to enhance the user experience.
+      </CookieConsent>
+    </Layout>
+  );
+};
 
-        <CookieConsent
-          enableDeclineButton
-          onAccept={handleAcceptCookie}
-          onDecline={handleDeclineCookie}
-        >
-          This website uses cookies to enhance the user experience.
-        </CookieConsent>
-      </>
-    );
-  }
-}
+export default MyApp;
