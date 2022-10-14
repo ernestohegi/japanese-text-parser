@@ -2,20 +2,20 @@ import Link from "next/link";
 
 const linkStyle = {
   marginRight: 15,
-  minWidth: "60px"
+  fontWeight: "700"
 };
+
+const StyledLink = ({ url, copy }) => (
+  <Link href={url}>
+    <a style={linkStyle}>{copy}</a>
+  </Link>
+);
 
 const Header = () => (
   <header>
-    <Link href="/">
-      <a style={linkStyle}>Home</a>
-    </Link>
-    <Link href="/my-list">
-      <a style={linkStyle}>My List</a>
-    </Link>
-    <Link href="/about">
-      <a style={linkStyle}>About</a>
-    </Link>
+    <StyledLink url="/" copy="Home" />
+    <StyledLink url="/my-list" copy="My List" />
+    <StyledLink url="/about" copy="About" />
   </header>
 );
 

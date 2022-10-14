@@ -5,17 +5,20 @@ import containerStyle from "../styles/container-style";
 import textHelper from "../helpers/text-helper";
 import fileHelper from "../helpers/file-helper";
 
-const restListButtonStyle = {
-  marginLeft: "10px"
+const buttonStyle = {
+  fontSize: "1rem",
+  padding: "0.5rem",
+  marginTop: "0.5rem",
+  marginRight: "0.5rem",
+  cursor: "pointer"
 };
 
-const renderListElements = listElements => {
-  return listElements.map(element => {
-    return element.sentence.map((sentence, index) => {
-      return <Sentence id={index} key={index} sentence={sentence} />;
-    });
-  });
-};
+const renderListElements = listElements =>
+  listElements.map(element =>
+    element.sentence.map((sentence, index) => (
+      <Sentence id={index} key={index} sentence={sentence} />
+    ))
+  );
 
 const downloadList = list => {
   let tsvContent = "";
@@ -24,9 +27,7 @@ const downloadList = list => {
     let definition = "";
 
     if (elements.definition && elements.definition.length) {
-      definition = `${elements.definition[0].japanese} ${
-        elements.definition[0].english
-      }`;
+      definition = `${elements.definition[0].japanese} ${elements.definition[0].english}`;
     }
 
     elements.sentence.map(sentence => {
@@ -43,26 +44,19 @@ const downloadList = list => {
   );
 };
 
-class List extends React.Component {
-  async handleSaveListButtonClick() {
-    downloadList(this.props.list);
-  }
+const List = ({ list, resetList }) => (
+  <>
+    <button onClick={() => downloadList(list)} style={buttonStyle}>
+      Export to tsv
+    </button>
+    <button onClick={resetList} style={buttonStyle}>
+      Reset list
+    </button>
 
-  render() {
-    return (
-      <React.Fragment>
-        <button onClick={this.handleSaveListButtonClick.bind(this)}>
-          Save list
-        </button>
-        <button onClick={this.props.resetList} style={restListButtonStyle}>
-          Reset list
-        </button>
-        <ul className="my-list" style={containerStyle}>
-          {renderListElements(this.props.list)}
-        </ul>
-      </React.Fragment>
-    );
-  }
-}
+    <ul className="my-list" style={containerStyle}>
+      {renderListElements(list)}
+    </ul>
+  </>
+);
 
 export default List;

@@ -1,5 +1,9 @@
 export const setGlobalStyles = theme => {
   return `
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Noto Sans Japanese';
       font-style: normal;
@@ -17,7 +21,7 @@ export const setGlobalStyles = theme => {
     }
 
     a:hover {
-      font-weight: 700;
+      text-decoration: underline;
     }
 
     h2 {
