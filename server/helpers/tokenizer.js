@@ -11,8 +11,6 @@ const getTokenType = token => token.pos;
 
 module.exports = {
   init(dictionaryPath, callback) {
-    console.log(dictionaryPath);
-
     kuromoji
       .builder({ dicPath: dictionaryPath })
       .build((error, tokenizer) => callback(error, tokenizer));
