@@ -32,8 +32,6 @@ const saveElementsIntoList = (listId, element, structure) => {
   );
 
   listHelper.saveList(SENTENCES_LIST_KEY, updatedUserList);
-
-  console.log(listHelper.getUserList(SENTENCES_LIST_KEY));
 };
 
 const saveSentence = (translationId, sentence) =>

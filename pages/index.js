@@ -18,6 +18,9 @@ const styles = {
   }
 };
 
+let translation = [];
+let searchInput = "";
+
 const Index = props => {
   ReactGA.pageview("/index");
 
@@ -27,8 +30,7 @@ const Index = props => {
 
   const [state, setState] = useState({
     isLoading: false,
-    isTranslating: false,
-    translation: []
+    isTranslating: false
   });
 
   const translate = async (term = "") => {
@@ -36,18 +38,18 @@ const Index = props => {
 
     setState({
       isLoading: true,
-      isTranslating: true,
-      translation: []
+      isTranslating: true
     });
 
-    const translation = await postJsonData(parameters.TRANSLATE_URL, {
+    translation = await postJsonData(parameters.TRANSLATE_URL, {
       text: term
     });
 
+    searchInput = term;
+
     setState({
       isLoading: false,
-      isTranslating: false,
-      translation
+      isTranslating: false
     });
   };
 
@@ -68,7 +70,7 @@ const Index = props => {
       <input
         type="text"
         onChange={event => (text = event.target.value)}
-        defaultValue={text}
+        defaultValue={searchInput}
         autoFocus
         style={styles.input}
       />
@@ -83,7 +85,7 @@ const Index = props => {
 
       <Loader status={state.isLoading} />
 
-      <Translations translations={state.translation} />
+      <Translations translations={translation} />
     </>
   );
 };
