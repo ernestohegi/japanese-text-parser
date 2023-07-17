@@ -14,7 +14,7 @@ class DefinitionsElement extends React.Component {
             Jisho
           </a>
         </h3>
-        {this.props.definitions.map((definition, index) => {
+        {this.props.definitions?.map((definition, index) => {
           return (
             <DefinitionElement
               definition={definition}

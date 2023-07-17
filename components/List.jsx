@@ -4,6 +4,7 @@ import Sentence from "./Sentence";
 import containerStyle from "../styles/container-style";
 import textHelper from "../helpers/text-helper";
 import fileHelper from "../helpers/file-helper";
+import SmallTitle from "./sections/SmallTitle";
 
 const buttonStyle = {
   fontSize: "1rem",
@@ -41,12 +42,9 @@ const downloadList = list => {
 
 const List = ({ list, resetList }) => {
   const definitions = [...list.map(element => element.definition)].filter(
-    definition => definition
+    Boolean
   );
-
-  const sentences = [...list.map(element => element.sentence)].filter(
-    sentence => sentence
-  );
+  const sentences = [...list.map(element => element.sentence)].filter(Boolean);
 
   return (
     <>
@@ -59,7 +57,7 @@ const List = ({ list, resetList }) => {
 
       {definitions.length > 0 && (
         <>
-          <h3> Definitions </h3>
+          <SmallTitle copy="Definitions" />
           <ul className="my-list" style={containerStyle}>
             {definitions.map(element =>
               element.map((sentence, index) => (
@@ -72,7 +70,7 @@ const List = ({ list, resetList }) => {
 
       {sentences.length > 0 && (
         <>
-          <h3> Sentences </h3>
+          <SmallTitle copy="Sentences" />
           <ul className="my-list" style={containerStyle}>
             {sentences.map(element =>
               element.map((sentence, index) => (

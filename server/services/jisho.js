@@ -1,6 +1,6 @@
 const api = require("../helpers/api");
 
-const API_URL = "https://jisho.org/api/v1/search/words?keyword=";
+const API_URL = "http://beta.jisho.org/api/v1/search/words?keyword=";
 
 const getDefinitions = item => api.callUrl(`${API_URL}${item}`);
 
@@ -9,7 +9,7 @@ module.exports = {
     const definitions = await getDefinitions(item);
     let commonDefinitions = [];
 
-    if (definitions.data.length > 0) {
+    if (definitions.data?.length > 0) {
       commonDefinitions = definitions.data.filter(
         definition => definition.is_common
       );

@@ -76,13 +76,16 @@ const Translations = ({ translations }) => (
         <div className="translation" style={containerStyle} key={index}>
           <h2 key={`${word}`}>{word}</h2>
 
-          <h3> Definitions </h3>
-
-          <Definitions
-            translationId={translationsCounter}
-            definitions={translation.definitions}
-            handleClick={handleDefinitionClick}
-          />
+          {translation.definition && (
+            <>
+              <h3> Definitions </h3>
+              <Definitions
+                translationId={translationsCounter}
+                definitions={translation.definitions}
+                handleClick={handleDefinitionClick}
+              />
+            </>
+          )}
 
           <h3> Sentences </h3>
 
