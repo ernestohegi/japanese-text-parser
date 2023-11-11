@@ -14,7 +14,7 @@
   "author": "Ernesto Hegi",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.27.0",
+    "axios": "^1.6.0",
     "body-parser": "1.20.2",
     "compression": "1.7.4",
     "expect": "25.5.0",
