@@ -44,7 +44,7 @@
   "husky": {
     "hooks": {
       "pre-push": "npm test",
-      "pre-commit": "pretty-quick --single-quote --print-width 80 --staged"
+      "pre-commit": ""
     }
   }
 }
