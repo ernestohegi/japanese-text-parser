@@ -6,8 +6,8 @@ const linkStyle = {
 };
 
 const StyledLink = ({ url, copy }) => (
-  <Link href={url}>
-    <a style={linkStyle}>{copy}</a>
+  <Link href={url} style={linkStyle}>
+    {copy}
   </Link>
 );
 
