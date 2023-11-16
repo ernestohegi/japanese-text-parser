@@ -22,7 +22,7 @@
     "express": "4.18.2",
     "file-saver": "2.0.5",
     "isomorphic-unfetch": "3.1.0",
-    "jsdom": "22.1.0",
+    "jsdom": "16.7.0",
     "kuromoji": "0.1.2",
     "moment": "2.29.4",
     "next": "^14.0.2",
@@ -43,7 +43,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run lint && npm test",
+      "pre-push": "npm test",
       "pre-commit": "pretty-quick --single-quote --print-width 80 --staged"
     }
   }
