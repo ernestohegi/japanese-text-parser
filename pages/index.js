@@ -8,20 +8,20 @@ import parameters from "../config/parameters";
 const styles = {
   input: {
     width: "100%",
-    fontSize: "4rem"
+    fontSize: "4rem",
   },
   button: {
     fontSize: "1rem",
     padding: "0.5rem",
     marginTop: "0.5rem",
-    cursor: "pointer"
-  }
+    cursor: "pointer",
+  },
 };
 
 let translation = [];
 let searchInput = "";
 
-const Index = props => {
+const Index = (props) => {
   ReactGA.pageview("/index");
 
   const { search = "" } = props.query || {};
@@ -30,7 +30,7 @@ const Index = props => {
 
   const [state, setState] = useState({
     isLoading: false,
-    isTranslating: false
+    isTranslating: false,
   });
 
   const translate = async (term = "") => {
@@ -38,18 +38,18 @@ const Index = props => {
 
     setState({
       isLoading: true,
-      isTranslating: true
+      isTranslating: true,
     });
 
     translation = await postJsonData(parameters.TRANSLATE_URL, {
-      text: term
+      text: term,
     });
 
     searchInput = term;
 
     setState({
       isLoading: false,
-      isTranslating: false
+      isTranslating: false,
     });
   };
 
@@ -69,7 +69,7 @@ const Index = props => {
 
       <input
         type="text"
-        onChange={event => (text = event.target.value)}
+        onChange={(event) => (text = event.target.value)}
         defaultValue={searchInput}
         autoFocus
         style={styles.input}
@@ -92,7 +92,7 @@ const Index = props => {
 
 Index.getInitialProps = async ({ query }) => {
   return {
-    query
+    query,
   };
 };
 

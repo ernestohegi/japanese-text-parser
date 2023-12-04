@@ -4,27 +4,24 @@ import { ThemeContext } from "../styles/theme-context";
 
 const style = {
   marginBottom: "5px",
-  cursor: "pointer"
+  cursor: "pointer",
 };
 
 const DefinitionElement = ({ index, definition, handleClick }) => {
   const [state, setState] = useState({
-    highlighted: false
+    highlighted: false,
   });
 
-  const japaneseDefinition = textHelper
-    .getJapanese(definition)
-    .slice(0)
-    .pop();
+  const japaneseDefinition = textHelper.getJapanese(definition).slice(0).pop();
 
   return (
     <ThemeContext.Consumer>
-      {theme => {
+      {(theme) => {
         const highlightedStyle = Object.assign(
           {
-            backgroundColor: theme.mainColor.rgba
+            backgroundColor: theme.mainColor.rgba,
           },
-          style
+          style,
         );
 
         return (
@@ -33,7 +30,7 @@ const DefinitionElement = ({ index, definition, handleClick }) => {
             key={index}
             onClick={() => {
               setState({
-                highlighted: true
+                highlighted: true,
               });
 
               handleClick();

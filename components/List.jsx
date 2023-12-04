@@ -11,13 +11,13 @@ const buttonStyle = {
   padding: "0.5rem",
   marginTop: "0.5rem",
   marginRight: "0.5rem",
-  cursor: "pointer"
+  cursor: "pointer",
 };
 
-const downloadList = list => {
+const downloadList = (list) => {
   let tsvContent = "";
 
-  list.map(elements => {
+  list.map((elements) => {
     let definition = "";
 
     if (elements.definition?.length) {
@@ -25,7 +25,7 @@ const downloadList = list => {
     }
 
     if (elements.sentence?.length) {
-      elements.sentence.map(sentence => {
+      elements.sentence.map((sentence) => {
         const japaneseSentence = textHelper.getCleanJapaneseSentence(sentence);
         const englishSentence = textHelper.getCleanEnglishSentence(sentence);
         tsvContent += `${japaneseSentence}\t${definition}\t${englishSentence}\n`;
@@ -36,15 +36,17 @@ const downloadList = list => {
   fileHelper.saveFile(
     `yochimu-${uniqid()}-deck.tsv`,
     tsvContent,
-    "text/plain;charset=utf-8"
+    "text/plain;charset=utf-8",
   );
 };
 
 const List = ({ list, resetList }) => {
-  const definitions = [...list.map(element => element.definition)].filter(
-    Boolean
+  const definitions = [...list.map((element) => element.definition)].filter(
+    Boolean,
   );
-  const sentences = [...list.map(element => element.sentence)].filter(Boolean);
+  const sentences = [...list.map((element) => element.sentence)].filter(
+    Boolean,
+  );
 
   return (
     <>
@@ -59,10 +61,10 @@ const List = ({ list, resetList }) => {
         <>
           <SmallTitle copy="Definitions" />
           <ul className="my-list" style={containerStyle}>
-            {definitions.map(element =>
+            {definitions.map((element) =>
               element.map((sentence, index) => (
                 <Sentence id={index} key={index} sentence={sentence} />
-              ))
+              )),
             )}
           </ul>
         </>
@@ -72,10 +74,10 @@ const List = ({ list, resetList }) => {
         <>
           <SmallTitle copy="Sentences" />
           <ul className="my-list" style={containerStyle}>
-            {sentences.map(element =>
+            {sentences.map((element) =>
               element.map((sentence, index) => (
                 <Sentence id={index} key={index} sentence={sentence} />
-              ))
+              )),
             )}
           </ul>
         </>

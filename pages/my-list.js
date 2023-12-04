@@ -9,10 +9,10 @@ const MyList = () => {
   ReactGA.pageview("/my-list");
 
   const [userList, setUserList] = useState(
-    listHelper.getUserList(SENTENCES_LIST_KEY)
+    listHelper.getUserList(SENTENCES_LIST_KEY),
   );
 
-  const hasUserListElements = userList => !!userList?.length;
+  const hasUserListElements = (userList) => !!userList?.length;
 
   const resetList = () => {
     listHelper.resetList(SENTENCES_LIST_KEY);

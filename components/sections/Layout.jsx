@@ -11,7 +11,7 @@ const FONT_URL =
 const layoutStyle = {
   margin: "1rem auto",
   padding: "1rem",
-  border: "1px solid #DDD"
+  border: "1px solid #DDD",
 };
 
 const Layout = ({ children }) => (

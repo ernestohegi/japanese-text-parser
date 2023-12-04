@@ -7,7 +7,7 @@ const Sentences = ({
   sentences,
   word,
   handleClick,
-  translationId
+  translationId,
 }) => (
   <div key="sentences" className="sentences">
     <h3>

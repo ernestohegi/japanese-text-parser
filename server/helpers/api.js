@@ -1,21 +1,23 @@
-const fetch = require('node-fetch');
+import fetch from "node-fetch";
 
-const CONTENT_TYPE_HEADER_KEY = 'Content-type';
+const CONTENT_TYPE_HEADER_KEY = "Content-type";
 
 const CONTENT_TYPES = {
-  json: 'application/json',
-  html: 'text/html'
-}
+  json: "application/json",
+  html: "text/html",
+};
 
-const getJSONFromResponse = response => response.json();
-const getTextFromResponse = response => response.text();
+const getJSONFromResponse = (response) => response.json();
+const getTextFromResponse = (response) => response.text();
+const handleError = (error) => console.log(error);
+const sanitiseURL = (url) => encodeURI(url);
 
 /**
  *
  * @param object response
  * @returns Promise<json|html>
  */
-const getDataForRightContentType = response => {
+const getDataForRightContentType = (response) => {
   const contentTypeHeader = response.headers.get(CONTENT_TYPE_HEADER_KEY);
 
   let data;
@@ -27,21 +29,11 @@ const getDataForRightContentType = response => {
   }
 
   return data;
-}
+};
 
-const handleError = error => console.log(error);
-const sanitiseURL = url => encodeURI(url);
+const callUrl = (url) =>
+  fetch(sanitiseURL(url))
+    .then((response) => getDataForRightContentType(response))
+    .catch(handleError);
 
-module.exports = {
-  /**
-   *
-   * @param string url
-   * @return Promise
-   */
-  callUrl(url) {
-    return fetch(sanitiseURL(url))
-      .then(response => getDataForRightContentType(response))
-      .catch(handleError)
-    ;
-  }
-}
+export { callUrl };

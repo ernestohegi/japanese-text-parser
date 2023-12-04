@@ -1,17 +1,15 @@
-const assert = require('assert');
-const expect = require('expect');
+import expect from "expect";
+import { callUrl } from "./api";
 
-describe('Api Helper', () => {
-    const helper = require('./api');
+describe("Api Helper", () => {
+  const EXAMPLE_URL = "https://jsonplaceholder.typicode.com/posts/1";
 
-    const EXAMPLE_URL = 'https://jsonplaceholder.typicode.com/posts/1';
+  it("should be initiated", () => expect(typeof helper).toBe("object"));
 
-    it('should be initiated', () => expect(typeof helper).toBe('object'));
-
-    it('should retrieve data from a given url', done => {
-        helper.callUrl(EXAMPLE_URL).then(data => {
-          expect(data).toBeDefined();
-          done();
-        });
+  it("should retrieve data from a given url", (done) => {
+    callUrl(EXAMPLE_URL).then((data) => {
+      expect(data).toBeDefined();
+      done();
     });
+  });
 });

@@ -4,44 +4,44 @@ import { ThemeContext } from "../styles/theme-context";
 
 const sentenceStyle = {
   marginBottom: "5px",
-  overflow: "hidden"
+  overflow: "hidden",
 };
 
 const saveButtonStyle = {
   cursor: "pointer",
-  float: "right"
+  float: "right",
 };
 
 const Sentence = ({ id, sentence, word, handleClick, showSaveButton }) => {
   const [state, setState] = useState({
     highlighted: false,
-    clicked: false
+    clicked: false,
   });
 
-  const handleSentenceClick = parentCallback => {
+  const handleSentenceClick = (parentCallback) => {
     if (state.clicked) return false;
 
     if (parentCallback) parentCallback();
 
     setState({
       highlighted: true,
-      clicked: true
+      clicked: true,
     });
   };
 
   return (
     <ThemeContext.Consumer>
-      {theme => {
+      {(theme) => {
         const highlightedSentenceStyle = Object.assign(
           {
-            backgroundColor: theme.mainColor.rgba
+            backgroundColor: theme.mainColor.rgba,
           },
-          sentenceStyle
+          sentenceStyle,
         );
 
         const cleanJapaneseSentence = textHelper.highlightWord(
           word,
-          textHelper.getCleanJapaneseSentence(sentence)
+          textHelper.getCleanJapaneseSentence(sentence),
         );
 
         const englishSentence =

@@ -1,12 +1,12 @@
 let userList = [];
 
 const listHelper = {
-  resetList: index => {
+  resetList: (index) => {
     userList[index] = [];
     return userList[index];
   },
-  createUserList: index => listHelper.resetList(index),
-  getUserList: index => userList[index] || [],
+  createUserList: (index) => listHelper.resetList(index),
+  getUserList: (index) => userList[index] || [],
   addItemToList: (item, list) => {
     const newList = list.slice(0);
 
@@ -18,7 +18,7 @@ const listHelper = {
     item,
     list,
     position,
-    subcategory
+    subcategory,
   ) => {
     const newList = list.slice(0);
 
@@ -36,7 +36,7 @@ const listHelper = {
     userList[index] = newList;
 
     return userList;
-  }
+  },
 };
 
 export default listHelper;

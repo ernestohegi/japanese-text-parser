@@ -1,13 +1,13 @@
 import path from "path";
 
-const textParser = require("../../server/helpers/text-parser");
+import * as textParser from "../../server/helpers/text-parser";
 
 export default function handler(req, res) {
   const { text } = req.body;
 
   const DICTIONARY_PATH = path.join(process.cwd(), "assets/dict");
 
-  const endCallback = definitions => {
+  const endCallback = (definitions) => {
     res.send(JSON.stringify(definitions));
   };
 

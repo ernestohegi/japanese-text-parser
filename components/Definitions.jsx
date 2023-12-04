@@ -23,7 +23,7 @@ class DefinitionsElement extends React.Component {
                 this.handleClick(
                   definition,
                   this.props.translationId,
-                  this.props.handleClick
+                  this.props.handleClick,
                 )
               }
             />

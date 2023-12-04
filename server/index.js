@@ -1,9 +1,9 @@
-const textParser = require("./helpers/text-parser");
+import * as textParser from "./helpers/text-parser";
 
 const TEXT = process.env.TEXT || "";
 const DICTIONARY_PATH = "../node_modules/kuromoji/dict/";
 
-const endCallback = definitions => {
+const endCallback = (definitions) => {
   console.log(JSON.stringify([definitions]));
   console.log("Finished parsing provided text...");
 };
