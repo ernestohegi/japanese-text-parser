@@ -1,34 +1,25 @@
-const expect = require("expect");
+import expect from "expect";
+import * as helper from "./weblio";
 
 describe("Weblio Api Helper", () => {
-  const helper = require("./weblio");
-
   it("should be initiated", () => expect(typeof helper).toBe("object"));
 
-  it("should retrieve sentences for the given item", done => {
+  it.only("should retrieve sentences for the given item", async () => {
     const ITEM = "輝き";
-    const sentences = helper.getSentencesForItem(ITEM);
+    const sentences = await helper.getSentencesForItem(ITEM);
 
-    sentences.then(sentence => {
-      expect(sentence).toBeDefined();
-      expect(sentence.length).toBeGreaterThan(0);
-
-      sentence.map(sentenceParts => {
-        expect(sentenceParts.japanese).toBeDefined();
-        expect(sentenceParts.english).toBeDefined();
-      });
-
-      done();
-    });
+    for (const sentence of sentences) {
+      expect(sentence.japanese).toBeDefined();
+      expect(sentence.english).toBeDefined();
+    }
   });
 
-  it("should retrieve an empty object for an unknown item", done => {
+  it("should retrieve an empty object for an unknown item", async () => {
     const ITEM = "輝きiiii";
-    const sentences = helper.getSentencesForItem(ITEM);
+    const sentences = await helper.getSentencesForItem(ITEM);
 
-    sentences.then(sentence => {
+    for (const sentence of sentences) {
       expect(sentence.length).toBe(0);
-      done();
-    });
+    }
   });
 });

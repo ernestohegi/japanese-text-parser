@@ -5,9 +5,9 @@ export const postJsonData = (url, data) => {
     method: "post",
     body: JSON.stringify(data),
     headers: {
-      "Content-type": "application/json"
-    }
+      "Content-type": "application/json",
+    },
   };
 
-  return fetch(url, fetchData).then(response => response.json());
+  return fetch(url, fetchData).then((response) => response.json());
 };

@@ -1,6 +1,6 @@
 const footerStyle = {
   marginTop: "15px",
-  textAlign: "center"
+  textAlign: "center",
 };
 
 const CURRENT_YEAR = new Date().getFullYear();

@@ -1,4 +1,4 @@
-export const setGlobalStyles = theme => {
+export const setGlobalStyles = (theme) => {
   return `
     * {
       box-sizing: border-box;

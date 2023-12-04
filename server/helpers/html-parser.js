@@ -1,21 +1,22 @@
-const jsdom = require("jsdom");
+import jsdom from "jsdom";
+
 const { JSDOM } = jsdom;
 
 let formatters = {
   japaneseSentence: undefined,
-  englishSentence: undefined
+  englishSentence: undefined,
 };
 
 let selectors = {
   mainSentence: "",
   japaneseSentence: "",
-  englishSentence: ""
+  englishSentence: "",
 };
 
-const removeRubyContent = element => {
+const removeRubyContent = (element) => {
   if (element) {
-    Array.prototype.forEach.call(element.querySelectorAll("rt"), node =>
-      node.remove()
+    Array.prototype.forEach.call(element.querySelectorAll("rt"), (node) =>
+      node.remove(),
     );
   }
 
@@ -39,28 +40,27 @@ const parseSentence = (sentence, selector, formatter) => {
   return parsedSentence;
 };
 
-module.exports = {
-  initialize: data => {
-    selectors = data.selectors;
-    formatters = data.formatters || formatters;
-  },
-  getSentencesFromHtml: html => {
-    const { document } = new JSDOM(html).window;
-    const sentences = document.querySelectorAll(selectors.mainSentence);
-
-    return Array.prototype.slice.call(sentences).map(sentence => {
-      return {
-        japanese: parseSentence(
-          sentence,
-          selectors.japaneseSentence,
-          formatters.japaneseSentence
-        ),
-        english: parseSentence(
-          sentence,
-          selectors.englishSentence,
-          formatters.englishSentence
-        )
-      };
-    });
-  }
+const initialize = (data) => {
+  selectors = data.selectors;
+  formatters = data.formatters || formatters;
 };
+
+const getSentencesFromHtml = (html) => {
+  const { document } = new JSDOM(html).window;
+  const sentences = document.querySelectorAll(selectors.mainSentence);
+
+  return Array.prototype.slice.call(sentences).map((sentence) => ({
+    japanese: parseSentence(
+      sentence,
+      selectors.japaneseSentence,
+      formatters.japaneseSentence,
+    ),
+    english: parseSentence(
+      sentence,
+      selectors.englishSentence,
+      formatters.englishSentence,
+    ),
+  }));
+};
+
+export { initialize, getSentencesFromHtml };

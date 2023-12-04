@@ -13,8 +13,8 @@ const services = [
   {
     key: "tangorin",
     name: "Tangorin",
-    url: "http://tangorin.com"
-  }
+    url: "http://tangorin.com",
+  },
   // {
   //   key: "weblio",
   //   name: "Weblio",
@@ -28,7 +28,7 @@ const saveElementsIntoList = (listId, element, structure) => {
     element,
     userList,
     listId,
-    structure
+    structure,
   );
 
   listHelper.saveList(SENTENCES_LIST_KEY, updatedUserList);
@@ -45,7 +45,7 @@ const handleSentenceClick = (sentence, word, translationId) => {
 
   newSentence.japanese = textHelper.highlightWord(
     word,
-    textHelper.getJapanese(sentence)
+    textHelper.getJapanese(sentence),
   );
 
   saveSentence(translationId, newSentence);
@@ -61,7 +61,7 @@ const handleDefinitionClick = (definition, translationId) => {
     english: textHelper.getEnglish(definition),
     japanese: `${cleanJapaneseDefinition.word || ""} 「${
       cleanJapaneseDefinition.reading
-    }」`
+    }」`,
   });
 };
 
