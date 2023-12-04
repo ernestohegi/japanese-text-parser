@@ -49,20 +49,18 @@ const getSentencesFromHtml = (html) => {
   const { document } = new JSDOM(html).window;
   const sentences = document.querySelectorAll(selectors.mainSentence);
 
-  return Array.prototype.slice.call(sentences).map((sentence) => {
-    return {
-      japanese: parseSentence(
-        sentence,
-        selectors.japaneseSentence,
-        formatters.japaneseSentence,
-      ),
-      english: parseSentence(
-        sentence,
-        selectors.englishSentence,
-        formatters.englishSentence,
-      ),
-    };
-  });
+  return Array.prototype.slice.call(sentences).map((sentence) => ({
+    japanese: parseSentence(
+      sentence,
+      selectors.japaneseSentence,
+      formatters.japaneseSentence,
+    ),
+    english: parseSentence(
+      sentence,
+      selectors.englishSentence,
+      formatters.englishSentence,
+    ),
+  }));
 };
 
 export { initialize, getSentencesFromHtml };
