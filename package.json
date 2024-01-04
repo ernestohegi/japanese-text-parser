@@ -15,7 +15,7 @@
   "author": "Ernesto Hegi",
   "license": "ISC",
   "dependencies": {
-    "axios": "1.6.3",
+    "axios": "1.6.4",
     "body-parser": "1.20.2",
     "compression": "1.7.4",
     "eslint-config-next": "^14.0.2",
