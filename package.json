@@ -15,6 +15,7 @@
   "author": "Ernesto Hegi",
   "license": "ISC",
   "dependencies": {
+    "@vercel/analytics": "^1.2.2",
     "axios": "1.6.8",
     "body-parser": "1.20.2",
     "compression": "1.7.4",
