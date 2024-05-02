@@ -23,6 +23,7 @@ const Layout = ({ children }) => (
         content="Yochimu lets you look for Japanese definitions and sentences for learning the language, save them to a list, and export them as a file you can then add import to Anki."
       />
       <link href={FONT_URL} rel="stylesheet" />
+      <link rel="canonical" href="https://www.japanscript.com" />
       <style>{setGlobalStyles(theme.default)}</style>
     </Head>
 
