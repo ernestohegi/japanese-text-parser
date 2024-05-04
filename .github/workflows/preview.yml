@@ -7,8 +7,10 @@ on:
     branches-ignore:
       - main
 jobs:
-  Deploy-Preview:
-    needs: test
+  test:
+    uses: /.github/workflows/test.yml
+
+  deploy-preview:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

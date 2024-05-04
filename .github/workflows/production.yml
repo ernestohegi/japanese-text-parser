@@ -7,8 +7,10 @@ on:
     branches:
       - main
 jobs:
-  Deploy-Production:
-    needs: test
+  test:
+    uses: /.github/workflows/test.yml
+
+  deploy-production:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
