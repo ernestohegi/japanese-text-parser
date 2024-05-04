@@ -8,7 +8,7 @@ on:
       - main
 jobs:
   test:
-    uses: /.github/workflows/test.yml
+    uses: /.github/workflows/test.yml@main
 
   deploy-preview:
     runs-on: ubuntu-latest
