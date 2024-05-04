@@ -8,6 +8,7 @@ on:
       - main
 jobs:
   Deploy-Production:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
