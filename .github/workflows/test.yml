@@ -2,11 +2,13 @@ name: test
 run-name: test
 on: [push]
 jobs:
-  check-bats-version:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
+      - uses: borales/actions-yarn@v4
         with:
           node-version: '20'
-      - run: npm test
+      - run: yarn install
+      - run: yarn test
