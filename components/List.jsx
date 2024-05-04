@@ -4,7 +4,6 @@ import Sentence from './Sentence'
 import containerStyle from '../styles/container-style'
 import textHelper from '../helpers/text-helper'
 import fileHelper from '../helpers/file-helper'
-import SmallTitle from './sections/SmallTitle'
 
 const buttonStyle = {
   fontSize: '1rem',
