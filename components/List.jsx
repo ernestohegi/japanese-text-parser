@@ -55,10 +55,9 @@ const List = ({ list, resetList }) => {
       <button onClick={resetList} style={buttonStyle}>
         Reset list
       </button>
-
       {definitions.length > 0 && (
         <>
-          <SmallTitle copy="Definitions" />
+          <h3>Definitions</h3>
           <ul className="my-list" style={containerStyle}>
             {definitions.map((element) =>
               element.map((sentence, index) => (
@@ -68,10 +67,9 @@ const List = ({ list, resetList }) => {
           </ul>
         </>
       )}
-
       {sentences.length > 0 && (
         <>
-          <SmallTitle copy="Sentences" />
+          <h3>Sentences</h3>
           <ul className="my-list" style={containerStyle}>
             {sentences.map((element) =>
               element.map((sentence, index) => (
