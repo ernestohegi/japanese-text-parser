@@ -5,24 +5,25 @@ const linkStyle = {
   fontWeight: '700',
 }
 
-const links = [{
-  url: '/',
-  copy: 'Home'
-},
-{
-  url: '/my-list',
-  copy: 'My list'
-},
-{
-  url: '/about',
-  copy: 'About'
-}
+const links = [
+  {
+    url: '/',
+    copy: 'Home',
+  },
+  {
+    url: '/my-list',
+    copy: 'My list',
+  },
+  {
+    url: '/about',
+    copy: 'About',
+  },
 ]
 
 const Header = () => (
   <header>
-    {links.map(({ url, copy}) => (
-        <Link href={url} style={linkStyle}>
+    {links.map(({ url, copy }) => (
+      <Link href={url} style={linkStyle}>
         {copy}
       </Link>
     ))}
