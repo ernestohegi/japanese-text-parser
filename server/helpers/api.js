@@ -1,16 +1,16 @@
-import fetch from "node-fetch";
+import fetch from 'node-fetch'
 
-const CONTENT_TYPE_HEADER_KEY = "Content-type";
+const CONTENT_TYPE_HEADER_KEY = 'Content-type'
 
 const CONTENT_TYPES = {
-  json: "application/json",
-  html: "text/html",
-};
+  json: 'application/json',
+  html: 'text/html',
+}
 
-const getJSONFromResponse = (response) => response.json();
-const getTextFromResponse = (response) => response.text();
-const handleError = (error) => console.log(error);
-const sanitiseURL = (url) => encodeURI(url);
+const getJSONFromResponse = (response) => response.json()
+const getTextFromResponse = (response) => response.text()
+const handleError = (error) => console.log(error)
+const sanitiseURL = (url) => encodeURI(url)
 
 /**
  *
@@ -18,22 +18,22 @@ const sanitiseURL = (url) => encodeURI(url);
  * @returns Promise<json|html>
  */
 const getDataForRightContentType = (response) => {
-  const contentTypeHeader = response.headers.get(CONTENT_TYPE_HEADER_KEY);
+  const contentTypeHeader = response.headers.get(CONTENT_TYPE_HEADER_KEY)
 
-  let data;
+  let data
 
   if (contentTypeHeader.includes(CONTENT_TYPES.json)) {
-    data = getJSONFromResponse(response);
+    data = getJSONFromResponse(response)
   } else if (contentTypeHeader.includes(CONTENT_TYPES.html)) {
-    data = getTextFromResponse(response);
+    data = getTextFromResponse(response)
   }
 
-  return data;
-};
+  return data
+}
 
 const callUrl = (url) =>
   fetch(sanitiseURL(url))
     .then((response) => getDataForRightContentType(response))
-    .catch(handleError);
+    .catch(handleError)
 
-export { callUrl };
+export { callUrl }

@@ -1,9 +1,9 @@
-import React from "react";
-import DefinitionElement from "./Definition";
+import React from 'react'
+import DefinitionElement from './Definition'
 
 class DefinitionsElement extends React.Component {
   handleClick(definition, translationId, parentCallback) {
-    if (parentCallback) parentCallback(definition, translationId);
+    if (parentCallback) parentCallback(definition, translationId)
   }
 
   render() {
@@ -23,15 +23,15 @@ class DefinitionsElement extends React.Component {
                 this.handleClick(
                   definition,
                   this.props.translationId,
-                  this.props.handleClick,
+                  this.props.handleClick
                 )
               }
             />
-          );
+          )
         })}
       </div>
-    );
+    )
   }
 }
 
-export default DefinitionsElement;
+export default DefinitionsElement

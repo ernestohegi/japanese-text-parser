@@ -2,38 +2,38 @@ const textHelper = {
   getJapanese: (element) => element.japanese,
   getEnglish: (element) =>
     Array.isArray(element.english)
-      ? element.english.join(", ")
+      ? element.english.join(', ')
       : element.english,
   getCleanJapaneseSentence: (sentence) => {
-    let japaneseSentence = "";
+    let japaneseSentence = ''
 
-    if (textHelper && typeof textHelper.getJapanese === "function") {
-      japaneseSentence = textHelper.getJapanese(sentence);
+    if (textHelper && typeof textHelper.getJapanese === 'function') {
+      japaneseSentence = textHelper.getJapanese(sentence)
 
-      if (typeof japaneseSentence === "string") {
-        japaneseSentence = japaneseSentence.replace("例文帳に追加", "");
+      if (typeof japaneseSentence === 'string') {
+        japaneseSentence = japaneseSentence.replace('例文帳に追加', '')
       }
     }
 
-    return japaneseSentence;
+    return japaneseSentence
   },
   getCleanEnglishSentence: (sentence) =>
-    textHelper.getEnglish(sentence).split("-")[0],
+    textHelper.getEnglish(sentence).split('-')[0],
   cleanSentences: (sentence) => {
-    const newSentence = sentence;
-    newSentence.japanese = textHelper.getCleanJapaneseSentence(newSentence);
-    newSentence.english = textHelper.getCleanEnglishSentence(newSentence);
-    return newSentence;
+    const newSentence = sentence
+    newSentence.japanese = textHelper.getCleanJapaneseSentence(newSentence)
+    newSentence.english = textHelper.getCleanEnglishSentence(newSentence)
+    return newSentence
   },
   highlightWord: (word, sentence) => {
-    let newSentence = sentence;
+    let newSentence = sentence
 
-    if (typeof newSentence === "string") {
-      newSentence = newSentence.replace(word, `<b>${word}</b>`);
+    if (typeof newSentence === 'string') {
+      newSentence = newSentence.replace(word, `<b>${word}</b>`)
     }
 
-    return newSentence;
+    return newSentence
   },
-};
+}
 
-export default textHelper;
+export default textHelper

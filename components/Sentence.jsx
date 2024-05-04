@@ -1,33 +1,33 @@
-import React, { useState } from "react";
-import textHelper from "../helpers/text-helper";
-import { ThemeContext } from "../styles/theme-context";
+import React, { useState } from 'react'
+import textHelper from '../helpers/text-helper'
+import { ThemeContext } from '../styles/theme-context'
 
 const sentenceStyle = {
-  marginBottom: "5px",
-  overflow: "hidden",
-};
+  marginBottom: '5px',
+  overflow: 'hidden',
+}
 
 const saveButtonStyle = {
-  cursor: "pointer",
-  float: "right",
-};
+  cursor: 'pointer',
+  float: 'right',
+}
 
 const Sentence = ({ id, sentence, word, handleClick, showSaveButton }) => {
   const [state, setState] = useState({
     highlighted: false,
     clicked: false,
-  });
+  })
 
   const handleSentenceClick = (parentCallback) => {
-    if (state.clicked) return false;
+    if (state.clicked) return false
 
-    if (parentCallback) parentCallback();
+    if (parentCallback) parentCallback()
 
     setState({
       highlighted: true,
       clicked: true,
-    });
-  };
+    })
+  }
 
   return (
     <ThemeContext.Consumer>
@@ -36,18 +36,18 @@ const Sentence = ({ id, sentence, word, handleClick, showSaveButton }) => {
           {
             backgroundColor: theme.mainColor.rgba,
           },
-          sentenceStyle,
-        );
+          sentenceStyle
+        )
 
         const cleanJapaneseSentence = textHelper.highlightWord(
           word,
-          textHelper.getCleanJapaneseSentence(sentence),
-        );
+          textHelper.getCleanJapaneseSentence(sentence)
+        )
 
         const englishSentence =
-          typeof textHelper.getEnglish(sentence) === "string"
-            ? textHelper.getEnglish(sentence).split("-")[0]
-            : [];
+          typeof textHelper.getEnglish(sentence) === 'string'
+            ? textHelper.getEnglish(sentence).split('-')[0]
+            : []
 
         return (
           <div
@@ -74,10 +74,10 @@ const Sentence = ({ id, sentence, word, handleClick, showSaveButton }) => {
               </button>
             )}
           </div>
-        );
+        )
       }}
     </ThemeContext.Consumer>
-  );
-};
+  )
+}
 
-export default Sentence;
+export default Sentence

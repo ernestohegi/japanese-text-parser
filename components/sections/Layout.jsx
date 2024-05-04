@@ -1,18 +1,17 @@
-import Head from "next/head";
-import Header from "./Header";
-import Footer from "./Footer";
-import Title from "./Title";
-import { setGlobalStyles } from "../../styles/global-style";
-import { ThemeContext, theme } from "../../styles/theme-context";
+import Head from 'next/head'
+import Header from './Header'
+import Footer from './Footer'
+import Title from './Title'
+import { setGlobalStyles } from '../../styles/global-style'
+import { ThemeContext, theme } from '../../styles/theme-context'
 
-const FONT_URL =
-  "https://fonts.googleapis.com/earlyaccess/notosansjapanese.css";
+const FONT_URL = 'https://fonts.googleapis.com/earlyaccess/notosansjapanese.css'
 
 const layoutStyle = {
-  margin: "1rem auto",
-  padding: "1rem",
-  border: "1px solid #DDD",
-};
+  margin: '1rem auto',
+  padding: '1rem',
+  border: '1px solid #DDD',
+}
 
 const Layout = ({ children }) => (
   <ThemeContext.Provider value={theme.default}>
@@ -34,6 +33,6 @@ const Layout = ({ children }) => (
       <Footer />
     </div>
   </ThemeContext.Provider>
-);
+)
 
-export default Layout;
+export default Layout

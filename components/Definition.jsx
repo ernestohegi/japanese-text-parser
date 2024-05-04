@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import textHelper from "../helpers/text-helper";
-import { ThemeContext } from "../styles/theme-context";
+import React, { useState } from 'react'
+import textHelper from '../helpers/text-helper'
+import { ThemeContext } from '../styles/theme-context'
 
 const style = {
-  marginBottom: "5px",
-  cursor: "pointer",
-};
+  marginBottom: '5px',
+  cursor: 'pointer',
+}
 
 const DefinitionElement = ({ index, definition, handleClick }) => {
   const [state, setState] = useState({
     highlighted: false,
-  });
+  })
 
-  const japaneseDefinition = textHelper.getJapanese(definition).slice(0).pop();
+  const japaneseDefinition = textHelper.getJapanese(definition).slice(0).pop()
 
   return (
     <ThemeContext.Consumer>
@@ -21,8 +21,8 @@ const DefinitionElement = ({ index, definition, handleClick }) => {
           {
             backgroundColor: theme.mainColor.rgba,
           },
-          style,
-        );
+          style
+        )
 
         return (
           <div
@@ -31,14 +31,14 @@ const DefinitionElement = ({ index, definition, handleClick }) => {
             onClick={() => {
               setState({
                 highlighted: true,
-              });
+              })
 
-              handleClick();
+              handleClick()
             }}
             style={state.highlighted ? highlightedStyle : style}
           >
             <span key={`${index}-japanese`} className="definition__japanese">
-              {`${japaneseDefinition.word || ""} 「${
+              {`${japaneseDefinition.word || ''} 「${
                 japaneseDefinition.reading
               }」`}
             </span>
@@ -47,10 +47,10 @@ const DefinitionElement = ({ index, definition, handleClick }) => {
               {textHelper.getEnglish(definition)}
             </span>
           </div>
-        );
+        )
       }}
     </ThemeContext.Consumer>
-  );
-};
+  )
+}
 
-export default DefinitionElement;
+export default DefinitionElement
