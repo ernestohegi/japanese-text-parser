@@ -1,7 +1,7 @@
-import { callUrl } from "../helpers/api";
-import * as htmlParser from "../helpers/html-parser";
+import { callUrl } from '../helpers/api'
+import * as htmlParser from '../helpers/html-parser'
 
-const API_URL = "https://ejje.weblio.jp/sentence/content/";
+const API_URL = 'https://ejje.weblio.jp/sentence/content/'
 
 /**
  * Retrieves sentences from Weblio.
@@ -13,13 +13,13 @@ const API_URL = "https://ejje.weblio.jp/sentence/content/";
 const getSentencesForItem = (item) => {
   htmlParser.initialize({
     selectors: {
-      mainSentence: ".qotC",
-      japaneseSentence: ".qotCJJ",
-      englishSentence: ".qotCJE",
+      mainSentence: '.qotC',
+      japaneseSentence: '.qotCJJ',
+      englishSentence: '.qotCJE',
     },
-  });
+  })
 
-  return callUrl(`${API_URL}${item}`).then(htmlParser.getSentencesFromHtml);
-};
+  return callUrl(`${API_URL}${item}`).then(htmlParser.getSentencesFromHtml)
+}
 
-export { getSentencesForItem };
+export { getSentencesForItem }

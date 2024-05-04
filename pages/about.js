@@ -1,8 +1,8 @@
-import React from "react";
-import ReactGA from "react-ga";
+import React from 'react'
+import ReactGA from 'react-ga'
 
 const About = () => {
-  ReactGA.pageview("/about");
+  ReactGA.pageview('/about')
 
   return (
     <>
@@ -32,7 +32,7 @@ const About = () => {
         </a>
       </p>
     </>
-  );
-};
+  )
+}
 
-export default About;
+export default About

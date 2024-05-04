@@ -1,5 +1,5 @@
-import React from "react";
-import Sentence from "./Sentence";
+import React from 'react'
+import Sentence from './Sentence'
 
 const Sentences = ({
   serviceUrl,
@@ -27,6 +27,6 @@ const Sentences = ({
       />
     ))}
   </div>
-);
+)
 
-export default Sentences;
+export default Sentences

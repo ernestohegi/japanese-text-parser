@@ -1,3 +1,3 @@
-const SmallTitle = ({ copy }) => <h3> {copy} </h3>;
+const SmallTitle = ({ copy }) => <h3> {copy} </h3>
 
-export default SmallTitle;
+export default SmallTitle

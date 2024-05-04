@@ -1,42 +1,42 @@
-let userList = [];
+let userList = []
 
 const listHelper = {
   resetList: (index) => {
-    userList[index] = [];
-    return userList[index];
+    userList[index] = []
+    return userList[index]
   },
   createUserList: (index) => listHelper.resetList(index),
   getUserList: (index) => userList[index] || [],
   addItemToList: (item, list) => {
-    const newList = list.slice(0);
+    const newList = list.slice(0)
 
-    newList.push(item);
+    newList.push(item)
 
-    return newList;
+    return newList
   },
   addItemToListByPositionWithSubcategory: (
     item,
     list,
     position,
-    subcategory,
+    subcategory
   ) => {
-    const newList = list.slice(0);
+    const newList = list.slice(0)
 
-    if (Array.isArray(newList[position]) === false) newList[position] = [];
+    if (Array.isArray(newList[position]) === false) newList[position] = []
 
-    if (!newList[position][subcategory]) newList[position][subcategory] = [];
+    if (!newList[position][subcategory]) newList[position][subcategory] = []
 
-    newList[position][subcategory].push(item);
+    newList[position][subcategory].push(item)
 
-    return newList;
+    return newList
   },
   saveList: (index, list) => {
-    const newList = list.slice(0);
+    const newList = list.slice(0)
 
-    userList[index] = newList;
+    userList[index] = newList
 
-    return userList;
+    return userList
   },
-};
+}
 
-export default listHelper;
+export default listHelper

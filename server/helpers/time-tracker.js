@@ -1,24 +1,24 @@
-import moment from "moment";
+import moment from 'moment'
 
-let START_DATE;
+let START_DATE
 
-const recordTime = () => (START_DATE = moment());
+const recordTime = () => (START_DATE = moment())
 
 const init = () => {
-  recordTime();
-};
+  recordTime()
+}
 
 const track = (message) => {
   if (START_DATE === undefined) {
     console.warn(
-      "Time Tracker: init() needs to be called before time tracking.",
-    );
-    return false;
+      'Time Tracker: init() needs to be called before time tracking.'
+    )
+    return false
   }
 
-  console.log(message, moment().diff(START_DATE, "miliseconds"));
+  console.log(message, moment().diff(START_DATE, 'miliseconds'))
 
-  recordTime();
-};
+  recordTime()
+}
 
-export { init, track };
+export { init, track }

@@ -1,66 +1,66 @@
-import jsdom from "jsdom";
+import jsdom from 'jsdom'
 
-const { JSDOM } = jsdom;
+const { JSDOM } = jsdom
 
 let formatters = {
   japaneseSentence: undefined,
   englishSentence: undefined,
-};
+}
 
 let selectors = {
-  mainSentence: "",
-  japaneseSentence: "",
-  englishSentence: "",
-};
+  mainSentence: '',
+  japaneseSentence: '',
+  englishSentence: '',
+}
 
 const removeRubyContent = (element) => {
   if (element) {
-    Array.prototype.forEach.call(element.querySelectorAll("rt"), (node) =>
-      node.remove(),
-    );
+    Array.prototype.forEach.call(element.querySelectorAll('rt'), (node) =>
+      node.remove()
+    )
   }
 
-  return element;
-};
+  return element
+}
 
 const parseSentence = (sentence, selector, formatter) => {
-  const retrievedSentence = sentence.querySelector(selector);
-  const cleanSentence = removeRubyContent(retrievedSentence);
+  const retrievedSentence = sentence.querySelector(selector)
+  const cleanSentence = removeRubyContent(retrievedSentence)
 
-  let parsedSentence = {};
+  let parsedSentence = {}
 
   if (cleanSentence) {
-    parsedSentence = cleanSentence.textContent;
+    parsedSentence = cleanSentence.textContent
 
     if (formatter) {
-      parsedSentence = formatter(parsedSentence);
+      parsedSentence = formatter(parsedSentence)
     }
   }
 
-  return parsedSentence;
-};
+  return parsedSentence
+}
 
 const initialize = (data) => {
-  selectors = data.selectors;
-  formatters = data.formatters || formatters;
-};
+  selectors = data.selectors
+  formatters = data.formatters || formatters
+}
 
 const getSentencesFromHtml = (html) => {
-  const { document } = new JSDOM(html).window;
-  const sentences = document.querySelectorAll(selectors.mainSentence);
+  const { document } = new JSDOM(html).window
+  const sentences = document.querySelectorAll(selectors.mainSentence)
 
   return Array.prototype.slice.call(sentences).map((sentence) => ({
     japanese: parseSentence(
       sentence,
       selectors.japaneseSentence,
-      formatters.japaneseSentence,
+      formatters.japaneseSentence
     ),
     english: parseSentence(
       sentence,
       selectors.englishSentence,
-      formatters.englishSentence,
+      formatters.englishSentence
     ),
-  }));
-};
+  }))
+}
 
-export { initialize, getSentencesFromHtml };
+export { initialize, getSentencesFromHtml }

@@ -1,12 +1,12 @@
-import * as tokenizer from "./tokenizer";
-import * as timeTracker from "./time-tracker";
-import { getCommonDefinitions, generateObject } from "../services/jisho";
-import { getSentencesForItem as tangorinGetSentencesForItem } from "../services/tangorin";
+import * as tokenizer from './tokenizer'
+import * as timeTracker from './time-tracker'
+import { getCommonDefinitions, generateObject } from '../services/jisho'
+import { getSentencesForItem as tangorinGetSentencesForItem } from '../services/tangorin'
 
 /**
  * @type {array}
  */
-let definitions;
+let definitions
 
 /**
  *
@@ -16,24 +16,24 @@ let definitions;
  */
 const getDefinitions = async (allowedTokens, definitions, endCallback) => {
   if (allowedTokens.length === 0) {
-    return endCallback(definitions);
+    return endCallback(definitions)
   }
 
-  timeTracker.init();
+  timeTracker.init()
 
-  const token = allowedTokens.shift();
-  const word = tokenizer.getWordFromToken(token);
+  const token = allowedTokens.shift()
+  const word = tokenizer.getWordFromToken(token)
 
-  timeTracker.track("Time to retreive token for word");
+  timeTracker.track('Time to retreive token for word')
 
-  const tangorinSentences = await getSentencesForWordFromTangorin(word);
+  const tangorinSentences = await getSentencesForWordFromTangorin(word)
   // const weblioSentences = await getSentencesForWordFromWeblio(word);
 
-  timeTracker.track("Time to retreive sentences in miliseconds");
+  timeTracker.track('Time to retreive sentences in miliseconds')
 
-  const commonDefinitions = await getCommonDefinitionsForWord(word);
+  const commonDefinitions = await getCommonDefinitionsForWord(word)
 
-  timeTracker.track("Time to retreive definitions in miliseconds");
+  timeTracker.track('Time to retreive definitions in miliseconds')
 
   definitions.push({
     word,
@@ -42,10 +42,10 @@ const getDefinitions = async (allowedTokens, definitions, endCallback) => {
       tangorin: tangorinSentences,
       // weblio: weblioSentences
     },
-  });
+  })
 
-  getDefinitions(allowedTokens, definitions, endCallback);
-};
+  getDefinitions(allowedTokens, definitions, endCallback)
+}
 
 /**
  * Converts text into tokens and retrieves only allowed values.
@@ -54,30 +54,30 @@ const getDefinitions = async (allowedTokens, definitions, endCallback) => {
  * @return array
  */
 const getAllowedTokens = (text, helper) =>
-  tokenizer.getAllowedTokens(helper.tokenize(text));
+  tokenizer.getAllowedTokens(helper.tokenize(text))
 
 const getSentencesForWordFromTangorin = async (word) => {
-  const sentences = await tangorinGetSentencesForItem(word);
-  return sentences;
-};
+  const sentences = await tangorinGetSentencesForItem(word)
+  return sentences
+}
 
 const getCommonDefinitionsForWord = async (word) => {
-  const commonDefinitions = await getCommonDefinitions(word);
-  return commonDefinitions.map(generateObject);
-};
+  const commonDefinitions = await getCommonDefinitions(word)
+  return commonDefinitions.map(generateObject)
+}
 
 const parse = (text, endCallback, dictionaryPath) => {
   tokenizer.init(dictionaryPath, (error, helper) => {
     if (error) {
-      return endCallback({ error: "500 - Server issue", message: error });
+      return endCallback({ error: '500 - Server issue', message: error })
     }
 
-    console.log(`Parsing provided ${text}...`);
+    console.log(`Parsing provided ${text}...`)
 
-    definitions = [];
+    definitions = []
 
-    getDefinitions(getAllowedTokens(text, helper), definitions, endCallback);
-  });
-};
+    getDefinitions(getAllowedTokens(text, helper), definitions, endCallback)
+  })
+}
 
-export { parse };
+export { parse }

@@ -1,67 +1,57 @@
-import React, { useState, useEffect } from "react";
-import ReactGA from "react-ga";
-import Loader from "../components/sections/Loader";
-import Translations from "../components/Translations";
-import { postJsonData } from "../helpers/http-helper";
-import parameters from "../config/parameters";
+import React, { useState, useEffect } from 'react'
+import ReactGA from 'react-ga'
+import Translations from '../components/Translations'
+import { postJsonData } from '../helpers/http-helper'
+import parameters from '../config/parameters'
 
 const styles = {
   input: {
-    width: "100%",
-    fontSize: "4rem",
+    width: '100%',
+    fontSize: '4rem',
   },
   button: {
-    fontSize: "1rem",
-    padding: "0.5rem",
-    marginTop: "0.5rem",
-    cursor: "pointer",
+    fontSize: '1rem',
+    padding: '0.5rem',
+    marginTop: '0.5rem',
+    cursor: 'pointer',
   },
-};
+}
 
-let translation = [];
-let searchInput = "";
+let translation = []
+let searchInput = ''
 
 const Index = (props) => {
-  ReactGA.pageview("/index");
+  ReactGA.pageview('/index')
 
-  const { search = "" } = props.query || {};
+  const { search = '' } = props.query || {}
 
-  let text = search;
+  const [isLoading, setIsLoading] = useState(false)
 
-  const [state, setState] = useState({
-    isLoading: false,
-    isTranslating: false,
-  });
+  let text = search
 
-  const translate = async (term = "") => {
-    if (!term) return false;
+  const translate = async (term = '') => {
+    if (!term) return false
 
-    setState({
-      isLoading: true,
-      isTranslating: true,
-    });
+    setIsLoading(true)
 
     translation = await postJsonData(parameters.TRANSLATE_URL, {
       text: term,
-    });
+    })
 
-    searchInput = term;
+    searchInput = term
 
-    setState({
-      isLoading: false,
-      isTranslating: false,
-    });
-  };
+    setIsLoading(false)
+  }
 
   const handleTranslationButtonClick = () => {
-    if (!text) return false;
+    if (!text) return false
 
-    translate(text);
-  };
+    translate(text)
+  }
 
   useEffect(() => {
-    translate(search);
-  }, []);
+    translate(search)
+  }, [])
 
   return (
     <>
@@ -77,23 +67,23 @@ const Index = (props) => {
 
       <button
         onClick={handleTranslationButtonClick}
-        disabled={state.isTranslating}
+        disabled={isLoading}
         style={styles.button}
       >
         Translate
       </button>
 
-      <Loader status={state.isLoading} />
+      {isLoading && <p className="loader">少々お待ち下さい...</p>}
 
       <Translations translations={translation} />
     </>
-  );
-};
+  )
+}
 
 Index.getInitialProps = async ({ query }) => {
   return {
     query,
-  };
-};
+  }
+}
 
-export default Index;
+export default Index

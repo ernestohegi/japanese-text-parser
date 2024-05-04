@@ -39,5 +39,5 @@ export const setGlobalStyles = (theme) => {
       font-weight: 500;
       color: #5D5D5D;
     }
-  `;
-};
+  `
+}
