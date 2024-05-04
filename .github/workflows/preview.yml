@@ -7,10 +7,11 @@ on:
     branches-ignore:
       - main
 jobs:
-  test:
+  run-tests:
     uses: ernestohegi/japanese-text-parser/.github/workflows/test.yml@main
 
   deploy-preview:
+    needs: ['run-tests']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
