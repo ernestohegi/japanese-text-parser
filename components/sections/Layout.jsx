@@ -1,11 +1,8 @@
 import Head from 'next/head'
 import Header from './Header'
 import Footer from './Footer'
-import Title from './Title'
 import { setGlobalStyles } from '../../styles/global-style'
 import { ThemeContext, theme } from '../../styles/theme-context'
-
-const FONT_URL = 'https://fonts.googleapis.com/earlyaccess/notosansjapanese.css'
 
 const layoutStyle = {
   margin: '1rem auto',
@@ -21,14 +18,17 @@ const Layout = ({ children }) => (
         name="description"
         content="Yochimu lets you look for Japanese definitions and sentences for learning the language, save them to a list, and export them as a file you can then add import to Anki."
       />
-      <link href={FONT_URL} rel="stylesheet" />
+      <link
+        href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css"
+        rel="stylesheet"
+      />
       <link rel="canonical" href="https://www.japanscript.com" />
       <style>{setGlobalStyles(theme.default)}</style>
     </Head>
 
     <div style={layoutStyle}>
       <Header />
-      <Title copy="よちむ |「Yochimu」" />
+      <h1>よちむ |「Yochimu</h1>
       {children}
       <Footer />
     </div>

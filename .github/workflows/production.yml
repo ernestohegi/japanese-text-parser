@@ -1,4 +1,4 @@
-name: GitHub Actions Vercel Production Deployment
+name: Vercel Production Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -7,11 +7,11 @@ on:
     branches:
       - main
 jobs:
-  run-tests:
+  Test:
     uses: ernestohegi/japanese-text-parser/.github/workflows/test.yml@main
 
-  deploy-production:
-    needs: ['run-tests']
+  Deploy:
+    needs: ['Test']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

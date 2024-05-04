@@ -1,8 +1,8 @@
-name: test
+name: Unit Tests
 on:
   workflow_call:
 jobs:
-  test:
+  Unit-Tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
