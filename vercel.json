@@ -3,5 +3,8 @@
     "pages/api/translate.js": {
       "maxDuration": 10
     }
+  },
+  "git": {
+    "deploymentEnabled": false
   }
 }
