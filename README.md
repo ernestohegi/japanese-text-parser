@@ -43,8 +43,6 @@ This parser is using [Kuromoji](https://github.com/takuyaa/kuromoji.js) library 
 
 # Notes
 
-```text
 Given this is a work in progress, as of version 0.1.0, we haven't decided yet which dictionary and translator to use.
-```
 
 頑張ってください！
