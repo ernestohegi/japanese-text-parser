@@ -2149,21 +2149,20 @@ body-parser@1.20.2:
     type-is "~1.6.18"
     unpipe "1.0.0"
 
-body-parser@1.20.3:
-  version "1.20.3"
-  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.20.3.tgz#1953431221c6fb5cd63c4b36d53fab0928e548c6"
-  integrity sha512-7rAxByjUMqQ3/bHJy7D6OGXvx/MMc4IqBn/X0fcM1QUcAItpZrBEYhWGem+tzXH90c+G01ypMcYJBO9Y30203g==
+body-parser@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-2.0.0.tgz#c402c354d64e2a387b683f89d574b03cbef004d8"
+  integrity sha512-Dp+ktxd2u4GkMLJoVvSKLiEDsRRKvbTorW0k66C1Z2aI9X1xKoOIueI4Au7zmMS2yi3ECwdXRHclk/VjvrczDA==
   dependencies:
     bytes "3.1.2"
     content-type "~1.0.5"
-    debug "2.6.9"
-    depd "2.0.0"
+    debug "3.1.0"
     destroy "1.2.0"
     http-errors "2.0.0"
-    iconv-lite "0.4.24"
+    iconv-lite "0.5.2"
     on-finished "2.4.1"
     qs "6.13.0"
-    raw-body "2.5.2"
+    raw-body "^3.0.0"
     type-is "~1.6.18"
     unpipe "1.0.0"
 
@@ -2567,6 +2566,13 @@ debug@2.6.9:
   version "2.6.9"
   resolved "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz"
   integrity sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
+  dependencies:
+    ms "2.0.0"
+
+debug@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+  integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
   dependencies:
     ms "2.0.0"
 
@@ -3635,6 +3641,13 @@ iconv-lite@0.4.24:
   version "0.4.24"
   resolved "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.24.tgz"
   integrity sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==
+  dependencies:
+    safer-buffer ">= 2.1.2 < 3"
+
+iconv-lite@0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.5.2.tgz#af6d628dccfb463b7364d97f715e4b74b8c8c2b8"
+  integrity sha512-kERHXvpSaB4aU3eANwidg79K8FlrN77m8G9V+0vOR3HYaRifrlwMEpT7ZBJqLSEIHnEgJTHcWK82wwLwwKwtag==
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
@@ -5243,6 +5256,16 @@ raw-body@2.5.2:
     bytes "3.1.2"
     http-errors "2.0.0"
     iconv-lite "0.4.24"
+    unpipe "1.0.0"
+
+raw-body@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-3.0.0.tgz#25b3476f07a51600619dae3fe82ddc28a36e5e0f"
+  integrity sha512-RmkhL8CAyCRPXCE28MMH0z2PNWQBNk2Q09ZdxM9IOOXwxwZbN+qbWaatPkdkWIKL2ZVDImrN/pK5HTRz2PcS4g==
+  dependencies:
+    bytes "3.1.2"
+    http-errors "2.0.0"
+    iconv-lite "0.6.3"
     unpipe "1.0.0"
 
 react-cookie-consent@9.0.0:
