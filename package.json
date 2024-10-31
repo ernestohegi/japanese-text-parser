@@ -18,7 +18,7 @@
     "@vercel/analytics": "^1.2.2",
     "axios": "1.7.7",
     "body-parser": "1.20.3",
-    "compression": "1.7.4",
+    "compression": "1.7.5",
     "eslint-config-next": "^14.0.2",
     "expect": "29.7.0",
     "express": "4.21.1",
