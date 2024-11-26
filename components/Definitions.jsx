@@ -1,12 +1,7 @@
 import React from 'react'
 import DefinitionElement from './Definition'
 
-const DefinitionsElement = ({ definitions, translationId, handleClick }) => {
-  const onClick = (definition) => {
-    handleClick(definition, translationId)
-  }
-
-  return (
+const DefinitionsElement = ({ definitions, translationId, handleClick }) => (
     <div className="definitions">
       <h3>
         <a href="https://www.jisho.org" target="_blank">
@@ -18,16 +13,11 @@ const DefinitionsElement = ({ definitions, translationId, handleClick }) => {
           <DefinitionElement
             key={definition}
             definition={definition}
-            onClick={() =>
-              onClick(
-                definition
-              )
-            }
+            onClick={() => handleClick(definition, translationId)}
           />
         )
       })}
     </div>
   )
-}
 
 export default DefinitionsElement
