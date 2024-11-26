@@ -43,10 +43,7 @@ const saveDefinition = (translationId, definition) =>
 const handleSentenceClick = (sentence, word, translationId) => {
   const newSentence = sentence
 
-  newSentence.japanese = textHelper.highlightWord(
-    word,
-    textHelper.getJapanese(sentence)
-  )
+  newSentence.japanese = textHelper.getJapanese(sentence)
 
   saveSentence(translationId, newSentence)
 }

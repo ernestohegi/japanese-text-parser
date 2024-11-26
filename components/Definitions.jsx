@@ -14,11 +14,11 @@ class DefinitionsElement extends React.Component {
             Jisho
           </a>
         </h3>
-        {this.props.definitions?.map((definition, index) => {
+        {this.props.definitions?.map((definition) => {
           return (
             <DefinitionElement
               definition={definition}
-              key={index}
+              key={definition}
               handleClick={() =>
                 this.handleClick(
                   definition,

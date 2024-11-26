@@ -9,7 +9,7 @@ const Sentences = ({
   handleClick,
   translationId,
 }) => (
-  <div key="sentences" className="sentences">
+  <div className="sentences">
     <h3>
       <a href={serviceUrl} target="_blank">
         {serviceName}
@@ -19,7 +19,7 @@ const Sentences = ({
     {sentences?.map((sentence, index) => (
       <Sentence
         id={index}
-        key={index}
+        key={sentence}
         sentence={sentence}
         word={word}
         showSaveButton

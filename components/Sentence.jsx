@@ -39,10 +39,7 @@ const Sentence = ({ id, sentence, word, handleClick, showSaveButton }) => {
           sentenceStyle
         )
 
-        const cleanJapaneseSentence = textHelper.highlightWord(
-          word,
-          textHelper.getCleanJapaneseSentence(sentence)
-        )
+        const cleanJapaneseSentence = textHelper.getCleanJapaneseSentence(sentence)
 
         const englishSentence =
           typeof textHelper.getEnglish(sentence) === 'string'
@@ -50,18 +47,15 @@ const Sentence = ({ id, sentence, word, handleClick, showSaveButton }) => {
             : []
 
         return (
-          <div
+          cleanJapaneseSentence && englishSentence && <div
             className="sentence"
-            key={id}
             style={state.highlighted ? highlightedSentenceStyle : sentenceStyle}
           >
             <span
-              key={`${id}-japanese`}
               className="sentence__japanese"
-              dangerouslySetInnerHTML={{ __html: cleanJapaneseSentence }}
-            />
+            >{cleanJapaneseSentence}</span>
 
-            <span key={`${id}-english`} className="sentence__english">
+            <span className="sentence__english">
               「{englishSentence}」
             </span>
 

@@ -1,39 +1,38 @@
-const textHelper = {
-  getJapanese: (element) => element.japanese,
-  getEnglish: (element) =>
-    Array.isArray(element.english)
-      ? element.english.join(', ')
-      : element.english,
-  getCleanJapaneseSentence: (sentence) => {
-    let japaneseSentence = ''
+const getJapanese =  (element) => Object.values(element.japanese).length > 0 ? element.japanese : '';
 
-    if (textHelper && typeof textHelper.getJapanese === 'function') {
-      japaneseSentence = textHelper.getJapanese(sentence)
+const   getEnglish = (element) =>
+  Array.isArray(element.english)
+    ? element.english.join(', ')
+    : element.english,
 
+    const getCleanJapaneseSentence = (sentence) => {
+      let japaneseSentence = getJapanese(sentence);
+  
       if (typeof japaneseSentence === 'string') {
         japaneseSentence = japaneseSentence.replace('例文帳に追加', '')
       }
-    }
+  
+      return japaneseSentence
+    };
+    
+    const getCleanEnglishSentence = (sentence) =>
+      textHelper.getEnglish(sentence).split('-')[0];
 
-    return japaneseSentence
-  },
-  getCleanEnglishSentence: (sentence) =>
-    textHelper.getEnglish(sentence).split('-')[0],
-  cleanSentences: (sentence) => {
-    const newSentence = sentence
-    newSentence.japanese = textHelper.getCleanJapaneseSentence(newSentence)
-    newSentence.english = textHelper.getCleanEnglishSentence(newSentence)
-    return newSentence
-  },
-  highlightWord: (word, sentence) => {
-    let newSentence = sentence
+const   cleanSentences = (sentence) => {
+  const newSentence = sentence
+  
+  newSentence.japanese = getCleanJapaneseSentence(newSentence)
+  newSentence.english = getCleanEnglishSentence(newSentence)
+  
+  return newSentence
+};
 
-    if (typeof newSentence === 'string') {
-      newSentence = newSentence.replace(word, `<b>${word}</b>`)
-    }
-
-    return newSentence
-  },
+const textHelper = {
+  getJapanese,
+  getEnglish,
+  getCleanJapaneseSentence,
+  getCleanEnglishSentence,
+  cleanSentences
 }
 
 export default textHelper

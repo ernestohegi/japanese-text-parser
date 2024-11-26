@@ -23,7 +23,7 @@ const links = [
 const Header = () => (
   <header>
     {links.map(({ url, copy }) => (
-      <Link href={url} style={linkStyle}>
+      <Link key={copy} href={url} style={linkStyle}>
         {copy}
       </Link>
     ))}

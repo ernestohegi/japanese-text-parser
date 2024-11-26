@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import ReactGA from 'react-ga'
 import CookieConsent, { Cookies } from 'react-cookie-consent'
 import listHelper from '../helpers/list-helper'
-import Layout from '../components/sections/Layout'
+import Layout from '../components/Layout'
 import { Analytics } from '@vercel/analytics/react'
 
 const SENTENCES_LIST_KEY = 'sentence'
