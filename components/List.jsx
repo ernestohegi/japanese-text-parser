@@ -2,7 +2,7 @@ import React from 'react'
 import uniqid from 'uniqid'
 import Sentence from './Sentence'
 import containerStyle from '../styles/container-style'
-import textHelper from '../helpers/text-helper'
+import { getCleanJapaneseSentence, getCleanEnglishSentence} from '../helpers/text-helper'
 import fileHelper from '../helpers/file-helper'
 
 const buttonStyle = {
@@ -25,8 +25,8 @@ const downloadList = (list) => {
 
     if (elements.sentence?.length) {
       elements.sentence.map((sentence) => {
-        const japaneseSentence = textHelper.getCleanJapaneseSentence(sentence)
-        const englishSentence = textHelper.getCleanEnglishSentence(sentence)
+        const japaneseSentence = getCleanJapaneseSentence(sentence)
+        const englishSentence = getCleanEnglishSentence(sentence)
 
         tsvContent += `${japaneseSentence}\t${definition}\t${englishSentence}\n`
       })

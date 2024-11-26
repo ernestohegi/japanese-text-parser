@@ -14,8 +14,7 @@ const getCleanJapaneseSentence = (sentence) => {
   return japaneseSentence
 }
 
-const getCleanEnglishSentence = (sentence) =>
-  textHelper.getEnglish(sentence).split('-')[0]
+const getCleanEnglishSentence = (sentence) => getEnglish(sentence).split('-')[0]
 
 const cleanSentences = (sentence) => {
   const newSentence = structuredClone(sentence);
@@ -26,12 +25,10 @@ const cleanSentences = (sentence) => {
   return newSentence
 }
 
-const textHelper = {
+export {
   getJapanese,
   getEnglish,
   getCleanJapaneseSentence,
   getCleanEnglishSentence,
   cleanSentences,
 }
-
-export default textHelper

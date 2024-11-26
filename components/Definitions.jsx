@@ -1,23 +1,23 @@
 import React from 'react'
-import DefinitionElement from './Definition'
+import Definition from './Definition'
 
-const DefinitionsElement = ({ definitions, translationId, handleClick }) => (
+const Definitions = ({ definitions, translationId, handleClick }) => (
     <div className="definitions">
       <h3>
         <a href="https://www.jisho.org" target="_blank">
           Jisho
         </a>
       </h3>
-      {definitions?.map((definition) => {
-        return (
-          <DefinitionElement
-            key={definition}
+      {definitions?.map((definition) => (
+        <React.Fragment key={definition}>
+          <Definition
             definition={definition}
             onClick={() => handleClick(definition, translationId)}
           />
+        </React.Fragment>
         )
-      })}
+      )}
     </div>
   )
 
-export default DefinitionsElement
+export default Definitions

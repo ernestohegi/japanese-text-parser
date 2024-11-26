@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import ReactGA from 'react-ga'
 import CookieConsent, { Cookies } from 'react-cookie-consent'
-import listHelper from '../helpers/list-helper'
+import { createUserList } from '../helpers/list-helper'
 import Layout from '../components/Layout'
 import { Analytics } from '@vercel/analytics/react'
 
@@ -19,7 +19,7 @@ const handleDeclineCookie = () => {
 
 const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
-    listHelper.createUserList(SENTENCES_LIST_KEY)
+    createUserList(SENTENCES_LIST_KEY)
   }, [])
 
   return (

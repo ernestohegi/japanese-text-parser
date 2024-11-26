@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import textHelper from '../helpers/text-helper'
+import { getJapanese, getEnglish } from '../helpers/text-helper'
 import { ThemeContext } from '../styles/theme-context'
 
 const style = {
@@ -7,12 +7,10 @@ const style = {
   cursor: 'pointer',
 }
 
-const DefinitionElement = ({ index, definition, handleClick }) => {
-  const [state, setState] = useState({
-    highlighted: false,
-  })
+const Definition = ({ definition, handleClick }) => {
+  const [isHighlighted, setIsHighlighted] = useState(false)
 
-  const japaneseDefinition = textHelper.getJapanese(definition).slice(0).pop()
+  const japaneseDefinition = getJapanese(definition).slice(0).pop()
 
   return (
     <ThemeContext.Consumer>
@@ -27,24 +25,20 @@ const DefinitionElement = ({ index, definition, handleClick }) => {
         return (
           <div
             className="definition"
-            key={index}
             onClick={() => {
-              setState({
-                highlighted: true,
-              })
-
+              setIsHighlighted(true)
               handleClick()
             }}
-            style={state.highlighted ? highlightedStyle : style}
+            style={isHighlighted ? highlightedStyle : style}
           >
-            <span key={`${index}-japanese`} className="definition__japanese">
+            <span className="definition__japanese">
               {`${japaneseDefinition.word || ''} 「${
                 japaneseDefinition.reading
               }」`}
             </span>
 
-            <span key={`${index}-english`} className="definition__english">
-              {textHelper.getEnglish(definition)}
+            <span className="definition__english">
+              {getEnglish(definition)}
             </span>
           </div>
         )
@@ -53,4 +47,4 @@ const DefinitionElement = ({ index, definition, handleClick }) => {
   )
 }
 
-export default DefinitionElement
+export default Definition

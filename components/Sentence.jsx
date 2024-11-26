@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import textHelper from '../helpers/text-helper'
+import { getCleanJapaneseSentence, getEnglish } from '../helpers/text-helper'
 import { ThemeContext } from '../styles/theme-context'
 
 const sentenceStyle = {
@@ -12,7 +12,7 @@ const saveButtonStyle = {
   float: 'right',
 }
 
-const Sentence = ({ id, sentence, word, handleClick, showSaveButton }) => {
+const Sentence = ({ sentence, handleClick, showSaveButton }) => {
   const [state, setState] = useState({
     highlighted: false,
     clicked: false,
@@ -40,11 +40,11 @@ const Sentence = ({ id, sentence, word, handleClick, showSaveButton }) => {
         )
 
         const cleanJapaneseSentence =
-          textHelper.getCleanJapaneseSentence(sentence)
+          getCleanJapaneseSentence(sentence)
 
         const englishSentence =
-          typeof textHelper.getEnglish(sentence) === 'string'
-            ? textHelper.getEnglish(sentence).split('-')[0]
+          typeof getEnglish(sentence) === 'string'
+            ? getEnglish(sentence).split('-')[0]
             : []
 
         return (

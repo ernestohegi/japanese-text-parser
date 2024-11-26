@@ -17,14 +17,13 @@ const Sentences = ({
     </h3>
 
     {sentences?.map((sentence, index) => (
+      <React.Fragment key={sentence}>
       <Sentence
-        id={index}
-        key={sentence}
         sentence={sentence}
-        word={word}
         showSaveButton
         handleClick={() => handleClick(sentence, word, translationId)}
       />
+      </React.Fragment>
     ))}
   </div>
 )
