@@ -1,37 +1,33 @@
 import React from 'react'
 import DefinitionElement from './Definition'
 
-class DefinitionsElement extends React.Component {
-  handleClick(definition, translationId, parentCallback) {
-    if (parentCallback) parentCallback(definition, translationId)
+const DefinitionsElement = ({ definitions, translationId, handleClick }) => {
+  const onClick = (definition) => {
+    handleClick(definition, translationId)
   }
 
-  render() {
-    return (
-      <div key="definitions" className="definitions">
-        <h3>
-          <a href="https://www.jisho.org" target="_blank">
-            Jisho
-          </a>
-        </h3>
-        {this.props.definitions?.map((definition) => {
-          return (
-            <DefinitionElement
-              definition={definition}
-              key={definition}
-              handleClick={() =>
-                this.handleClick(
-                  definition,
-                  this.props.translationId,
-                  this.props.handleClick
-                )
-              }
-            />
-          )
-        })}
-      </div>
-    )
-  }
+  return (
+    <div className="definitions">
+      <h3>
+        <a href="https://www.jisho.org" target="_blank">
+          Jisho
+        </a>
+      </h3>
+      {definitions?.map((definition) => {
+        return (
+          <DefinitionElement
+            key={definition}
+            definition={definition}
+            onClick={() =>
+              onClick(
+                definition
+              )
+            }
+          />
+        )
+      })}
+    </div>
+  )
 }
 
 export default DefinitionsElement
