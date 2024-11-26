@@ -3,20 +3,20 @@ const getJapanese =  (element) => Object.values(element.japanese).length > 0 ? e
 const   getEnglish = (element) =>
   Array.isArray(element.english)
     ? element.english.join(', ')
-    : element.english,
+    : element.english;
 
-    const getCleanJapaneseSentence = (sentence) => {
-      let japaneseSentence = getJapanese(sentence);
-  
-      if (typeof japaneseSentence === 'string') {
-        japaneseSentence = japaneseSentence.replace('例文帳に追加', '')
-      }
-  
-      return japaneseSentence
-    };
-    
-    const getCleanEnglishSentence = (sentence) =>
-      textHelper.getEnglish(sentence).split('-')[0];
+const getCleanJapaneseSentence = (sentence) => {
+  let japaneseSentence = getJapanese(sentence);
+
+  if (typeof japaneseSentence === 'string') {
+    japaneseSentence = japaneseSentence.replace('例文帳に追加', '')
+  }
+
+  return japaneseSentence
+};
+
+const getCleanEnglishSentence = (sentence) =>
+  textHelper.getEnglish(sentence).split('-')[0];
 
 const   cleanSentences = (sentence) => {
   const newSentence = sentence

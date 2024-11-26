@@ -10,7 +10,8 @@
     "lint": "prettier . --write",
     "build": "next build",
     "start": "next start",
-    "deploy:prod": "vercel --public --prod"
+    "deploy:prod": "vercel --public --prod",
+    "prepare": "husky"
   },
   "author": "Ernesto Hegi",
   "license": "ISC",
