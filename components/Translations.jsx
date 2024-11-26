@@ -1,13 +1,14 @@
 import React from 'react'
 import Definitions from './Definitions'
 import Sentences from './Sentences'
-import containerStyle from '../styles/container-style'
-import { getJapanese, getEnglish } from '../helpers/text-helper'
-import { getUserList, addItemToListByPositionWithSubcategory, saveList } from '../helpers/list-helper'
 
-let translationsCounter = 0
-
-const SENTENCES_LIST_KEY = 'sentence'
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+  },
+}
 
 const services = [
   {
@@ -22,84 +23,48 @@ const services = [
   // }
 ]
 
-const saveElementsIntoList = (listId, element, structure) => {
-  const userList = getUserList(SENTENCES_LIST_KEY)
-  const updatedUserList = addItemToListByPositionWithSubcategory(
-    element,
-    userList,
-    listId,
-    structure
+let translationsCounter = 0
+
+const Translations = ({ translations, handleSentenceClick }) => {
+  return (
+    <div style={styles.container}>
+      {translations.map((translation) => {
+        const word = translation.word
+
+        translationsCounter++
+
+        return (
+          <div key={translation.word} style={styles.container}>
+            <h2>{word}</h2>
+
+            {translation.definition && (
+              <>
+                <h3>Definitions</h3>
+                <Definitions
+                  translationId={translationsCounter}
+                  definitions={translation.definitions}
+                  handleClick={handleDefinitionClick}
+                />
+              </>
+            )}
+
+            {services.map((service) => (
+              <React.Fragment key={service.key}>
+                <Sentences
+                  translationId={translationsCounter}
+                  sentences={translation.sentences[service.key]}
+                  word={word}
+                  handleClick={handleSentenceClick}
+                  serviceName={service.name}
+                  serviceUrl={service.url}
+                />
+              </React.Fragment>
+            ))}
+          </div>
+        )
+      })}
+    </div>
   )
-
-  saveList(SENTENCES_LIST_KEY, updatedUserList)
 }
-
-const saveSentence = (translationId, sentence) =>
-  saveElementsIntoList(translationId, sentence, 'sentence')
-
-const saveDefinition = (translationId, definition) =>
-  saveElementsIntoList(translationId, definition, 'definition')
-
-const handleSentenceClick = (sentence, word, translationId) => {
-  const newSentence = sentence
-
-  newSentence.japanese = getJapanese(sentence)
-
-  saveSentence(translationId, newSentence)
-}
-
-const handleDefinitionClick = (definition, translationId) => {
-  const cleanJapaneseDefinition = 
-    getJapanese(definition)
-    .slice(0)
-    .pop()
-
-  saveDefinition(translationId, {
-    english: getEnglish(definition),
-    japanese: `${cleanJapaneseDefinition.word || ''} 「${
-      cleanJapaneseDefinition.reading
-    }」`,
-  })
-}
-
-const Translations = ({ translations }) => (
-  <div className="translations">
-    {translations.map((translation, index) => {
-      const word = translation.word
-
-      ++translationsCounter
-
-      return (
-        <div className="translation" style={containerStyle}>
-          <h2>{word}</h2>
-
-          {translation.definition && (
-            <>
-              <h3>Definitions</h3>
-              <Definitions
-                translationId={translationsCounter}
-                definitions={translation.definitions}
-                handleClick={handleDefinitionClick}
-              />
-            </>
-          )}
-
-          <h3>Sentences</h3>
-          {services.map((service, index) => (
-            <Sentences
-              key={index}
-              translationId={translationsCounter}
-              sentences={translation.sentences[service.key]}
-              word={word}
-              handleClick={handleSentenceClick}
-              serviceName={service.name}
-              serviceUrl={service.url}
-            />
-          ))}
-        </div>
-      )
-    })}
-  </div>
-)
 
 export default Translations

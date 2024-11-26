@@ -17,7 +17,7 @@ const getCleanJapaneseSentence = (sentence) => {
 const getCleanEnglishSentence = (sentence) => getEnglish(sentence).split('-')[0]
 
 const cleanSentences = (sentence) => {
-  const newSentence = structuredClone(sentence);
+  const newSentence = structuredClone(sentence)
 
   newSentence.japanese = getCleanJapaneseSentence(newSentence)
   newSentence.english = getCleanEnglishSentence(newSentence)

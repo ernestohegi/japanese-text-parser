@@ -7,7 +7,15 @@ export const setGlobalStyles = (theme) => {
     body {
       font-family: 'Noto Sans Japanese';
       font-style: normal;
-      font-weight: 100;
+      font-weight: 400;
+      padding: 20px;
+      margin: 0;
+      background-color: #333333;
+      color: #FFF;
+    }
+
+    body, html, #__next {
+      min-height: 100%;
     }
 
     a,
@@ -24,7 +32,7 @@ export const setGlobalStyles = (theme) => {
       text-decoration: underline;
     }
 
-    h2 {
+    h1, h2, h3, h4, h5, h6, p {
       margin: 0;
       padding: 0;
     }

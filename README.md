@@ -15,8 +15,8 @@ The plan would be to build our own SRS in the near future.
 Requirements are `Node.js` and `npm` installed. I'm using `yarn` for managing dependencies but you can use whatever system you want. Some technical knowledge is required as well.
 
 1.  Clone the repo.
-2.  Run `pnpm install`.
-3.  Run `pnpm dev` from the root of your project.
+2.  Run `yarn install`.
+3.  Run `yarn dev` from the root of your project.
 4.  The site should be ready on `http://localhost:3000`
 
 # How to manually get text parsed

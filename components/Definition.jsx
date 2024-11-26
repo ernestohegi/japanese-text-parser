@@ -23,24 +23,21 @@ const Definition = ({ definition, handleClick }) => {
         )
 
         return (
-          <div
-            className="definition"
+          <article
             onClick={() => {
               setIsHighlighted(true)
               handleClick()
             }}
             style={isHighlighted ? highlightedStyle : style}
           >
-            <span className="definition__japanese">
+            <span>
               {`${japaneseDefinition.word || ''} 「${
                 japaneseDefinition.reading
               }」`}
             </span>
 
-            <span className="definition__english">
-              {getEnglish(definition)}
-            </span>
-          </div>
+            <span>{getEnglish(definition)}</span>
+          </article>
         )
       }}
     </ThemeContext.Consumer>

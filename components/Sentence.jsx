@@ -3,44 +3,30 @@ import { getCleanJapaneseSentence, getEnglish } from '../helpers/text-helper'
 import { ThemeContext } from '../styles/theme-context'
 
 const sentenceStyle = {
-  marginBottom: '5px',
-  overflow: 'hidden',
-}
-
-const saveButtonStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
   cursor: 'pointer',
-  float: 'right',
+  gap: '0.5rem',
+  borderBottom: '1px solid #FFF',
+  paddingBottom: '0.5rem',
 }
 
-const Sentence = ({ sentence, handleClick, showSaveButton }) => {
+const Sentence = ({ sentence, handleClick }) => {
   const [state, setState] = useState({
     highlighted: false,
     clicked: false,
   })
 
-  const handleSentenceClick = (parentCallback) => {
-    if (state.clicked) return false
-
-    if (parentCallback) parentCallback()
-
-    setState({
-      highlighted: true,
-      clicked: true,
-    })
-  }
-
   return (
     <ThemeContext.Consumer>
       {(theme) => {
-        const highlightedSentenceStyle = Object.assign(
-          {
-            backgroundColor: theme.mainColor.rgba,
-          },
-          sentenceStyle
-        )
+        const highlightedSentenceStyle = {
+          ...sentenceStyle,
+          backgroundColor: theme.mainColor.rgba,
+        }
 
-        const cleanJapaneseSentence =
-          getCleanJapaneseSentence(sentence)
+        const cleanJapaneseSentence = getCleanJapaneseSentence(sentence)
 
         const englishSentence =
           typeof getEnglish(sentence) === 'string'
@@ -50,27 +36,27 @@ const Sentence = ({ sentence, handleClick, showSaveButton }) => {
         return (
           cleanJapaneseSentence &&
           englishSentence && (
-            <div
-              className="sentence"
+            <article
               style={
                 state.highlighted ? highlightedSentenceStyle : sentenceStyle
               }
+              onClick={() => {
+                const isClicked = !state.clicked
+                const isHighlighted = !state.highlighted
+
+                handleClick(isClicked)
+
+                setState({
+                  highlighted: isHighlighted,
+                  clicked: isClicked,
+                })
+              }}
             >
-              <span className="sentence__japanese">
-                {cleanJapaneseSentence}
-              </span>
-
-              <span className="sentence__english">「{englishSentence}」</span>
-
-              {showSaveButton && (
-                <button
-                  onClick={() => handleSentenceClick(handleClick)}
-                  style={saveButtonStyle}
-                >
-                  Save
-                </button>
-              )}
-            </div>
+              <p>
+                <b>{cleanJapaneseSentence}</b>
+              </p>
+              <p>{englishSentence}</p>
+            </article>
           )
         )
       }}

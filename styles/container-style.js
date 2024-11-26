@@ -1,6 +1,7 @@
 export default {
-  display: 'block',
-  padding: '10px',
-  margin: '10px 0',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
+  padding: '1rem',
   border: '1px solid #DDD',
 }
