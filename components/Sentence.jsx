@@ -39,7 +39,8 @@ const Sentence = ({ id, sentence, word, handleClick, showSaveButton }) => {
           sentenceStyle
         )
 
-        const cleanJapaneseSentence = textHelper.getCleanJapaneseSentence(sentence)
+        const cleanJapaneseSentence =
+          textHelper.getCleanJapaneseSentence(sentence)
 
         const englishSentence =
           typeof textHelper.getEnglish(sentence) === 'string'
@@ -47,27 +48,30 @@ const Sentence = ({ id, sentence, word, handleClick, showSaveButton }) => {
             : []
 
         return (
-          cleanJapaneseSentence && englishSentence && <div
-            className="sentence"
-            style={state.highlighted ? highlightedSentenceStyle : sentenceStyle}
-          >
-            <span
-              className="sentence__japanese"
-            >{cleanJapaneseSentence}</span>
+          cleanJapaneseSentence &&
+          englishSentence && (
+            <div
+              className="sentence"
+              style={
+                state.highlighted ? highlightedSentenceStyle : sentenceStyle
+              }
+            >
+              <span className="sentence__japanese">
+                {cleanJapaneseSentence}
+              </span>
 
-            <span className="sentence__english">
-              「{englishSentence}」
-            </span>
+              <span className="sentence__english">「{englishSentence}」</span>
 
-            {showSaveButton && (
-              <button
-                onClick={() => handleSentenceClick(handleClick)}
-                style={saveButtonStyle}
-              >
-                Save
-              </button>
-            )}
-          </div>
+              {showSaveButton && (
+                <button
+                  onClick={() => handleSentenceClick(handleClick)}
+                  style={saveButtonStyle}
+                >
+                  Save
+                </button>
+              )}
+            </div>
+          )
         )
       }}
     </ThemeContext.Consumer>
