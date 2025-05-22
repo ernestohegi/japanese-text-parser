@@ -7,9 +7,23 @@ const sentenceStyle = {
   flexDirection: 'column',
   justifyContent: 'space-between',
   cursor: 'pointer',
-  gap: '0.5rem',
-  borderBottom: '1px solid #FFF',
-  paddingBottom: '0.5rem',
+  gap: '0.75rem',
+  borderBottom: '1px solid #eee',
+  paddingBottom: '1rem',
+  marginBottom: '1rem',
+  transition: 'all 0.3s ease',
+}
+
+const japaneseTextStyle = {
+  fontFamily: "'Noto Sans JP', sans-serif",
+  fontSize: '1.2rem',
+  lineHeight: '1.8',
+  fontWeight: '400',
+}
+
+const englishTextStyle = {
+  fontStyle: 'italic',
+  color: '#555',
 }
 
 const Sentence = ({ sentence, handleClick }) => {
@@ -23,7 +37,11 @@ const Sentence = ({ sentence, handleClick }) => {
       {(theme) => {
         const highlightedSentenceStyle = {
           ...sentenceStyle,
-          backgroundColor: theme.mainColor.rgba,
+          backgroundColor: 'rgba(214, 69, 69, 0.08)',
+          borderRadius: '2px',
+          padding: '1rem',
+          transform: 'translateY(-2px)',
+          boxShadow: '0 2px 5px rgba(0, 0, 0, 0.05)',
         }
 
         const cleanJapaneseSentence = getCleanJapaneseSentence(sentence)
@@ -51,11 +69,10 @@ const Sentence = ({ sentence, handleClick }) => {
                   clicked: isClicked,
                 })
               }}
+              className="fade-in"
             >
-              <p>
-                <b>{cleanJapaneseSentence}</b>
-              </p>
-              <p>{englishSentence}</p>
+              <p style={japaneseTextStyle}>{cleanJapaneseSentence}</p>
+              <p style={englishTextStyle}>{englishSentence}</p>
             </article>
           )
         )

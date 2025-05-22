@@ -3,8 +3,8 @@ import React from 'react'
 export const theme = {
   default: {
     mainColor: {
-      hex: '#FC6336',
-      rgba: 'rgba(252, 99, 54, 0.2)',
+      hex: '#d64545', // Traditional Japanese red
+      rgba: 'rgba(214, 69, 69, 0.2)',
     },
   },
 }

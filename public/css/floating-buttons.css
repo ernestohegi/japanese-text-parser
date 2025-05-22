@@ -1,0 +1,81 @@
+/* Add ripple effect for floating buttons */
+.floating-button {
+  position: relative;
+  overflow: hidden;
+  width: 68px;
+  height: 68px;
+}
+
+.floating-button svg {
+  width: 32px;
+  height: 32px;
+}
+
+.floating-button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+.floating-button:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+/* Add rotation animation for restart button */
+.restart-button svg {
+  transition: transform 0.3s ease;
+}
+
+.restart-button:hover svg,
+.restart-button:active svg {
+  transform: rotate(180deg);
+}
+
+/* Add bounce animation for export button */
+.export-button svg {
+  transition: transform 0.3s ease;
+}
+
+.export-button:hover svg, 
+.export-button:active svg {
+  animation: bounce 0.5s ease infinite alternate;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-3px); }
+}
+
+/* Ensure touch area is large enough on mobile */
+@media (max-width: 768px) {
+  .floating-button {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  .floating-button svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  .floating-button::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    z-index: -1;
+  }
+}
