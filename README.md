@@ -1,47 +1,135 @@
-# Yochimu 予知夢
+# 予知夢 Yochimu
 
-## Japanese Text Parser
+<div align="center">
+  <img src="https://img.shields.io/badge/next.js-14-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js">
+  <img src="https://img.shields.io/badge/react-18-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React">
+  <img src="https://img.shields.io/badge/node.js-20-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/Japanese-日本語-D64545?style=for-the-badge" alt="Japanese">
+  <br>
+  <img src="https://img.shields.io/badge/Express-4-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express">
+  <img src="https://img.shields.io/badge/Jest-Testing-C21325?style=for-the-badge&logo=jest&logoColor=white" alt="Jest">
+  <img src="https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel">
+</div>
 
-https://yochimu.now.sh
+<div align="center">
+  <h3>🌸 Japanese Text Parser with Contextual Learning 🌸</h3>
+  <p><i>Learn Japanese vocabulary efficiently through context with this minimalist tool</i></p>
+  <br>
+</div>
 
-[Yochimu](https://yochimu.now.sh) means prophetic dream in Japanese. The purpose of this tool is to let you read comfortably any kind of text, by reviewing and learning its vocabulary using an in-context approach with sentences using an SRS solutions like Anki.
+## ✨ Introduction
 
-What Yochimu does is, given a file with text in Japanese, it returns a list of words from that text along with their definitions, translations and example sentences, to let you create decks.
+[Yochimu (予知夢)](https://yochimu.now.sh) means "prophetic dream" in Japanese. This tool helps you read Japanese texts comfortably by parsing the content, providing definitions, and showing example sentences—all with a minimalist Japanese aesthetic.
 
-The plan would be to build our own SRS in the near future.
+The goal is to facilitate an in-context learning approach for Japanese vocabulary, allowing you to:
 
-# Installation guide
+- 🔍 Search for Japanese words and see their meanings
+- 📝 View example sentences showing words in context
+- 💾 Save selected sentences for later study
+- 📤 Export vocabulary lists as TSV files for Anki flashcards
 
-Requirements are `Node.js` and `npm` installed. I'm using `yarn` for managing dependencies but you can use whatever system you want. Some technical knowledge is required as well.
+## 🌟 Live Demo
 
-1. `pnpm i`.
-2. `pnpm dev`.
-3. http://localhost:3000
+Visit [https://yochimu.now.sh](https://yochimu.now.sh) to try it now!
 
-# How to manually get text parsed
+Or try instant translations by appending a search query:  
+[https://yochimu.now.sh/?search=神様が大好き](https://yochimu.now.sh/?search=神様が大好き)
 
-`TEXT="私はペンです。" node index.js` from the server folder. Right now, the system expectes input to be provided through environment variables, but the plan is to also add a RESTful API layer.
+## 📋 Features
 
-# How to test
+- **Elegant Dark Mode UI** with Japanese minimalist design
+- **Responsive design** for desktop and mobile
+- **Interactive elements** including hovering effects and animations
+- **Fixed navigation** with smooth user experience
+- **Japanese text tokenization** for accurate parsing
+- **Context-based learning** through example sentences
+- **Anki integration** through TSV export format
 
-You can run tests with `npm test`.
+## 🔧 Technology Stack
 
-# Instant translations
+### Frontend
 
-By appending a `search` query string param, it's possible to trigger instant translations. E.g.: `https://yochimu.now.sh/?search=神様が大好き`.
+- **Next.js** - React framework for server-rendered applications
+- **React** - UI component library
+- **CSS-in-JS** - Styled with inline styles and Japanese aesthetics
 
-# Technologies
+### Backend
 
-This parser is built using `Node.js` with `Express` for the backend, and the frontend with `Next.js` and `React`. Everything is tested using with `Jest`.
+- **Node.js** - JavaScript runtime
+- **Express** - Web application framework
+- **Kuromoji** - Japanese morphological analyzer for tokenization
 
-`cheerio` is used to scrape content from non-JSON sources inside the parser.
+### Development & Testing
 
-# Hard Dependencies
+- **Jest** - JavaScript testing framework
+- **Cheerio** - Server-side HTML parsing for scraping
+- **Vercel** - Deployment and hosting platform
 
-This parser is using [Kuromoji](https://github.com/takuyaa/kuromoji.js) library to tokenise Japanese text.
+## 🚀 Getting Started
 
-# Notes
+### Prerequisites
 
-Given this is a work in progress, as of version 0.1.0, we haven't decided yet which dictionary and translator to use.
+- Node.js (v14 or later)
+- pnpm (or npm/yarn)
 
-頑張ってください！
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/ernestohegi/japanese-text-parser.git
+   cd japanese-text-parser
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   pnpm dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 🧪 Using the Parser CLI
+
+Parse Japanese text directly from the command line:
+
+```bash
+cd server
+TEXT="私はペンです。" node index.js
+```
+
+## 📚 Testing
+
+Run tests with:
+
+```bash
+pnpm test
+```
+
+## 🔮 Future Plans
+
+- Build an integrated SRS (Spaced Repetition System)
+- Add user accounts to save progress
+- Implement more dictionaries and translation sources
+- Add audio pronunciation for vocabulary
+
+## 📝 Notes
+
+This is an ongoing project (currently v0.1.0). We're still evaluating different dictionaries and translation services for optimal accuracy and performance.
+
+## ⚙️ Dependencies
+
+This parser relies on [Kuromoji](https://github.com/takuyaa/kuromoji.js) for Japanese text tokenization.
+
+---
+
+<div align="center">
+  <p>頑張ってください！</p>
+  <p>Made with ❤️ by Ernesto Hegi</p>
+</div>
