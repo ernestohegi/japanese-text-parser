@@ -37,13 +37,10 @@ Or try instant translations by appending a search query:
 
 ## 📋 Features
 
-- **Elegant Dark Mode UI** with Japanese minimalist design
-- **Responsive design** for desktop and mobile
-- **Interactive elements** including hovering effects and animations
-- **Fixed navigation** with smooth user experience
 - **Japanese text tokenization** for accurate parsing
-- **Context-based learning** through example sentences
 - **Anki integration** through TSV export format
+- **Context-based learning** through example sentences
+- **Responsive design** for desktop and mobile
 
 ## 🔧 Technology Stack
 
