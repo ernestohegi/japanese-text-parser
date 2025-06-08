@@ -12,7 +12,7 @@
 }
 
 .floating-button::after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 100%;
@@ -25,7 +25,9 @@
   background-position: 50%;
   transform: scale(10, 10);
   opacity: 0;
-  transition: transform 0.5s, opacity 1s;
+  transition:
+    transform 0.5s,
+    opacity 1s;
 }
 
 .floating-button:active::after {
@@ -49,14 +51,18 @@
   transition: transform 0.3s ease;
 }
 
-.export-button:hover svg, 
+.export-button:hover svg,
 .export-button:active svg {
   animation: bounce 0.5s ease infinite alternate;
 }
 
 @keyframes bounce {
-  from { transform: translateY(0); }
-  to { transform: translateY(-3px); }
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-3px);
+  }
 }
 
 /* Ensure touch area is large enough on mobile */
@@ -70,7 +76,7 @@
     height: 28px !important;
   }
   .floating-button::before {
-    content: "";
+    content: '';
     position: absolute;
     top: -10px;
     left: -10px;

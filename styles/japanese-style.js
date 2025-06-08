@@ -139,7 +139,7 @@ export const setJapaneseStyles = (theme) => {
     }
     
     /* Mobile navigation */
-    @media (max-width: 768px) {
+    @media (maxWidth: 768px) {
       .nav-container {
         flex-direction: column;
         gap: 1rem;
@@ -328,7 +328,7 @@ export const setJapaneseStyles = (theme) => {
     }
 
     /* Responsive design */
-    @media (max-width: 768px) {
+    @media (maxWidth: 768px) {
       h1 {
         font-size: 2rem;
       }
@@ -370,7 +370,7 @@ export const setJapaneseStyles = (theme) => {
     }
     
     /* Floating Buttons for Mobile */
-    @media (max-width: 768px) {
+    @media (maxWidth: 768px) {
       .floating-buttons-container {
         bottom: 1.5rem !important;
         right: 1.5rem !important;

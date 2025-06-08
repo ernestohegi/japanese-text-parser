@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Given a sentence in Japanese, it returns a list of words along with their definitions, translations and sentences including them.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "test": "jest",
@@ -34,9 +35,7 @@
     "node-fetch": "2.7.0",
     "prop-types": "15.8.1",
     "react": "18.3.1",
-    "react-cookie-consent": "9.0.0",
     "react-dom": "18.3.1",
-    "react-ga": "3.3.1",
     "uniqid": "5.4.0"
   },
   "devDependencies": {

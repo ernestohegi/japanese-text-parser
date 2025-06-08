@@ -82,7 +82,7 @@ const styles = {
     flexDirection: 'column',
     gap: '0.75rem',
     zIndex: 100,
-    '@media (max-width: 768px)': {
+    '@media (maxWidth: 768px)': {
       bottom: '1.5rem',
       right: '1.5rem',
     },
@@ -103,7 +103,7 @@ const styles = {
       'transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease',
     position: 'relative',
     overflow: 'visible',
-    '@media (max-width: 768px)': {
+    '@media (maxWidth: 768px)': {
       width: '60px',
       height: '60px',
     },
@@ -123,7 +123,7 @@ const styles = {
     transform: 'translateX(10px)',
     fontFamily: "'Noto Sans JP', sans-serif",
     fontWeight: '500',
-    '@media (max-width: 768px)': {
+    '@media (maxWidth: 768px)': {
       fontSize: '0.8rem',
       padding: '0.4rem 0.8rem',
     },
