@@ -25,7 +25,7 @@
     "compression": "1.8.0",
     "eslint-config-next": "^15.0.0",
     "expect": "29.7.0",
-    "express": "4.21.2",
+    "express": "5.1.0",
     "file-saver": "2.0.5",
     "isomorphic-unfetch": "3.1.0",
     "jsdom": "16.7.0",
