@@ -21,7 +21,7 @@
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.2.0",
     "axios": "1.9.0",
-    "body-parser": "1.20.3",
+    "body-parser": "2.2.0",
     "compression": "1.8.0",
     "eslint-config-next": "^15.0.0",
     "expect": "29.7.0",
