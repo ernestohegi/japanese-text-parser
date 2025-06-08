@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import ReactGA from 'react-ga'
 import Head from 'next/head'
 import Translations from '../components/Translations'
 import { postJsonData } from '../helpers/http-helper'
@@ -162,8 +161,6 @@ const downloadList = (userList) => {
 }
 
 const Index = ({ query }) => {
-  ReactGA.pageview('/index')
-
   const { search = '' } = query || {}
 
   const [isLoading, setIsLoading] = useState(false)
