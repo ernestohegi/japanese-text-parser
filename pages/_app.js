@@ -45,7 +45,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <title>Yochimu - Japanese Text Parser</title>
+        <title>Yochimu | Japanese Text Parser</title>
         <meta
           name="description"
           content="Yochimu lets you look for Japanese definitions and sentences for learning the language, save them to a list, and export them as a file you can then add import to Anki."
