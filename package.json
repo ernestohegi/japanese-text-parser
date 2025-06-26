@@ -16,7 +16,7 @@
   },
   "author": "Ernesto Hegi",
   "license": "ISC",
-  "packageManager": "pnpm@10.12.3",
+  "packageManager": "pnpm@10.12.4",
   "dependencies": {
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.2.0",
