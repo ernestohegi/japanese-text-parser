@@ -1,0 +1,36 @@
+services:
+  personal:
+    image: ernestohegi/yochimu:latest
+    restart: unless-stopped
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+
+    environment:
+      - MY_HOST=${MY_HOST}
+
+    labels:
+      - traefik.enable=true
+
+      # HTTP router for redirecting to HTTPS
+      - traefik.http.routers.personal-http.rule=Host(`${MY_HOST}`) || Host( `www.${MY_HOST}`)
+      - traefik.http.routers.personal-http.entrypoints=web
+      - traefik.http.routers.personal-http.middlewares=redirect-to-https
+      - traefik.http.routers.personal-http.priority=1
+
+      # HTTPS router serving your app
+      - traefik.http.routers.personal.rule=Host(`${MY_HOST}`) || Host(`www.${MY_HOST}`)
+      - traefik.http.routers.personal.entrypoints=websecure
+      - traefik.http.routers.personal.tls=true
+      - traefik.http.routers.personal.tls.certresolver=myresolver
+      - traefik.http.services.personal.loadbalancer.server.port=3000
+
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
