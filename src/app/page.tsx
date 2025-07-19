@@ -98,8 +98,8 @@ export default function Home() {
     <section className="flex flex-col gap-4">
       <article className="flex flex-col gap-2">
         <div className="flex flex-col gap-4">
-          <h1 className="text-4xl font-bold">よちむ Yochimu</h1>
-          <h2>Japanese Text Parser</h2>
+          <h1 className="text-6xl font-bold">よちむ Yochimu</h1>
+          <h2 className="text-2xl font-bold">Japanese Text Parser</h2>
           <p>日本語の語彙を効率的かつコンテキストで学ぶためのツールです。</p>
         </div>
         <ul className="list-disc pl-5">
