@@ -1,14 +1,20 @@
 "use client";
 
 import { useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import crypto from "crypto";
+import FileSaver from "file-saver";
 
-import { NormalisedSentence } from "./api/translate/route";
+import { Definition, NormalisedSentence } from "./api/translate/route";
+import { Sentence } from "@/components/Sentence";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState<string | null>(null);
   const [sentences, setSentences] = useState<NormalisedSentence[] | null>(null);
   const [isPending, setIsPending] = useState(false);
+  const [selectedSentences, setSelectedSentences] = useState<
+    Map<string, Definition>
+  >(new Map());
 
   const queryClient = useQueryClient();
 
@@ -48,11 +54,51 @@ export default function Home() {
     await translateTerm(searchQuery);
   };
 
+  const handleSaveSentence = useCallback(
+    ({ text, translation }: Definition) => {
+      if (!text || !translation) return;
+
+      setSelectedSentences((prev) => {
+        const newMap = new Map(prev);
+
+        const uniqueKey = `${text}:${translation}`;
+
+        if (newMap.has(uniqueKey)) {
+          newMap.delete(uniqueKey);
+        } else {
+          newMap.set(uniqueKey, { text, translation });
+        }
+
+        return newMap;
+      });
+    },
+    []
+  );
+
+  const handleDownloadSentences = useCallback(async () => {
+    if (selectedSentences.size === 0) return;
+
+    let tsvContent = "";
+
+    selectedSentences.forEach(({ text, translation }) => {
+      tsvContent += `${text}\t${translation}\n`;
+    });
+
+    const blob = new Blob([tsvContent], {
+      type: "text/tab-separated-values;charset=utf-8",
+    });
+
+    await FileSaver.saveAs(
+      blob,
+      `yochimu-sentences-${crypto.randomBytes(4).toString("hex")}.tsv`
+    );
+  }, [selectedSentences]);
+
   return (
     <section className="flex flex-col gap-4">
       <article className="flex flex-col gap-2">
         <div className="flex flex-col gap-4">
-          <h1 className="text-4xl font-bold underline">Yochimu</h1>
+          <h1 className="text-4xl font-bold">よちむ Yochimu</h1>
           <h2>Japanese Text Parser</h2>
           <p>日本語の語彙を効率的かつコンテキストで学ぶためのツールです。</p>
         </div>
@@ -86,20 +132,28 @@ export default function Home() {
           </button>
         </div>
       </article>
+      {isPending && <p>少々お待ち下さい...</p>}
       {sentences?.map(([term, definitions]) => (
         <div className="flex flex-col gap-4 border p-4 rounded" key={term}>
           <h4 className="font-bold text-3xl">{term}</h4>
           {definitions?.map(({ text, translation }) => (
-            <div
-              className="flex flex-col gap-4 border p-4 rounded cursor-pointer"
+            <Sentence
               key={`${text}:${translation}`}
-            >
-              <h5 className="font-bold">{text}</h5>
-              <p>{translation}</p>
-            </div>
+              text={text}
+              translation={translation}
+              handleOnClick={handleSaveSentence}
+            />
           ))}
         </div>
       ))}
+      {selectedSentences.size > 0 && (
+        <button
+          onClick={handleDownloadSentences}
+          className="fixed right-10 bottom-10 z-50 p-5 border bg-white text-black cursor-pointer"
+        >
+          Export {selectedSentences.size} Sentences
+        </button>
+      )}
     </section>
   );
 }
