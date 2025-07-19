@@ -1,36 +1,160 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌙 Yochimu (よちむ) - Japanese Text Parser 🇯🇵
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-15.4-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.x-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![Open Source](https://img.shields.io/badge/Open-Source-brightgreen?style=flat-square&logo=github)](https://github.com/ernestohegi/japanese-text-parser)
 
-First, run the development server:
+> 💭 **よちむ (Yochimu)** means "prophetic dream" in Japanese. This tool was created to help Japanese language learners efficiently study vocabulary in context.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 What is Yochimu?
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Yochimu is a powerful tool designed for Japanese language learners who want to study vocabulary **in context** rather than in isolation. Unlike traditional vocabulary lists or flashcards, Yochimu allows you to work with real Japanese sentences, preserving the context that is crucial for proper language acquisition.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+With Yochimu, you can:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🔍 Search for any Japanese word or phrase
+- 📚 Get authentic example sentences with translations
+- 💾 Save your favorite sentences for study
+- 📤 Export to Anki-compatible format for spaced repetition practice
 
-## Learn More
+## ✨ Features
 
-To learn more about Next.js, take a look at the following resources:
+### 🇯🇵 Search in Japanese
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Enter any Japanese word or phrase and get detailed translations and example sentences. Yochimu tokenizes your input and finds relevant, natural sentences.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🔖 Save Your Favorites
 
-## Deploy on Vercel
+Collect useful sentences by clicking on them, building your personalized study list as you explore.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 📝 Export to Anki
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Download your saved sentences as a TSV file that can be easily imported into Anki for spaced repetition practice.
+
+## 🧠 Why Context Matters
+
+Learning words in isolation makes it difficult to understand how they're actually used in real Japanese. Yochimu focuses on providing complete sentences so you can learn:
+
+- 🌟 Natural word usage
+- 🔄 Common collocations (words that often appear together)
+- 📏 Grammatical patterns
+- 🏮 Cultural context
+
+This approach leads to better retention and more natural Japanese expression.
+
+## 🛠️ Built With
+
+Yochimu is built with modern web technologies:
+
+- ⚛️ **React.js** - For building the user interface
+- 📱 **Next.js** - For server-side rendering and API routes
+- 🔒 **TypeScript** - For type safety and better developer experience
+- 🎨 **TailwindCSS** - For styling
+- 🇯🇵 **Wanakana** - For Japanese text processing
+- 🔄 **React Query** - For efficient data fetching
+- 💾 **File-Saver** - For downloading TSV files
+
+## 🔌 API Integration
+
+Yochimu integrates with the [Tatoeba API](https://en.wiki.tatoeba.org/articles/show/api) to fetch authentic Japanese sentences with English translations. Tatoeba is a large database of example sentences translated into many languages.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm, yarn, or pnpm
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/ernestohegi/japanese-text-parser.git
+   cd japanese-text-parser
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   # or
+   yarn
+   # or
+   pnpm install
+   ```
+
+3. Run the development server:
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   # or
+   bun dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 📖 How to Use
+
+### Basic Usage
+
+1. **Enter a Japanese Word or Phrase**
+
+   - In the search box on the home page, type any Japanese word, phrase, or sentence you want to learn more about.
+   - Examples: 単語 (word), 日本語 (Japanese language), 勉強する (to study)
+
+2. **Review the Results**
+
+   - Yochimu will display example sentences containing your search term with English translations.
+
+3. **Save Sentences You Want to Study**
+
+   - Click on any sentence to add it to your study list. The sentence will be highlighted to show it's been selected.
+
+4. **Export Your Study List**
+   - Once you've collected some sentences, click the "Export" button to download your list as a TSV file.
+
+### Importing to Anki
+
+The TSV files from Yochimu are formatted for easy import into Anki:
+
+1. Open Anki on your computer
+2. Create a new deck or select an existing one
+3. Click "File" → "Import" and select the TSV file you downloaded
+4. Configure the field mapping (first field: Japanese, second field: English)
+5. Begin studying with Anki's spaced repetition system
+
+## 💡 Tips for Effective Study
+
+- Choose sentences that are at or slightly above your current level
+- Focus on natural, everyday expressions rather than literary or extremely formal Japanese
+- Try to understand the grammar patterns in each sentence
+- Read sentences aloud to practice pronunciation
+- Create a consistent study routine with Anki
+
+## 🤝 Contributing
+
+Contributions are welcome! If you'd like to contribute to Yochimu:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 🐛 Issues and Feature Requests
+
+If you encounter any issues or have ideas for new features, please [open an issue](https://github.com/ernestohegi/japanese-text-parser/issues) on GitHub.
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+---
+
+Happy Japanese learning! 🎌 がんばって！
