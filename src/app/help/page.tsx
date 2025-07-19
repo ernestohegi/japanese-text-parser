@@ -1,15 +1,15 @@
 export default function Help() {
   return (
-    <section>
-      <article>
-        <h1>How to Use Yochimu</h1>
+    <section className="flex flex-col gap-4">
+      <article className="flex flex-col gap-4">
+        <h1 className="text-4xl font-bold underline">How to use Yochimu</h1>
         <p>
           {`Yochimu is designed to be simple and intuitive. Here's a quick guide
           to get you started.`}
         </p>
       </article>
 
-      <article>
+      <article className="flex flex-col gap-2">
         <h2>Basic Usage</h2>
         <div>
           <div>
@@ -57,7 +57,7 @@ export default function Help() {
         </div>
       </article>
 
-      <article>
+      <article className="flex flex-col gap-2">
         <h2>Importing to Anki</h2>
         <p>
           The TSV files from Yochimu are formatted for easy import into Anki, a
@@ -109,7 +109,7 @@ export default function Help() {
         </div>
       </article>
 
-      <article>
+      <article className="flex flex-col gap-2">
         <h2>Tips for Effective Study</h2>
         <ul>
           <li>
@@ -125,7 +125,7 @@ export default function Help() {
         </ul>
       </article>
 
-      <article>
+      <article className="flex flex-col gap-2">
         <h2>Need More Help?</h2>
         <p>
           If you have questions or need assistance, please visit the

@@ -49,37 +49,52 @@ export default function Home() {
   };
 
   return (
-    <section>
-      <article>
-        <h1 className="text-3xl font-bold underline">Yochimu</h1>
-        <h2>Japanese Text Parser</h2>
-        <p>日本語の語彙を効率的かつコンテキストで学ぶためのツールです。</p>
-        <p>
-          Enter a Japanese word or phrase below to get definitions and example
-          sentences. Click on sentences to save them, then export to create Anki
-          flashcards.
-        </p>
+    <section className="flex flex-col gap-4">
+      <article className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
+          <h1 className="text-4xl font-bold underline">Yochimu</h1>
+          <h2>Japanese Text Parser</h2>
+          <p>日本語の語彙を効率的かつコンテキストで学ぶためのツールです。</p>
+        </div>
+        <ul className="list-disc pl-5">
+          <li>
+            Enter a Japanese word or phrase below to get definitions and example
+            sentences.
+          </li>
+          <li>
+            Click on sentences to save them, then export to create Anki
+            flashcards!
+          </li>
+        </ul>
       </article>
-      <article>
-        <h3>Enter a word or phrase in Japanese to begin your search</h3>
-        <div>
+      <article className="flex flex-col gap-2">
+        <h3>Enter a word or phrase in Japanese</h3>
+        <div className="flex gap-2">
           <input
             type="text"
             onChange={(event) => setSearchQuery(event.target.value)}
             autoFocus
             placeholder="予知夢"
+            className="flex-1 p-2 border border-gray-300 rounded"
           />
-          <button onClick={handleSearch} disabled={isPending}>
+          <button
+            onClick={handleSearch}
+            disabled={isPending}
+            className="cursor-pointer"
+          >
             {isPending ? "Searching..." : "Search"}
           </button>
         </div>
       </article>
       {sentences?.map(([term, definitions]) => (
-        <div className="flex flex-col gap-4" key={term}>
-          <h4>{term}</h4>
+        <div className="flex flex-col gap-4 border p-4 rounded" key={term}>
+          <h4 className="font-bold text-3xl">{term}</h4>
           {definitions?.map(({ text, translation }) => (
-            <div className="flex flex-col gap-4" key={`${text}:${translation}`}>
-              <p>{text}</p>
+            <div
+              className="flex flex-col gap-4 border p-4 rounded cursor-pointer"
+              key={`${text}:${translation}`}
+            >
+              <h5 className="font-bold">{text}</h5>
               <p>{translation}</p>
             </div>
           ))}

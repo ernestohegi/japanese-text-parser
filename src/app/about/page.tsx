@@ -1,8 +1,8 @@
 export default function About() {
   return (
-    <section>
-      <article>
-        <h1>About Yochimu</h1>
+    <section className="flex flex-col gap-4">
+      <article className="flex flex-col gap-4">
+        <h1 className="text-4xl font-bold underline">About Yochimu</h1>
         <p>
           {`よちむ (Yochimu) means "prophetic dream" in Japanese. This tool was
             created to help Japanese language learners efficiently study
@@ -14,8 +14,7 @@ export default function About() {
           so important for proper language acquisition.
         </p>
       </article>
-
-      <article>
+      <article className="flex flex-col gap-2">
         <h2>Features</h2>
         <div>
           <div>
@@ -41,8 +40,7 @@ export default function About() {
           </div>
         </div>
       </article>
-
-      <article>
+      <article className="flex flex-col gap-2">
         <h2>Why Context Matters</h2>
         <p>
           {`Learning words in isolation makes it difficult to understand how
@@ -60,8 +58,7 @@ export default function About() {
           expression.
         </p>
       </article>
-
-      <article>
+      <article className="flex flex-col gap-2">
         <h2>Built With</h2>
         <p>Yochimu is built with modern web technologies:</p>
         <ul>

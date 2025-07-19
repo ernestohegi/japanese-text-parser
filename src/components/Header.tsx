@@ -13,11 +13,11 @@ const NavLink = ({ href, children }: NavLinkProps) => {
 const Header = () => {
   return (
     <nav>
-      <div className="nav-container">
+      <div className="flex flex-col gap-4">
         <Link href="/" className="nav-logo">
           よちむ Yochimu
         </Link>
-        <div className="nav-links">
+        <div className="flex gap-4">
           <NavLink href="/">Home</NavLink>
           <NavLink href="/about">About</NavLink>
           <NavLink href="/help">Help</NavLink>
