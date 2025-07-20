@@ -138,7 +138,7 @@ export default function Home() {
           {sentences?.map(([term, definitions]) => (
             <div className="flex flex-col gap-4 border p-4 rounded" key={term}>
               <h4 className="font-bold text-3xl">{term}</h4>
-              <div className="grid grid-cols-5 gap-4">
+              <div className="flex flex-col md:grid md:grid-cols-5 xl:grid-cols-8 2xl:grid-cols-12 gap-4">
                 {definitions?.map(({ text, translation }) => (
                   <Sentence
                     key={`${text}:${translation}`}
