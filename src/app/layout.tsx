@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Home | Yochimu - Japanese Text Parser",
+  title: "Home | Yochimu | Japanese Text Parser",
   description:
-    "Yochimu lets you look for Japanese definitions and sentences for learning the language, save them to a list, and export them as a file you can then add import to Anki.",
+    "Yochimu lets you look for Japanese definitions and sentences for learning the language, save them to a list and export them as a file you can then add import to Anki.",
 };
 
 export default function RootLayout({
