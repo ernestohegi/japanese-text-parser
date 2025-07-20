@@ -19,17 +19,23 @@ export default function Help() {
             </p>
             <p>Examples:</p>
             <ul className="list-disc pl-5">
-              <li>単語 (word)</li>
-              <li>日本語 (Japanese language)</li>
-              <li>勉強する (to study)</li>
+              <li>
+                <span className="font-bold">単語</span> (word)
+              </li>
+              <li>
+                <span className="font-bold">日本語</span> (Japanese language)
+              </li>
+              <li>
+                <span className="font-bold">勉強する</span> (to study)
+              </li>
             </ul>
           </div>
           <div className="flex flex-col gap-2">
             <h3 className="font-bold">2. Review the Results</h3>
             <p>
               Yochimu will display definitions and example sentences containing
-              your search term. The results come from trusted sources like Jisho
-              and Tangorin.
+              your search term. The results come from Tatoeba, but we are
+              planning to expand the amount of sources in the future.
             </p>
           </div>
           <div className="flex flex-col gap-2">
@@ -42,7 +48,7 @@ export default function Help() {
           <div className="flex flex-col gap-2">
             <h3 className="font-bold">4. Export Your Study List</h3>
             <p>
-              {`Once you've collected some sentences, click the "Export to tsv"
+              {`Once you've collected some sentences, click the "Export sentences"
               button to download your list as a TSV (Tab-Separated Values) file.`}
             </p>
           </div>
