@@ -95,7 +95,7 @@ export default function Home() {
   }, [selectedSentences]);
 
   return (
-    <section className="flex flex-col gap-4">
+    <section className="flex flex-col gap-8">
       <article className="flex flex-col gap-2">
         <div className="flex flex-col gap-4">
           <h1 className="text-6xl font-bold">よちむ Yochimu</h1>
@@ -115,7 +115,7 @@ export default function Home() {
       </article>
       <article className="flex flex-col gap-2">
         <h3>Enter a word or phrase in Japanese</h3>
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-4">
           <input
             type="text"
             onChange={(event) => setSearchQuery(event.target.value)}
@@ -126,26 +126,32 @@ export default function Home() {
           <button
             onClick={handleSearch}
             disabled={isPending}
-            className="cursor-pointer"
+            className="cursor-pointer border p-2"
           >
             {isPending ? "Searching..." : "Search"}
           </button>
         </div>
       </article>
       {isPending && <p>少々お待ち下さい...</p>}
-      {sentences?.map(([term, definitions]) => (
-        <div className="flex flex-col gap-4 border p-4 rounded" key={term}>
-          <h4 className="font-bold text-3xl">{term}</h4>
-          {definitions?.map(({ text, translation }) => (
-            <Sentence
-              key={`${text}:${translation}`}
-              text={text}
-              translation={translation}
-              handleOnClick={handleSaveSentence}
-            />
+      {!!sentences?.length && (
+        <div className="flex flex-col gap-4">
+          {sentences?.map(([term, definitions]) => (
+            <div className="flex flex-col gap-4 border p-4 rounded" key={term}>
+              <h4 className="font-bold text-3xl">{term}</h4>
+              <div className="grid grid-cols-5 gap-4">
+                {definitions?.map(({ text, translation }) => (
+                  <Sentence
+                    key={`${text}:${translation}`}
+                    text={text}
+                    translation={translation}
+                    handleOnClick={handleSaveSentence}
+                  />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
-      ))}
+      )}
       {selectedSentences.size > 0 && (
         <button
           onClick={handleDownloadSentences}

@@ -1,7 +1,7 @@
 export default function About() {
   return (
     <section className="flex flex-col gap-4">
-      <article className="flex flex-col gap-4">
+      <article className="flex flex-col gap-4 border-b pb-4">
         <h1 className="text-6xl font-bold">About Yochimu</h1>
         <p className="italic">
           {`よちむ (Yochimu) means "prophetic dream" in Japanese. This tool was
@@ -14,7 +14,7 @@ export default function About() {
           so important for proper language acquisition.
         </p>
       </article>
-      <article className="flex flex-col gap-2">
+      <article className="flex flex-col gap-2 border-b pb-4">
         <h2 className="text-2xl font-bold">Features</h2>
         <ul className="list-disc flex flex-col gap-2 pl-4">
           <li>
@@ -40,7 +40,7 @@ export default function About() {
           </li>
         </ul>
       </article>
-      <article className="flex flex-col gap-2">
+      <article className="flex flex-col gap-2 border-b pb-4">
         <h2 className="text-2xl font-bold">Why Context Matters</h2>
         <p>
           {`Learning words in isolation makes it difficult to understand how

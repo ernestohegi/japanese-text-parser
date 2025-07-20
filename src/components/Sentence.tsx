@@ -19,8 +19,8 @@ export const Sentence = memo(
           setIsSelected((prev) => !prev);
         }}
       >
-        <p className="font-bold">{text}</p>
-        <p>{translation}</p>
+        <p className="font-bold text-lg">{text}</p>
+        <p className="text-sm">{translation}</p>
       </button>
     );
   }
