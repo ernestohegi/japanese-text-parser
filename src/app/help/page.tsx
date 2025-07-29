@@ -1,6 +1,55 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Help & Tutorial - Yochimu Japanese Learning Tool",
+  description:
+    "Step-by-step guide on how to use Yochimu to analyze Japanese text and create Anki flashcards",
+  keywords: [
+    "Yochimu tutorial",
+    "Japanese learning guide",
+    "How to use Yochimu",
+    "Anki import guide",
+  ],
+};
+
 export default function Help() {
   return (
-    <section className="flex flex-col gap-4">
+    <main className="flex flex-col gap-4">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "How do I search for Japanese words in Yochimu?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Enter any Japanese word, phrase, or sentence in the search box on the home page to get definitions and example sentences.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How do I save sentences in Yochimu?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Click on any sentence to add it to your study list. The sentence will be highlighted to show it's been selected.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How do I import sentences into Anki?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Export your saved sentences as a TSV file from Yochimu, then import it into Anki using File → Import.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
       <article className="flex flex-col gap-4 border-b pb-4">
         <h1 className="text-6xl font-bold">How to use Yochimu</h1>
         <p>
@@ -120,11 +169,13 @@ export default function Help() {
             rel="noopener noreferrer"
             className="underline font-bold italic"
           >
-            GitHub issues page
+            <span aria-label="GitHub issues page (opens in new tab)">
+              GitHub issues page
+            </span>
           </a>{" "}
           to report problems or request features.
         </p>
       </article>
-    </section>
+    </main>
   );
 }
