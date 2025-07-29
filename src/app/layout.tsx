@@ -16,9 +16,51 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Home | Yochimu | Japanese Text Parser",
+  title: {
+    default: "Yochimu - Japanese Text Parser & Sentence Analyzer",
+    template: "%s | Yochimu Japanese Learning Tool",
+  },
   description:
-    "Yochimu lets you look for Japanese definitions and sentences for learning the language, save them to a list and export them as a file you can then add import to Anki.",
+    "Powerful Japanese text parser and sentence analyzer. Look up definitions, break down grammar, save vocabulary lists, and export to Anki for efficient Japanese language learning.",
+  keywords: [
+    "Japanese parser",
+    "Japanese text analyzer",
+    "Japanese sentence breakdown",
+    "Japanese grammar checker",
+    "Japanese learning tool",
+    "Anki Japanese export",
+  ],
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  alternates: {
+    canonical: "https://yochimu.app",
+  },
+  openGraph: {
+    title: "Yochimu - Japanese Text Parser & Sentence Analyzer",
+    description:
+      "Analyze Japanese sentences, look up definitions, and export vocabulary to Anki",
+    url: "https://yochimu.app",
+    siteName: "Yochimu",
+    images: [
+      {
+        url: "https://yochimu.app/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yochimu - Japanese Text Parser & Sentence Analyzer",
+    description:
+      "Analyze Japanese sentences, look up definitions, and export vocabulary to Anki",
+    images: ["https://yochimu.app/og-image.png"],
+  },
 };
 
 export default function RootLayout({
@@ -27,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-xl`}
       >

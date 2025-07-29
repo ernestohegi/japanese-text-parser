@@ -95,7 +95,26 @@ export default function Home() {
   }, [selectedSentences]);
 
   return (
-    <section className="flex flex-col gap-8">
+    <main className="flex flex-col gap-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: "Yochimu - Japanese Text Parser",
+            description:
+              "Japanese language learning tool for parsing text and creating flashcards",
+            applicationCategory: "EducationalApplication",
+            operatingSystem: "Web Browser",
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+            },
+          }),
+        }}
+      />
       <article className="flex flex-col gap-2">
         <div className="flex flex-col gap-4">
           <h1 className="text-6xl font-bold">よちむ Yochimu</h1>
@@ -122,11 +141,13 @@ export default function Home() {
             autoFocus
             placeholder="予知夢"
             className="flex-1 p-2 border border-gray-300 rounded"
+            aria-label="Enter Japanese word or phrase to search"
           />
           <button
             onClick={handleSearch}
             disabled={isPending}
             className="cursor-pointer border p-2"
+            aria-label="Search for Japanese word or phrase"
           >
             {isPending ? "Searching..." : "Search"}
           </button>
@@ -160,6 +181,6 @@ export default function Home() {
           Export {selectedSentences.size} Sentences
         </button>
       )}
-    </section>
+    </main>
   );
 }

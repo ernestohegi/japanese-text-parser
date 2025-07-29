@@ -1,6 +1,37 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Yochimu - Japanese Learning Tool",
+  description:
+    "Learn about Yochimu, the Japanese text parser and sentence analyzer that helps you study vocabulary in context",
+  keywords: [
+    "Japanese learning tool",
+    "Yochimu about",
+    "Japanese context learning",
+    "Anki Japanese export",
+  ],
+};
+
 export default function About() {
   return (
-    <section className="flex flex-col gap-4">
+    <main className="flex flex-col gap-4">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            name: "About Yochimu",
+            description: "Information about the Yochimu Japanese learning tool",
+            about: {
+              "@type": "SoftwareApplication",
+              name: "Yochimu",
+              applicationCategory: "EducationalApplication",
+              operatingSystem: "Web Browser",
+            },
+          }),
+        }}
+      />
       <article className="flex flex-col gap-4 border-b pb-4">
         <h1 className="text-6xl font-bold">About Yochimu</h1>
         <p className="italic">
@@ -71,7 +102,9 @@ export default function About() {
               rel="noopener noreferrer"
               className="underline font-bold italic"
             >
-              Tatoeba API
+              <span aria-label="Tatoeba API (opens in new tab)">
+                Tatoeba API
+              </span>
             </a>{" "}
             to farm sentences.
           </li>
@@ -84,11 +117,13 @@ export default function About() {
             rel="noopener noreferrer"
             className="underline font-bold italic"
           >
-            GitHub
+            <span aria-label="GitHub repository (opens in new tab)">
+              GitHub
+            </span>
           </a>
           .
         </p>
       </article>
-    </section>
+    </main>
   );
 }
