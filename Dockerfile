@@ -1,6 +1,5 @@
 FROM node:22-alpine AS base
 
-# Install pnpm globally and add it to the PATH.
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 
